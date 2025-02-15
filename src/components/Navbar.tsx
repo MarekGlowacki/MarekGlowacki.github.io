@@ -11,30 +11,30 @@ const Navbar = () => {
   return (
     <>
       {/* Contact Info Bar */}
-      <div className="bg-white/90 backdrop-blur-sm py-2 w-full z-50">
+      <div className="bg-black py-2 w-full z-50">
         <div className="container mx-auto px-4 max-w-6xl flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-estate-600 hover:text-estate-800 transition-colors">
+            <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
               <Mail className="h-4 w-4" /> kontakt@marekglowacki.pl
             </div>
-            <div className="flex items-center gap-2 text-estate-600 hover:text-estate-800 transition-colors">
+            <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
               <Phone className="h-4 w-4" /> +48 514 383 545
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+            <a href="#" className="text-white/90 hover:text-white transition-colors">
               <Facebook className="h-4 w-4" />
             </a>
-            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+            <a href="#" className="text-white/90 hover:text-white transition-colors">
               <Twitter className="h-4 w-4" />
             </a>
-            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+            <a href="#" className="text-white/90 hover:text-white transition-colors">
               <Youtube className="h-4 w-4" />
             </a>
-            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+            <a href="#" className="text-white/90 hover:text-white transition-colors">
               <Linkedin className="h-4 w-4" />
             </a>
-            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+            <a href="#" className="text-white/90 hover:text-white transition-colors">
               <Github className="h-4 w-4" />
             </a>
           </div>
@@ -53,7 +53,7 @@ const Navbar = () => {
               <a href="#o-mnie" className="text-estate-600 hover:text-estate-800 transition-colors">O mnie</a>
               <a href="#uslugi" className="text-estate-600 hover:text-estate-800 transition-colors">Usługi</a>
               <a href="#kontakt" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</a>
-              <Button className="bg-green-600 text-white hover:bg-green-700 transition-colors">
+              <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                 CV
               </Button>
             </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
                     <a href="#o-mnie" className="text-lg">O mnie</a>
                     <a href="#uslugi" className="text-lg">Usługi</a>
                     <a href="#kontakt" className="text-lg">Kontakt</a>
-                    <Button className="w-full bg-green-600 text-white hover:bg-green-700">CV</Button>
+                    <Button className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]">CV</Button>
                   </div>
                 </SheetContent>
               </Sheet>

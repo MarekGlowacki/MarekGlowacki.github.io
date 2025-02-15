@@ -42,7 +42,7 @@ const Hero = () => {
           Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie kryptowalut.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
-          <Button size="lg" className="bg-green-600 text-white hover:bg-green-700 transform transition-all hover:scale-105">
+          <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">
             Zobacz projekty
           </Button>
           <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 transform transition-all hover:scale-105">
