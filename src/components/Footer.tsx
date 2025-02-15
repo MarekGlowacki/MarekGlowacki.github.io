@@ -1,4 +1,3 @@
-
 import { Facebook, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 const Footer = () => {
@@ -9,24 +8,24 @@ const Footer = () => {
           <div>
             <h3 className="font-display text-xl mb-4">Marek Głowacki</h3>
             <p className="text-estate-300">
-              Zespół programistów tworzy innowacyjne rozwiązania technologiczne, które usprawniają procesy biznesowe i wspierają osiąganie celów firm. Dążymy do doskonałości, łącząc pasję z technologią w każdym projekcie.
+              Jako programista tworzę innowacyjne rozwiązania technologiczne, które usprawniają procesy biznesowe i wspierają osiąganie celów firm. Dążę do doskonałości, łącząc pasję z technologią w każdym projekcie.
             </p>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Usługi</h4>
             <ul className="space-y-2 text-estate-300">
-              <li><a href="#" className="hover:text-white transition-colors">Tworzenie aplikacji internetowych</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Szkolenia Sztucznej Inteligencji dla Firm</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Bitcoin Expert</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Tworzenie aplikacji internetowych</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Szkolenia Sztucznej Inteligencji dla Firm</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Bitcoin Expert</a></li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-4">Odkryj nas</h4>
+            <h4 className="font-semibold mb-4">Odkryj mnie</h4>
             <ul className="space-y-2 text-estate-300">
-              <li><a href="#" className="hover:text-white transition-colors">O mnie</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Nasza oferta</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Portfolio</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Kontakt</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">O mnie</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Moja oferta</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Portfolio</a></li>
+              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Kontakt</a></li>
             </ul>
           </div>
           <div>
@@ -51,13 +50,13 @@ const Footer = () => {
         </div>
         <div className="mt-12 pt-8 border-t border-estate-700 text-center">
           <div className="flex justify-center space-x-6 mb-4">
-            <a href="#" className="text-estate-300 hover:text-white transition-colors">
+            <a href="#" className="text-estate-300 hover:text-white transition-colors transform hover:scale-110">
               <Github className="w-6 h-6" />
             </a>
-            <a href="#" className="text-estate-300 hover:text-white transition-colors">
+            <a href="#" className="text-estate-300 hover:text-white transition-colors transform hover:scale-110">
               <Linkedin className="w-6 h-6" />
             </a>
-            <a href="#" className="text-estate-300 hover:text-white transition-colors">
+            <a href="#" className="text-estate-300 hover:text-white transition-colors transform hover:scale-110">
               <Facebook className="w-6 h-6" />
             </a>
           </div>

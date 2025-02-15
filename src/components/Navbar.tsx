@@ -1,5 +1,5 @@
 
-import { Menu } from "lucide-react";
+import { Menu, Mail, Phone, Facebook, Twitter, Youtube, Linkedin, Github } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Sheet,
@@ -13,8 +13,31 @@ const Navbar = () => {
       {/* Contact Info Bar */}
       <div className="bg-white/90 backdrop-blur-sm py-2 w-full z-50">
         <div className="container mx-auto px-4 max-w-6xl flex justify-between items-center text-sm">
-          <div>Email: kontakt@marekglowacki.pl</div>
-          <div>Tel: +48 514 383 545</div>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-estate-600 hover:text-estate-800 transition-colors">
+              <Mail className="h-4 w-4" /> kontakt@marekglowacki.pl
+            </div>
+            <div className="flex items-center gap-2 text-estate-600 hover:text-estate-800 transition-colors">
+              <Phone className="h-4 w-4" /> +48 514 383 545
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+              <Facebook className="h-4 w-4" />
+            </a>
+            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+              <Twitter className="h-4 w-4" />
+            </a>
+            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+              <Youtube className="h-4 w-4" />
+            </a>
+            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+              <Linkedin className="h-4 w-4" />
+            </a>
+            <a href="#" className="text-estate-600 hover:text-estate-800 transition-colors">
+              <Github className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
       
@@ -31,7 +54,7 @@ const Navbar = () => {
               <a href="#uslugi" className="text-estate-600 hover:text-estate-800 transition-colors">Usługi</a>
               <a href="#kontakt" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</a>
               <Button className="bg-estate-800 text-white hover:bg-estate-700">
-                Współpraca
+                CV
               </Button>
             </div>
 
@@ -49,7 +72,7 @@ const Navbar = () => {
                     <a href="#o-mnie" className="text-lg">O mnie</a>
                     <a href="#uslugi" className="text-lg">Usługi</a>
                     <a href="#kontakt" className="text-lg">Kontakt</a>
-                    <Button className="w-full">Współpraca</Button>
+                    <Button className="w-full">CV</Button>
                   </div>
                 </SheetContent>
               </Sheet>

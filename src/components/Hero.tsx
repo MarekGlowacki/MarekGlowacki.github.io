@@ -31,7 +31,7 @@ const Hero = () => {
             backgroundImage: `url('${img}')`,
           }}
         >
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
       <div className="relative z-10 container mx-auto px-8 text-center">
@@ -42,10 +42,10 @@ const Hero = () => {
           Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie kryptowalut.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
-          <Button size="lg" className="bg-white text-black hover:bg-white/90">
+          <Button size="lg" className="bg-white text-black hover:bg-white/90 transform transition-transform hover:scale-105">
             Zobacz projekty
           </Button>
-          <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+          <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 transform transition-transform hover:scale-105">
             Skontaktuj się
           </Button>
         </div>
