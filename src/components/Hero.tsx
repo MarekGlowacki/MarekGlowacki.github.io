@@ -45,7 +45,7 @@ const Hero = () => {
           <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">
             Zobacz projekty
           </Button>
-          <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 transform transition-all hover:scale-105">
+          <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">
             Skontaktuj się
           </Button>
         </div>
