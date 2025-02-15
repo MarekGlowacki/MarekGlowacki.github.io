@@ -1,3 +1,4 @@
+
 import Hero from "@/components/Hero";
 import PropertyGrid from "@/components/PropertyGrid";
 import AboutUs from "@/components/AboutUs";
@@ -12,9 +13,9 @@ const Index = () => {
       <Navbar />
       <Hero />
       
-      <section className="py-32">
+      <section className="py-32" id="projekty">
         <div className="container mx-auto px-4 max-w-6xl text-center">
-          <h2 className="text-5xl font-display text-estate-800 mb-16">Discover</h2>
+          <h2 className="text-5xl font-display text-estate-800 mb-16">Projekty</h2>
           <PropertyGrid />
         </div>
       </section>
