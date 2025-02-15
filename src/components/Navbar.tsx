@@ -53,7 +53,7 @@ const Navbar = () => {
               <a href="#o-mnie" className="text-estate-600 hover:text-estate-800 transition-colors">O mnie</a>
               <a href="#uslugi" className="text-estate-600 hover:text-estate-800 transition-colors">Usługi</a>
               <a href="#kontakt" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</a>
-              <Button className="bg-estate-800 text-white hover:bg-estate-700">
+              <Button className="bg-green-600 text-white hover:bg-green-700 transition-colors">
                 CV
               </Button>
             </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
                     <a href="#o-mnie" className="text-lg">O mnie</a>
                     <a href="#uslugi" className="text-lg">Usługi</a>
                     <a href="#kontakt" className="text-lg">Kontakt</a>
-                    <Button className="w-full">CV</Button>
+                    <Button className="w-full bg-green-600 text-white hover:bg-green-700">CV</Button>
                   </div>
                 </SheetContent>
               </Sheet>
