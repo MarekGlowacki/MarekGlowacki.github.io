@@ -6,12 +6,15 @@ import OurVision from "@/components/OurVision";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import Services from "@/components/Services";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
       <Hero />
+      
+      <Services />
       
       <section className="py-32" id="projekty">
         <div className="container mx-auto px-4 max-w-6xl text-center">
