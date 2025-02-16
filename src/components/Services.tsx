@@ -7,17 +7,17 @@ const Services = () => {
   const services = [
     {
       title: "Tworzenie aplikacji internetowych",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&q=80&w=1200",
+      image: "/images/creating-apps.jpg",
       link: "#",
     },
     {
       title: "Szkolenia Sztucznej Inteligencji dla Firm",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&q=80&w=1200",
+      image: "/images/ai.jpg",
       link: "#",
     },
     {
       title: "Bitcoin Expert",
-      image: "/lovable-uploads/42d94cd4-348d-4d21-a88c-2d8401f1f35c.png",
+      image: "/images/zwrocic-Bitcoina.jpg",
       link: "#",
     },
   ];
@@ -75,7 +75,7 @@ const Services = () => {
                   </h3>
                   <Button 
                     variant="outline"
-                    className="w-fit text-white border-white hover:bg-white hover:text-black transition-all transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
+                    className="w-fit border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white transition-all transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
                   >
                     Czytaj więcej
                   </Button>
