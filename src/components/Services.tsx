@@ -1,17 +1,18 @@
 
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import { lazy, Suspense } from "react";
 
 const Services = () => {
   const services = [
     {
       title: "Tworzenie aplikacji internetowych",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&q=80&w=1200",
       link: "#",
     },
     {
       title: "Szkolenia Sztucznej Inteligencji dla Firm",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&q=80&w=1200",
       link: "#",
     },
     {
@@ -22,7 +23,11 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-32 bg-white" id="uslugi">
+    <section 
+      className="py-32 bg-white" 
+      id="uslugi"
+      style={{ willChange: 'transform' }}
+    >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-display text-estate-800 mb-6">Usługi</h2>
@@ -36,19 +41,34 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="relative h-[500px] overflow-hidden rounded-3xl shadow-2xl">
+        <div 
+          className="relative h-[500px] overflow-hidden rounded-3xl shadow-2xl"
+          style={{ willChange: 'transform' }}
+        >
           <div className="absolute inset-0 flex">
             {services.map((service, index) => (
               <div 
                 key={index} 
                 className="flex-1 relative group overflow-hidden"
-                style={{ marginRight: index !== services.length - 1 ? '2px' : '0' }}
+                style={{ 
+                  marginRight: index !== services.length - 1 ? '2px' : '0',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden'
+                }}
               >
                 <div 
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${service.image})` }}
+                  style={{ 
+                    backgroundImage: `url(${service.image})`,
+                    willChange: 'transform',
+                    transform: 'translateZ(0)'
+                  }}
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div 
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
+                  style={{ transform: 'translateZ(0)' }}
+                />
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
                   <h3 className="text-2xl font-display text-white mb-4 transform group-hover:-translate-y-2 transition-transform">
                     {service.title}
