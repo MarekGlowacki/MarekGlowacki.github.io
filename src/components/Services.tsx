@@ -21,35 +21,26 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-24 bg-white" id="uslugi">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex justify-between items-center mb-12">
-          <h2 className="text-4xl font-display text-estate-800">Nasze usługi</h2>
-          <Button variant="link" className="text-[#49be25] hover:text-[#3da51e]">
-            Zobacz wszystko →
-          </Button>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={index} className="group relative h-[400px] overflow-hidden rounded-xl">
-              <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style={{ backgroundImage: `url(${service.image})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-8">
-                <h3 className="text-2xl font-display text-white mb-4">{service.title}</h3>
-                <Button 
-                  variant="outline"
-                  className="w-fit text-white border-white hover:bg-white hover:text-black transition-colors"
-                >
-                  Czytaj więcej
-                </Button>
-              </div>
+    <section className="relative h-[500px] bg-white overflow-hidden" id="uslugi">
+      <div className="absolute inset-0 flex">
+        {services.map((service, index) => (
+          <div key={index} className="flex-1 relative group" style={{ marginRight: index !== services.length - 1 ? '2px' : '0' }}>
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+              style={{ backgroundImage: `url(${service.image})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end p-8">
+              <h3 className="text-2xl font-display text-white mb-4">{service.title}</h3>
+              <Button 
+                variant="outline"
+                className="w-fit text-white border-white hover:bg-white hover:text-black transition-colors"
+              >
+                Czytaj więcej
+              </Button>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );
