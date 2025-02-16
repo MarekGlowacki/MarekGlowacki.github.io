@@ -12,7 +12,7 @@ const OurVision = () => {
       description: "Implementuję rozwiązania AI, które wspierają rozwój i automatyzację procesów biznesowych.",
     },
     {
-      title: "Ekspert Kryptowalut",
+      title: "Bitcoin Expert",
       description: "Dostarczam profesjonalne doradztwo i wsparcie w zakresie inwestycji w Bitcoin.",
     },
   ];

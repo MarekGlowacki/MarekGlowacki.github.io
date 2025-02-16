@@ -54,7 +54,9 @@ const Navbar = () => {
               <Link to="/about" className="text-estate-600 hover:text-estate-800 transition-colors">O mnie</Link>
               <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors">Usługi</Link>
               <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</Link>
-              <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
+              <Button
+                className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
+                onClick={() => (window.location.href = '/cv.html')}>
                 CV
               </Button>
             </div>
@@ -73,7 +75,11 @@ const Navbar = () => {
                     <Link to="/about" className="text-lg">O mnie</Link>
                     <Link to="/services" className="text-lg">Usługi</Link>
                     <Link to="/contact" className="text-lg">Kontakt</Link>
-                    <Button className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]">CV</Button>
+                    <Button
+                      className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
+                      onClick={() => (window.location.href = '/cv.html')}>
+                      CV
+                    </Button>
                   </div>
                 </SheetContent>
               </Sheet>

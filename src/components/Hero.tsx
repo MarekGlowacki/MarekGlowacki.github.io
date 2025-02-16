@@ -39,7 +39,7 @@ const Hero = () => {
           Innowacyjne Rozwiązania Technologiczne
         </h1>
         <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto animate-fadeIn">
-          Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie kryptowalut.
+          Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie Bitcoina.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
           <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">

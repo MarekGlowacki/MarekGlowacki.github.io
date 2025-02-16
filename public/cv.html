@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Marek Głowacki</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #ffffff; /* Zmiana tła na białe */
+    color: #000000; /* Zmiana koloru tekstu na czarny */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff; /* Białe tło kontenera */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #49be25; /* Ciemniejszy zielony kolor nagłówka */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Cień tekstu */
+    border-bottom: 3px solid #49be25; /* Ciemniejsza zielona linia pod nagłówkiem */
+    padding-bottom: 10px;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+h2, h3 {
+    color: #49be25; /* Ciemniejszy zielony dla podnagłówków */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Cień tekstu */
+}
+
+h2 {
+    border-bottom: 2px solid #49be25; /* Ciemnozielona linia pod h2 */
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #49be25; /* Ciemniejsza zielona ramka wokół zdjęcia */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    margin: 20px auto;
+    margin-left: 200px;
+}
+
+.card {
+    background: #f0f4f8; /* Jasnoszare tło kart */
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card p {
+    font-size: 1.1em;
+}
+
+.card p strong {
+    font-size: 1.2em;
+}
+
+.card ul {
+    padding-left: 20px;
+}
+
+.card li {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.section-title {
+    background: #49be25; /* Zielone tło tytułów sekcji */
+    color: #ffffff; /* Biały kolor tekstu tytułów sekcji */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+li:before {
+    content: '\f058';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    color: #49be25; /* Ciemniejszy zielony kolor ikon listy */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    background: #f4f4f4;
+    color: #333333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item {
+    margin-bottom: 15px;
+    display:     flex;
+    align-items: center;
+}
+
+.contact-item i {
+    color: #49be25; /* Ciemniejszy zielony kolor ikon kontaktowych */
+    margin-right: 10px;
+}
+
+.contact-item a {
+    font-size: 10 em;
+    color: #1a7915; /* Ciemniejszy zielony kolor linków */
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+.consent {
+    font-size: 0.9em;
+    color: #555555;
+    margin-top: 20px;
+    border-top: 1px solid #dddddd;
+    padding-top: 10px;
+}
+
+@media print {
+    .card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marek Tadeusz Głowacki</h1>
+
+        <div class="card">
+            <h1 class="section-title">Informacje kontaktowe</h1>
+            <div class="contact-info">
+                <div>
+                  <div class="contact-item">
+                      <i class="fas fa-phone fa-2x"></i>
+                      <a href="tel:+48660448194">+48 660 448 194</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fas fa-envelope fa-2x"></i>
+                      <a href="mailto:kontakt@marekglowacki.pl">kontakt@marekglowacki.pl</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fas fa-globe fa-2x"></i>
+                      <a href="https://marekglowacki.pl/" target="_blank">marekglowacki.pl</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fab fa-youtube fa-2x"></i>
+                      <a href="https://youtube.com/@ProgramowySpecjalista" target="_blank">YouTube</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fab fa-linkedin fa-2x"></i>
+                      <a href="https://www.linkedin.com/in/tadeusz-glowacki-806b74342/" target="_blank">LinkedIn</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fab fa-github fa-2x"></i>
+                      <a href="https://github.com/MarekGlowacki" target="_blank">GitHub</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fas fa-blog fa-2x"></i>
+                      <a href="https://javatips.substack.com/" target="_blank">Java Tips</a>
+                  </div>
+                  <div class="contact-item">
+                      <i class="fas fa-flag fa-2x"></i>
+                      PL
+                  </div>
+                </div>
+				<img src="data:image/jpeg;base64,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" alt="Profile Picture" class="profile-image">
+            </div>
+        </div>
+
+<div class="card">
+    <h1 class="section-title">Doświadczenie zawodowe</h1>
+</div>
+
+<div class="card">
+    <h2>Trener | Akustica</h2>
+    <p>X 2024 – obecnie</p>
+    <p><strong>Zakres obowiązków:</strong> Przeprowadzanie szkoleń z zakresu obsługi komputera, ECDL, sprzedaży w internecie, marketingu, sztucznej inteligencji AI, pracy biurowej. Łącznie 310 godzin szkoleniowych.</p>
+</div>
+
+<div class="card">
+    <h2>Trener AI | Outlier</h2>
+    <p>I 2025 – obecnie</p>
+    <p><strong>Zakres obowiązków:</strong> Uczenie sztucznej inteligencji jako programista, poprawa wyników jej pracy poprzez optymalizację algorytmów, analiza danych oraz implementacja najlepszych praktyk w zakresie uczenia maszynowego.</p>
+</div>
+
+<div class="card">
+    <h2>Główny programista Java | DCA Crypto Monitoring</h2>
+    <p>IV 2024 – obecnie</p>
+    <p><strong>Zakres obowiązków:</strong> Rekrutacja, właściciel produktu, wdrożenie od strony technicznej, zbieranie wymagań, projekt architektury, projekt aplikacji, wdrożenie, testowanie, integracja, wdrożenie produkcyjne, zarządzanie projektem, rozwój, testowanie, wsparcie.</p>
+</div>
+
+<div class="card">
+    <h2>Programista backend / Informatyk | Agrostop sp. z o. o.</h2>
+    <p>VII 2024 – IX 2024</p>
+    <p><strong>Zakres obowiązków:</strong> Audyt automatyzacji i optymalizacji procesów biurowych, pisanie programów od zera w pełni dopasowanych do potrzeb, rekomendacje najlepszych praktyk z zakresu cyberbezpieczeństwa.</p>
+</div>
+
+<div class="card">
+    <h2>Programista Java | Movie Club team</h2>
+    <p>IX 2021 – V 2024</p>
+    <p><strong>Zakres obowiązków:</strong> Zbieranie wymagań, projekt architektury, projekt aplikacji, wdrożenie, testowanie, integracja, wdrożenie produkcyjne, zarządzanie projektem, rozwój, wsparcie.</p>
+</div>
+
+<div class="card">
+    <h2>Programista Python | Bitcoin Guide</h2>
+    <p>IX 2021 – V 2024</p>
+    <p><strong>Zakres obowiązków:</strong> Zbieranie wymagań, projektowanie architektury, implementacja, testowanie, integracja, wdrożenie produkcyjne, wsparcie własnego projektu.</p>
+</div>
+
+<div class="card">
+    <h2>Młodszy programista Salesforce | PwC IT Services sp. z o. o.</h2>
+    <p>II 2020 – VIII 2021</p>
+    <p><strong>Zakres obowiązków:</strong> Budowanie nowych rozwiązań Salesforce przy użyciu programowania zarówno deklaratywnego, jak i Apex-owego.</p>
+</div>
+
+<div class="card">
+    <h2>Młodszy programista Java | COM-PAN SYSTEM sp. z o. o.</h2>
+    <p>V 2019 – I 2020</p>
+    <p><strong>Zakres obowiązków:</strong> Dodawanie rozszerzeń oraz obsługa błędów w kodzie platformy Docusafe.</p>
+</div>
+
+<div class="card">
+    <h2>Praktyki na stanowisku programista Salesforce i Consultant | Deloitte Digital</h2>
+    <p>III 2019 – IV 2019</p>
+    <p><strong>Zakres obowiązków:</strong> Udział w projektach implementacji rozwiązań Salesforce, analiza wymagań, rozwój aplikacji przy użyciu Apex, testowanie oraz wsparcie użytkowników w zakresie wdrożonych rozwiązań.</p>
+</div>
+
+<div class="card">
+    <h2>Nauczyciel informatyki | Szkoły ZDZ im. K. K. Baczyńskiego w Białej Podlaskiej</h2>
+    <p>IX 2015 – VIII 2018</p>
+    <p><strong>Zakres obowiązków:</strong> Prowadzenie lekcji z podstawowej obsługi komputera. (Łącznie godzin szkoleniowych: 2560h)</p>
+</div>
+
+<div class="card">
+    <h2>Trener informatyki | Unlimited Group Polska</h2>
+    <p>X 2014 – VIII 2015</p>
+    <p><strong>Zakres obowiązków:</strong> Prowadzenie szkoleń uczących obsługi komputera + ECDL. (Łącznie godzin szkoleniowych: 1628h)</p>
+</div>
+
+<div class="card">
+    <h2>Sprzedawca | Domex Sp. z o.o.</h2>
+    <p>IV 2014 – VI 2014</p>
+    <p><strong>Zakres obowiązków:</strong> Kompleksowa obsługa klienta w zakresie sprzętu IT, realizacja planu sprzedaży, dbanie o odpowiednie zatowarowanie działu.</p>
+</div>
+
+<div class="card">
+    <h2>Bankier | Idea Bank SA</h2>
+    <p>IX 2013 – III 2014</p>
+    <p><strong>Zakres obowiązków:</strong> Rekrutowanie pracowników, pozyskiwanie klientów, obsługa klientów, rozpoznawanie ich potrzeb finansowych i dopasowywanie do nich bankowych rozwiązań finansowych, umawianie spotkań.</p>
+</div>
+
+<div class="card">
+    <h2>Trener sprzedaży | Unlimited Group Polska</h2>
+    <p>IX 2012 – VII 2013</p>
+    <p><strong>Zakres obowiązków:</strong> Prowadzenie szkoleń przygotowujących do pracy na stanowisku sprzedawcy. (Łącznie godzin szkoleniowych: 438)</p>
+</div>
+
+<div class="card">
+    <h2>Doradca finansowy | Profit Doradcy Finansowi Sp. z o. o.</h2>
+    <p>II 2010 – VI 2012</p>
+    <p><strong>Zakres obowiązków:</strong> Pozyskiwanie klientów, obsługa klienta i rozpoznawanie jego potrzeb finansowych, umawianie spotkań, budowa zespołu sprzedaży, szkolenie i organizowanie pracy nowo zatrudnionych osób, budowanie i utrzymywanie długofalowych relacji z partnerami biznesowymi.</p>
+</div>
+
+<div class="card">
+    <h2>Wolontariat: Lider rejonu | Stowarzyszenie WIOSNA</h2>
+    <p>VII 2012 – I 2013</p>
+    <p><strong>Zakres obowiązków:</strong> Rekrutacja wolontariuszy i organizacja ich pracy, pozyskiwanie adresów rodzin oraz paczek pomocowych na święta.</p>
+</div>
+
+<div class="card">
+    <h2>Wolontariat: Wolontariusz | Europejskie Forum Studentów AEGEE-Lublin</h2>
+    <p>X 2011 – V 2012</p>
+    <p><strong>Zakres obowiązków:</strong> Organizacja ogólnopolskiego projektu szkoleniowego Polska Szkoła Human Resources.</p>
+</div>
+
+
+
+        <div class="card">
+            <h1 class="section-title">Edukacja</h1>
+            <p><strong>Lublin University of Technology</strong> (X 2007 – VI 2012): Wykształcenie techniczne i informatyczne</p>
+            <p><strong>Maria Curie-Skłodowska University in Lublin</strong> (X 2012 – VI 2013): Psychologia komunikacji społecznej</p>
+        </div>
+
+        <div class="card">
+            <h1 class="section-title">Umiejętności</h1>
+            <ul>
+                <li>Rekomendowany trener ORE "Szkoły dla rodziców i wychowawców"</li>
+                <li>Język angielski – poziom C1</li>
+                <li>Wysokie kompetencje społeczne z wieloma certyfikowanymi szkoleniami</li>
+                <li>Silne umiejętności przywódcze</li>
+                <li>Cyberbezpieczeństwo</li>
+                <li>Pasja i specjalizacja w poprawianiu kodu zgodnie z konwencją "Czystego Kodu" Roberta C. Martina</li>
+            </ul>
+        </div>
+
+        <div class="consent">
+            <p>"Niniejszym wyrażam zgodę na przetwarzanie danych osobowych zawartych w mojej aplikacji dla potrzeb niezbędnych do przeprowadzenia procesu rekrutacji zgodnie z art. 6 par. 1 lit. a Rozporządzenia (UE) 2016/679 Parlamentu Europejskiego i Rady z dnia 27 kwietnia 2016 r. w sprawie ochrony osób fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylającego dyrektywę 95/46/WE (Ogólne rozporządzenie o ochronie danych). Wyrażam również zgodę na przetwarzanie moich danych osobowych na potrzeby przyszłych procesów rekrutacyjnych."</p>
+        </div>
+    </div>
+</body>
+</html>
