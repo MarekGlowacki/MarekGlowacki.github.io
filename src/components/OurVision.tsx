@@ -13,7 +13,7 @@ const OurVision = () => {
     },
     {
       title: "Bitcoin Expert",
-      description: "Dostarczam profesjonalne doradztwo i wsparcie w zakresie inwestycji w Bitcoin.",
+      description: "Dostarczam profesjonalne doradztwo i wsparcie w zakresie inwestycji w Bitcoina.",
     },
   ];
 

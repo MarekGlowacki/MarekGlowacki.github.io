@@ -11,7 +11,7 @@ const Services = () => {
       link: "#",
     },
     {
-      title: "Szkolenia Sztucznej Inteligencji dla Firm",
+      title: "Sztuczna Inteligencja dla Firm",
       image: "/images/ai.jpg",
       link: "#",
     },

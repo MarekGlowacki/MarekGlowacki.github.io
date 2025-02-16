@@ -50,9 +50,11 @@ const Navbar = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors">Projekty</Link>
-              <Link to="/about" className="text-estate-600 hover:text-estate-800 transition-colors">O mnie</Link>
-              <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors">Usługi</Link>
+              <Link to="/about" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">
+                 O mnie
+              </Link>
+              <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Moja oferta</Link>
+              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors">Portfolio</Link>
               <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</Link>
               <Button
                 className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
@@ -71,9 +73,9 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent>
                   <div className="flex flex-col space-y-4 mt-8">
-                    <Link to="/projects" className="text-lg">Projekty</Link>
                     <Link to="/about" className="text-lg">O mnie</Link>
-                    <Link to="/services" className="text-lg">Usługi</Link>
+                    <Link to="/services" className="text-lg">Moja oferta</Link>
+                    <Link to="/projects" className="text-lg">Porftolio</Link>
                     <Link to="/contact" className="text-lg">Kontakt</Link>
                     <Button
                       className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"

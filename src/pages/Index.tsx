@@ -21,7 +21,7 @@ const Index = () => {
       <Suspense fallback={<div className="h-screen flex items-center justify-center">Ładowanie...</div>}>
         <section className="py-32" id="projekty">
           <div className="container mx-auto px-4 max-w-6xl text-center">
-            <h2 className="text-5xl font-display text-estate-800 mb-16">Projekty</h2>
+            <h2 className="text-5xl font-display text-estate-800 mb-16">Portfolio</h2>
             <PropertyGrid />
           </div>
         </section>
