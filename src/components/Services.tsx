@@ -1,4 +1,8 @@
 
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import { Link } from "react-router-dom";
+
 const Services = () => {
   const services = [
     {

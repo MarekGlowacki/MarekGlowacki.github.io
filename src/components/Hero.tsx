@@ -1,4 +1,7 @@
 
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   
