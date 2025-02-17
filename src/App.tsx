@@ -9,6 +9,9 @@ import Projects from "./pages/Projects";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import DCACryptoMonitor from "./pages/ProjectDetails/DCACryptoMonitor";
+import AIForBusiness from "./pages/ProjectDetails/AIForBusiness";
+import BitcoinConsulting from "./pages/ProjectDetails/BitcoinConsulting";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +27,9 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
+          <Route path="/project/ai-for-business" element={<AIForBusiness />} />
+          <Route path="/project/bitcoin-consulting" element={<BitcoinConsulting />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

@@ -1,3 +1,4 @@
+
 import PropertyCard from "./PropertyCard";
 
 const PropertyGrid = () => {
@@ -6,16 +7,19 @@ const PropertyGrid = () => {
       image: "images/projekt-dcm.jpg",
       title: "DCA Crypto Monitor",
       location: "Polska",
+      slug: "dca-crypto-monitor",
     },
     {
       image: "images/projekt-ai.jpg",
       title: "Firmowa Sztuczna Inteligencja",
       location: "Biała Podlaska",
+      slug: "ai-for-business",
     },
     {
       image: "images/projekt-btc.jpg",
       title: "Doradztwo Bitcoin",
       location: "Świat",
+      slug: "bitcoin-consulting",
     },
   ];
 
