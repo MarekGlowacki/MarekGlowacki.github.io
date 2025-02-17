@@ -1,7 +1,7 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const BitcoinConsulting = () => {
   return (
@@ -43,12 +43,16 @@ const BitcoinConsulting = () => {
               </div>
 
               <div className="flex gap-4">
-                <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                  Umów konsultację
-                </Button>
-                <Button variant="outline">
-                  FAQ
-                </Button>
+                <Link to="/contact">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Umów konsultację
+                  </Button>
+                </Link>
+                <a href="https://bitcoin-faq.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    FAQ
+                  </Button>
+                </a>
               </div>
             </div>
             

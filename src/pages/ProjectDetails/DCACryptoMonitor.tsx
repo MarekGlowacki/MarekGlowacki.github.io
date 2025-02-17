@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -43,12 +42,16 @@ const DCACryptoMonitor = () => {
               </div>
 
               <div className="flex gap-4">
-                <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                  Zobacz demo
-                </Button>
-                <Button variant="outline">
-                  Dokumentacja
-                </Button>
+                <a href="https://demo.dcacryptomonitor.pl" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Zobacz demo
+                  </Button>
+                </a>
+                <a href="https://docs.dcacryptomonitor.pl" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    Dokumentacja
+                  </Button>
+                </a>
               </div>
             </div>
             

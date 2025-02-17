@@ -15,28 +15,32 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Usługi</h4>
             <ul className="space-y-2 text-white/90">
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Tworzenie aplikacji internetowych</a></li>
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Szkolenia Sztucznej Inteligencji dla Firm</a></li>
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Bitcoin Expert</a></li>
+              <li><Link to="/services#web-apps" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Tworzenie aplikacji internetowych</Link></li>
+              <li><Link to="/services#ai" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Szkolenia Sztucznej Inteligencji dla Firm</Link></li>
+              <li><Link to="/services#bitcoin" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Bitcoin Expert</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Odkryj mnie</h4>
             <ul className="space-y-2 text-white/90">
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">O mnie</a></li>
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Moja oferta</a></li>
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Portfolio</a></li>
-              <li><a href="#" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Kontakt</a></li>
+              <li><Link to="/about" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">O mnie</Link></li>
+              <li><Link to="/services" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Moja oferta</Link></li>
+              <li><Link to="/projects" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Portfolio</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Kontakt</Link></li>
             </ul>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Kontakt</h4>
             <ul className="space-y-3 text-white/90">
-              <li className="flex items-center gap-2 justify-center md:justify-start">
-                <Mail className="w-4 h-4" /> kontakt@marekglowacki.pl
+              <li>
+                <a href="mailto:kontakt@marekglowacki.pl" className="flex items-center gap-2 justify-center md:justify-start hover:text-white transition-colors">
+                  <Mail className="w-4 h-4" /> kontakt@marekglowacki.pl
+                </a>
               </li>
-              <li className="flex items-center gap-2 justify-center md:justify-start">
-                <Phone className="w-4 h-4" /> +48 514 383 545
+              <li>
+                <a href="tel:+48514383545" className="flex items-center gap-2 justify-center md:justify-start hover:text-white transition-colors">
+                  <Phone className="w-4 h-4" /> +48 514 383 545
+                </a>
               </li>
               <li className="flex items-center gap-2 justify-center md:justify-start">
                 <MapPin className="w-4 h-4" /> Biała Podlaska 21-500, Lubelskie
@@ -51,19 +55,19 @@ const Footer = () => {
         </div>
         <div className="mt-12 pt-8 border-t border-white/20 text-center">
           <div className="flex justify-center space-x-6 mb-4">
-            <a href="#" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://facebook.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
               <Facebook className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://twitter.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
               <Twitter className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://youtube.com/@marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
               <Youtube className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://linkedin.com/in/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
               <Linkedin className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
+            <a href="https://github.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors transform hover:scale-110">
               <Github className="w-6 h-6" />
             </a>
           </div>

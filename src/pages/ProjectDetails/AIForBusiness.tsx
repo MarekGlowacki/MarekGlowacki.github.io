@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -43,12 +42,16 @@ const AIForBusiness = () => {
               </div>
 
               <div className="flex gap-4">
-                <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                  Case Study
-                </Button>
-                <Button variant="outline">
-                  Prezentacja
-                </Button>
+                <a href="https://ai-case-study.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Case Study
+                  </Button>
+                </a>
+                <a href="https://ai-presentation.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
+                  <Button variant="outline">
+                    Prezentacja
+                  </Button>
+                </a>
               </div>
             </div>
             

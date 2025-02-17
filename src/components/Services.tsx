@@ -1,24 +1,20 @@
 
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
-import { lazy, Suspense } from "react";
-
 const Services = () => {
   const services = [
     {
       title: "Tworzenie aplikacji internetowych",
       image: "/images/creating-apps.jpg",
-      link: "#",
+      link: "/services#web-apps",
     },
     {
       title: "Sztuczna Inteligencja dla Firm",
       image: "/images/ai.jpg",
-      link: "#",
+      link: "/services#ai",
     },
     {
       title: "Bitcoin Expert",
       image: "/images/zwrocic-Bitcoina.jpg",
-      link: "#",
+      link: "/services#bitcoin",
     },
   ];
 
@@ -47,8 +43,9 @@ const Services = () => {
         >
           <div className="absolute inset-0 flex">
             {services.map((service, index) => (
-              <div 
+              <Link 
                 key={index} 
+                to={service.link}
                 className="flex-1 relative group overflow-hidden"
                 style={{ 
                   marginRight: index !== services.length - 1 ? '2px' : '0',
@@ -63,7 +60,6 @@ const Services = () => {
                     willChange: 'transform',
                     transform: 'translateZ(0)'
                   }}
-                  loading="lazy"
                 />
                 <div 
                   className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
@@ -73,25 +69,31 @@ const Services = () => {
                   <h3 className="text-2xl font-display text-white mb-4 transform group-hover:-translate-y-2 transition-transform">
                     {service.title}
                   </h3>
-                  <Button 
-                    variant="outline"
-                    className="w-fit border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white transition-all transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0"
+                  <div 
+                    className="w-fit transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
                   >
-                    Czytaj więcej
-                  </Button>
+                    <Button 
+                      variant="outline"
+                      className="border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white"
+                    >
+                      Czytaj więcej
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Button 
-            variant="outline" 
-            className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
-          >
-            Zobacz wszystkie usługi
-          </Button>
+          <Link to="/services">
+            <Button 
+              variant="outline" 
+              className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
+            >
+              Zobacz wszystkie usługi
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

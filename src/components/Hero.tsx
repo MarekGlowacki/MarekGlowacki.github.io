@@ -1,7 +1,4 @@
 
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-
 const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
   
@@ -42,12 +39,12 @@ const Hero = () => {
           Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie Bitcoina.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
-          <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">
+          <Link to="/projects" className="inline-flex items-center justify-center px-6 py-3 bg-[#49be25] text-white rounded-lg hover:bg-[#3da51e] transition-colors">
             Zobacz projekty
-          </Button>
-          <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] transform transition-all hover:scale-105">
+          </Link>
+          <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-estate-800 transition-colors">
             Skontaktuj się
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

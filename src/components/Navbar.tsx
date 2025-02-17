@@ -15,27 +15,27 @@ const Navbar = () => {
       <div className="bg-black py-2 w-full z-50">
         <div className="container mx-auto px-4 max-w-6xl flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+            <a href="mailto:kontakt@marekglowacki.pl" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
               <Mail className="h-4 w-4" /> kontakt@marekglowacki.pl
-            </div>
-            <div className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+            </a>
+            <a href="tel:+48514383545" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
               <Phone className="h-4 w-4" /> +48 514 383 545
-            </div>
+            </a>
           </div>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-white/90 hover:text-white transition-colors">
+            <a href="https://facebook.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Facebook className="h-4 w-4" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors">
+            <a href="https://twitter.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Twitter className="h-4 w-4" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors">
+            <a href="https://youtube.com/@marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Youtube className="h-4 w-4" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors">
+            <a href="https://linkedin.com/in/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Linkedin className="h-4 w-4" />
             </a>
-            <a href="#" className="text-white/90 hover:text-white transition-colors">
+            <a href="https://github.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Github className="h-4 w-4" />
             </a>
           </div>
