@@ -30,7 +30,7 @@ const Services = () => {
     >
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-display text-estate-800 mb-6">Usługi</h2>
+          <h2 className="text-4xl sm:text-5xl font-display text-estate-800 mb-6">Usługi</h2>
           <div className="flex justify-center items-center gap-4 mb-4">
             <Separator className="w-12" />
             <span className="text-estate-600">Co mogę dla Ciebie zrobić?</span>
@@ -42,19 +42,21 @@ const Services = () => {
         </div>
 
         <div 
-          className="relative h-[500px] overflow-hidden rounded-3xl shadow-2xl"
+          className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-3xl shadow-2xl"
           style={{ willChange: 'transform' }}
         >
-          <div className="absolute inset-0 flex">
+          <div className="absolute inset-0 flex flex-col sm:flex-row">
             {services.map((service, index) => (
               <Link 
                 key={index} 
                 to={service.link}
-                className="flex-1 relative group overflow-hidden"
+                className="relative group overflow-hidden flex-1"
                 style={{ 
-                  marginRight: index !== services.length - 1 ? '2px' : '0',
+                  marginBottom: index !== services.length - 1 ? '2px' : '0',
+                  marginRight: 'sm:2px',
                   transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden'
+                  backfaceVisibility: 'hidden',
+                  minHeight: '100px'
                 }}
               >
                 <div 
@@ -69,8 +71,8 @@ const Services = () => {
                   className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
                   style={{ transform: 'translateZ(0)' }}
                 />
-                <div className="absolute inset-0 flex flex-col justify-end p-8">
-                  <h3 className="text-2xl font-display text-white mb-4 transform group-hover:-translate-y-2 transition-transform">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-display text-white mb-4 transform group-hover:-translate-y-2 transition-transform">
                     {service.title}
                   </h3>
                   <div 
@@ -78,7 +80,7 @@ const Services = () => {
                   >
                     <Button 
                       variant="outline"
-                      className="border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white"
+                      className="border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white text-sm sm:text-base"
                     >
                       Czytaj więcej
                     </Button>
