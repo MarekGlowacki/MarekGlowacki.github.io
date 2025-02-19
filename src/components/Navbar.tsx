@@ -13,16 +13,16 @@ const Navbar = () => {
     <>
       {/* Contact Info Bar */}
       <div className="bg-black py-2 w-full z-50">
-        <div className="container mx-auto px-4 max-w-6xl flex justify-between items-center text-sm">
-          <div className="flex items-center gap-6">
-            <a href="mailto:kontakt@marekglowacki.pl" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+        <div className="container mx-auto px-4 max-w-6xl flex flex-col sm:flex-row justify-between items-center text-sm">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <a href="mailto:kontakt@marekglowacki.pl" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors whitespace-nowrap text-xs sm:text-sm">
               <Mail className="h-4 w-4" /> kontakt@marekglowacki.pl
             </a>
-            <a href="tel:+48514383545" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors">
+            <a href="tel:+48514383545" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors whitespace-nowrap text-xs sm:text-sm">
               <Phone className="h-4 w-4" /> +48 514 383 545
             </a>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mt-2 sm:mt-0">
             <a href="https://facebook.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
               <Facebook className="h-4 w-4" />
             </a>
@@ -46,7 +46,7 @@ const Navbar = () => {
       <nav className="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-sm shadow-sm">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="flex items-center justify-between h-20">
-            <Link to="/" className="text-2xl font-display text-estate-800">Marek Głowacki</Link>
+            <Link to="/" className="text-xl sm:text-2xl font-display text-estate-800">Marek Głowacki</Link>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
@@ -54,8 +54,8 @@ const Navbar = () => {
                  O mnie
               </Link>
               <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Moja oferta</Link>
-              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors">Portfolio</Link>
-              <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors">Kontakt</Link>
+              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Portfolio</Link>
+              <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Kontakt</Link>
               <Button
                 className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                 onClick={() => (window.location.href = '/cv.html')}>
@@ -75,7 +75,7 @@ const Navbar = () => {
                   <div className="flex flex-col space-y-4 mt-8">
                     <Link to="/about" className="text-lg">O mnie</Link>
                     <Link to="/services" className="text-lg">Moja oferta</Link>
-                    <Link to="/projects" className="text-lg">Porftolio</Link>
+                    <Link to="/projects" className="text-lg">Portfolio</Link>
                     <Link to="/contact" className="text-lg">Kontakt</Link>
                     <Button
                       className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"

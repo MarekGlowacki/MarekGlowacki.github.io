@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -73,8 +74,24 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Responsive text adjustments */
+@media (max-width: 640px) {
+  h1 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+  }
+  h3 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+  p {
+    font-size: clamp(0.875rem, 4vw, 1rem);
   }
 }
 
