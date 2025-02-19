@@ -34,11 +34,11 @@ const Hero = () => {
           <div className="absolute inset-0 bg-black/30" />
         </div>
       ))}
-      <div className="relative z-10 container mx-auto px-8 text-center">
-        <h1 className="text-6xl md:text-7xl font-display text-white mb-8 leading-tight animate-fadeIn">
+      <div className="relative z-10 container mx-auto px-4 text-center">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display text-white mb-6 sm:mb-8 leading-tight animate-fadeIn">
           Innowacyjne Rozwiązania Technologiczne
         </h1>
-        <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto animate-fadeIn">
+        <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto animate-fadeIn">
           Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie Bitcoina.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
