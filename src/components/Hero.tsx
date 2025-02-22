@@ -31,23 +31,25 @@ const Hero = () => {
             backgroundImage: `url('${img}')`,
           }}
         >
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
       ))}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display text-white mb-6 sm:mb-8 leading-tight animate-fadeIn">
-          Innowacyjne Rozwiązania Technologiczne
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto animate-fadeIn">
-          Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie Bitcoina.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
-          <Link to="/projects" className="inline-flex items-center justify-center px-6 py-3 bg-[#49be25] text-white rounded-lg hover:bg-[#3da51e] transition-colors">
-            Zobacz projekty
-          </Link>
-          <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-estate-800 transition-colors">
-            Skontaktuj się
-          </Link>
+        <div className="bg-black/30 backdrop-blur-sm p-8 rounded-lg max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display text-white mb-6 sm:mb-8 leading-tight animate-fadeIn">
+            Innowacyjne Rozwiązania Technologiczne
+          </h1>
+          <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto animate-fadeIn">
+            Specjalizuję się w tworzeniu aplikacji internetowych, szkoleniach AI dla firm oraz doradztwie w zakresie Bitcoina.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn">
+            <Link to="/projects" className="inline-flex items-center justify-center px-6 py-3 bg-[#49be25] text-white rounded-lg hover:bg-[#3da51e] transition-colors">
+              Zobacz projekty
+            </Link>
+            <Link to="/contact" className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-estate-800 transition-colors">
+              Skontaktuj się
+            </Link>
+          </div>
         </div>
       </div>
     </div>
