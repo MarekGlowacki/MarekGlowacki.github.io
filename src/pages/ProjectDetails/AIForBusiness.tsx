@@ -1,6 +1,8 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const AIForBusiness = () => {
   return (
@@ -41,6 +43,11 @@ const AIForBusiness = () => {
                 </div>
               </div>
 
+              <Link to="/contact">
+                <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                  Zamów podobny system
+                </Button>
+              </Link>
             </div>
             
             <div className="space-y-8">
