@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Shield } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";

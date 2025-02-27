@@ -1,6 +1,6 @@
 
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ const CRM = () => {
               <div className="space-y-6 mb-8">
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Główne funkcje:</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
+                  <ul className="list-disc pl-6 space-y-2">
                     <li>Zarządzanie szkołami i klasami</li>
                     <li>Dodawanie i edycja uczniów</li>
                     <li>Tworzenie planów zajęć</li>
@@ -33,7 +33,7 @@ const CRM = () => {
                 
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Korzyści:</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
+                  <ul className="list-disc pl-6 space-y-2">
                     <li>Efektywne zarządzanie czasem</li>
                     <li>Automatyzacja procesów</li>
                     <li>Łatwy dostęp do informacji</li>

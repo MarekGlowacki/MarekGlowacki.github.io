@@ -1,6 +1,6 @@
 
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ const AIForBusiness = () => {
               <div className="space-y-6 mb-8">
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Kluczowe możliwości:</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
+                  <ul className="list-disc pl-6 space-y-2">
                     <li>Automatyczna analiza dokumentów</li>
                     <li>Predykcja trendów sprzedażowych</li>
                     <li>Optymalizacja procesów logistycznych</li>
@@ -33,7 +33,7 @@ const AIForBusiness = () => {
                 
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Zastosowane technologie:</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
+                  <ul className="list-disc pl-6 space-y-2">
                     <li>OpenAI GPT-4</li>
                     <li>Python & TensorFlow</li>
                     <li>React & TypeScript</li>
