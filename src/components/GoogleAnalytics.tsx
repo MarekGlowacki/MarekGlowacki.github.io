@@ -11,7 +11,7 @@ declare global {
 }
 
 // ID śledzenia Google Analytics (zamień na właściwe ID)
-const GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+const GA_MEASUREMENT_ID = "G-W08P9J0Q6W";
 
 const GoogleAnalytics = () => {
   const location = useLocation();
