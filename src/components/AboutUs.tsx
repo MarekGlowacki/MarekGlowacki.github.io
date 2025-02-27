@@ -3,36 +3,94 @@ const AboutUs = () => {
   return (
     <section className="py-20 bg-estate-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="relative">
+            <div className="aspect-square rounded-3xl overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&q=80&w=1200"
+                alt="Marek Głowacki - Expert Bitcoin & Developer"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-lg shadow-xl">
+              <p className="text-4xl font-display text-estate-800 mb-2">5+ lat</p>
+              <p className="text-estate-600">doświadczenia w branży IT</p>
+            </div>
+          </div>
+
           <div>
-            <h2 className="text-4xl font-display text-estate-800 mb-6">Dlaczego warto ze mną współpracować?</h2>
+            <h2 className="text-4xl font-display text-estate-800 mb-6">O mnie</h2>
+            <p className="text-lg text-estate-600 mb-8">
+              Jestem pasjonatem Bitcoina, programowania i finansów. Moją misją jest dzielenie się wiedzą i doświadczeniem z innymi.
+            </p>
+
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">01</span>
+                <span className="text-4xl text-[#49be25]">💰</span>
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie i Wiedza</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Wolność Finansowa</h3>
                   <p className="text-estate-600">
-                    Posiadam bogate doświadczenie w tworzeniu aplikacji internetowych, szkoleniach AI oraz doradztwie w zakresie Bitcoina. Moje rozwiązania są zawsze dostosowane do indywidualnych potrzeb klienta.
+                    Osiągnąłem wolność finansową w wieku 33 lat!
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">02</span>
+                <span className="text-4xl text-[#49be25]">💻</span>
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Innowacyjne Podejście</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie Korporacyjne</h3>
                   <p className="text-estate-600">
-                    Wykorzystuję najnowsze technologie i trendy, aby dostarczać rozwiązania, które nie tylko spełniają obecne potrzeby, ale są też gotowe na przyszłe wyzwania.
+                    Programista w największych korporacjach na świecie, zatrudniających 250,000 pracowników w 154 krajach.
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">03</span>
+                <span className="text-4xl text-[#49be25]">📈</span>
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Wsparcie na Każdym Etapie</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Background Finansowy</h3>
                   <p className="text-estate-600">
-                    Zapewniam kompleksową obsługę od konsultacji, przez wdrożenie, aż po wsparcie techniczne. Zawsze jestem dostępny dla moich klientów.
+                    3 lata doświadczenia w finansach: 2,5 roku sprzedaży produktów finansowych opartych na funduszach inwestycyjnych oraz 0,5 roku jako bankier dla klientów biznesowych.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-4xl text-[#49be25]">🔒</span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Cyberbezpieczeństwo</h3>
+                  <p className="text-estate-600">
+                    Pasjonat cyberbezpieczeństwa, stale poszerzający wiedzę w tej dziedzinie.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-4xl text-[#49be25]">🚀</span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Expert Bitcoin</h3>
+                  <p className="text-estate-600">
+                    2,5 roku intensywnego szkolenia z inwestowania w Bitcoina u światowej klasy eksperta. Od 2020 roku jestem "all in" w Bitcoinie!
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-4xl text-[#49be25]">🤖</span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Trading Bots</h3>
+                  <p className="text-estate-600">
+                    Od 13.05.2022 r. tworzę boty tradingowe dla kryptowalut.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="text-4xl text-[#49be25]">🏝️</span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie Międzynarodowe</h3>
+                  <p className="text-estate-600">
+                    Rok doświadczenia w pracy zdalnej z Zanzibaru, co pokazuje moją elastyczność i umiejętność adaptacji.
                   </p>
                 </div>
               </div>
@@ -57,20 +115,6 @@ const AboutUs = () => {
                   Wyślij email
                 </a>
               </div>
-            </div>
-          </div>
-          
-          <div className="relative">
-            <div className="aspect-square rounded-3xl overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&q=80&w=1200"
-                alt="Profesjonalne podejście do każdego projektu"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-lg shadow-xl">
-              <p className="text-4xl font-display text-estate-800 mb-2">5+ lat</p>
-              <p className="text-estate-600">doświadczenia w branży IT</p>
             </div>
           </div>
         </div>
