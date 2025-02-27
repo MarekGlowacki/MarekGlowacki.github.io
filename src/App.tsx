@@ -13,6 +13,7 @@ import Projects from "./pages/Projects";
 import DCACryptoMonitor from "./pages/ProjectDetails/DCACryptoMonitor";
 import AIForBusiness from "./pages/ProjectDetails/AIForBusiness";
 import BitcoinConsulting from "./pages/ProjectDetails/BitcoinConsulting";
+import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/web-development" element={<WebDevelopment />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
           <Route path="/project/ai-for-business" element={<AIForBusiness />} />

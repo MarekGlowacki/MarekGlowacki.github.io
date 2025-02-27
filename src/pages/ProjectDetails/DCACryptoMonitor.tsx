@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -52,18 +53,18 @@ const DCACryptoMonitor = () => {
             
             <div className="space-y-8">
               <img 
-                src="/images/projekt-dcm.jpg"
+                src="https://images.unsplash.com/photo-1605792657660-596af9009e82"
                 alt="DCA Crypto Monitor Dashboard"
                 className="rounded-lg shadow-xl w-full"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&q=80&w=600"
+                  src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d"
                   alt="Crypto Analytics"
                   className="rounded-lg shadow-lg w-full"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1605792657660-596af9009e82?auto=format&q=80&w=600"
+                  src="https://images.unsplash.com/photo-1516245834210-c4c142787335"
                   alt="Portfolio Tracking"
                   className="rounded-lg shadow-lg w-full"
                 />

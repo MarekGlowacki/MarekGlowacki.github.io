@@ -14,48 +14,69 @@ const Services = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="group">
-            <Link to="/services#web-apps" className="block">
-              <div className="relative overflow-hidden rounded-lg mb-4">
+          <div className="group relative">
+            <Link to="/services/web-development" className="block">
+              <div className="relative overflow-hidden rounded-lg">
                 <img
                   src="/images/creating-apps.jpg"
                   alt="Tworzenie aplikacji"
                   className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-2xl font-display text-white text-center px-4">
+                    Tworzenie aplikacji internetowych
+                  </h3>
+                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Czytaj więcej
+                  </Button>
+                </div>
               </div>
-              <h3 className="text-2xl font-display text-estate-800 mb-2">
-                Tworzenie aplikacji internetowych
-              </h3>
             </Link>
           </div>
 
-          <div className="group">
-            <Link to="/services#ai" className="block">
-              <div className="relative overflow-hidden rounded-lg mb-4">
+          <div className="group relative">
+            <Link to="/services/ai-business" className="block">
+              <div className="relative overflow-hidden rounded-lg">
                 <img
                   src="/images/ai-kobieta.jpg"
                   alt="AI dla firm"
                   className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-2xl font-display text-white text-center px-4">
+                    Sztuczna Inteligencja dla Firm
+                  </h3>
+                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Czytaj więcej
+                  </Button>
+                </div>
               </div>
-              <h3 className="text-2xl font-display text-estate-800 mb-2">
-                Sztuczna Inteligencja dla Firm
-              </h3>
             </Link>
           </div>
 
-          <div className="group">
-            <Link to="/services#bitcoin" className="block">
-              <div className="relative overflow-hidden rounded-lg mb-4">
+          <div className="group relative">
+            <Link to="/services/bitcoin-consulting" className="block">
+              <div className="relative overflow-hidden rounded-lg">
                 <img
                   src="/images/zwrocic-Bitcoina.jpg"
                   alt="Bitcoin Expert"
                   className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                  <h3 className="text-2xl font-display text-white text-center px-4">
+                    Bitcoin Expert
+                  </h3>
+                </div>
+                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    Czytaj więcej
+                  </Button>
+                </div>
               </div>
-              <h3 className="text-2xl font-display text-estate-800 mb-2">
-                Bitcoin Expert
-              </h3>
             </Link>
           </div>
         </div>
