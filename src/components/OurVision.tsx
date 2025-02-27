@@ -1,28 +1,31 @@
 
 import { Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const OurVision = () => {
+  const { t } = useLanguage();
+  
   const values = [
     {
-      title: "Nowoczesne Aplikacje",
-      description: "Tworzę wyjątkowe aplikacje internetowe łączące innowacyjność z funkcjonalnością.",
+      title: t("vision.apps"),
+      description: t("vision.apps.desc"),
     },
     {
-      title: "Sztuczna Inteligencja",
-      description: "Implementuję rozwiązania AI, które wspierają rozwój i automatyzację procesów biznesowych.",
+      title: t("vision.ai"),
+      description: t("vision.ai.desc"),
     },
     {
-      title: "Bitcoin Expert",
-      description: "Dostarczam profesjonalne doradztwo i wsparcie w zakresie inwestycji w Bitcoina.",
+      title: t("vision.btc"),
+      description: t("vision.btc.desc"),
     },
   ];
 
   return (
     <section className="py-20 bg-gradient-to-b from-white to-green-50">
       <div className="container mx-auto px-4 max-w-6xl text-center">
-        <h2 className="text-4xl font-display text-estate-800 mb-4">Moja Wizja</h2>
+        <h2 className="text-4xl font-display text-estate-800 mb-4">{t("vision.title")}</h2>
         <p className="text-estate-500 mb-12 mx-auto max-w-2xl">
-          Moją misją jest tworzenie innowacyjnych rozwiązań technologicznych, które wyznaczają nowe standardy w branży IT.
+          {t("vision.desc")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {values.map((value, index) => (

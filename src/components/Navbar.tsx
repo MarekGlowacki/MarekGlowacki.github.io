@@ -1,7 +1,8 @@
 
-import { Menu, Mail, Phone, Facebook, Twitter, Youtube, Linkedin, Github } from "lucide-react";
+import { Menu, Mail, Phone, Facebook, Twitter, Youtube, Linkedin, Github, Globe } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Sheet,
   SheetContent,
@@ -9,6 +10,13 @@ import {
 } from "./ui/sheet";
 
 const Navbar = () => {
+  const { t, language, setLanguage } = useLanguage();
+  
+  // Funkcja do przełączania języka
+  const toggleLanguage = () => {
+    setLanguage(language === "pl" ? "en" : "pl");
+  };
+
   // Funkcja do przewijania do sekcji newslettera
   const scrollToNewsletter = () => {
     const newsletterSection = document.getElementById('newsletter');
@@ -62,26 +70,45 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <Link to="/about" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">
-                 O mnie
+                {t("navbar.about")}
               </Link>
-              <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Moja oferta</Link>
-              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Portfolio</Link>
-              <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Kontakt</Link>
+              <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.services")}</Link>
+              <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.portfolio")}</Link>
+              <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.contact")}</Link>
               <button 
                 onClick={scrollToNewsletter} 
                 className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap cursor-pointer"
               >
-                Bądź na bieżąco
+                {t("navbar.newsletter")}
               </button>
               <Button
                 className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                 onClick={() => (window.location.href = '/cv.html')}>
-                CV
+                {t("navbar.cv")}
               </Button>
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 text-estate-600 hover:text-estate-800 transition-colors"
+                aria-label={t("language.switch")}
+                title={t("language.switch")}
+              >
+                <Globe className="h-4 w-4" />
+                <span>{t("language")}</span>
+              </button>
             </div>
 
             {/* Mobile Navigation */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-4">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 text-estate-600 hover:text-estate-800 transition-colors"
+                aria-label={t("language.switch")}
+                title={t("language.switch")}
+              >
+                <Globe className="h-4 w-4" />
+                <span>{t("language")}</span>
+              </button>
+              
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon">
@@ -90,10 +117,10 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent>
                   <div className="flex flex-col space-y-4 mt-8">
-                    <Link to="/about" className="text-lg">O mnie</Link>
-                    <Link to="/services" className="text-lg">Moja oferta</Link>
-                    <Link to="/projects" className="text-lg">Portfolio</Link>
-                    <Link to="/contact" className="text-lg">Kontakt</Link>
+                    <Link to="/about" className="text-lg">{t("navbar.about")}</Link>
+                    <Link to="/services" className="text-lg">{t("navbar.services")}</Link>
+                    <Link to="/projects" className="text-lg">{t("navbar.portfolio")}</Link>
+                    <Link to="/contact" className="text-lg">{t("navbar.contact")}</Link>
                     <button 
                       onClick={() => {
                         scrollToNewsletter();
@@ -102,12 +129,12 @@ const Navbar = () => {
                       }} 
                       className="text-lg text-left"
                     >
-                      Bądź na bieżąco
+                      {t("navbar.newsletter")}
                     </button>
                     <Button
                       className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                       onClick={() => (window.location.href = '/cv.html')}>
-                      CV
+                      {t("navbar.cv")}
                     </Button>
                   </div>
                 </SheetContent>

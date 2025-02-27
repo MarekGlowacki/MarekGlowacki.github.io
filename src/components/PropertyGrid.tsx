@@ -1,24 +1,27 @@
 
 import PropertyCard from "./PropertyCard";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PropertyGrid = () => {
+  const { t } = useLanguage();
+  
   const properties = [
     {
       image: "images/projekt-dcm.jpg",
-      title: "DCA Crypto Monitor",
-      location: "Polska",
+      title: t("projects.dca"),
+      location: t("projects.location.poland"),
       slug: "dca-crypto-monitor",
     },
     {
       image: "images/projekt-ai.jpg",
-      title: "Firmowa Sztuczna Inteligencja",
-      location: "Biała Podlaska",
+      title: t("projects.ai"),
+      location: t("projects.location.biala"),
       slug: "ai-for-business",
     },
     {
       image: "/images/real-calendar.jpg",
-      title: "System zarządzania szkołą",
-      location: "Świat",
+      title: t("projects.crm"),
+      location: t("projects.location.world"),
       slug: "crm",
     },
   ];

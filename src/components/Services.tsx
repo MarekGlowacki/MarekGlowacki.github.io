@@ -1,8 +1,10 @@
 
 import { Button } from "./ui/button";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
+  const { t } = useLanguage();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -10,7 +12,7 @@ const Services = () => {
     <section className="py-32 bg-white" id="uslugi">
       <div className="container mx-auto px-4 max-w-6xl">
         <h2 className="text-4xl sm:text-5xl font-display text-estate-800 mb-16 text-center">
-          Usługi
+          {t("services.title")}
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -24,12 +26,12 @@ const Services = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-2xl font-display text-white text-center px-4">
-                    Tworzenie aplikacji internetowych
+                    {t("services.web.title")}
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                    Czytaj więcej
+                    {t("services.more")}
                   </Button>
                 </div>
               </div>
@@ -46,12 +48,12 @@ const Services = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-2xl font-display text-white text-center px-4">
-                    Sztuczna Inteligencja dla Firm
+                    {t("services.ai.title")}
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                    Czytaj więcej
+                    {t("services.more")}
                   </Button>
                 </div>
               </div>
@@ -68,12 +70,12 @@ const Services = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                   <h3 className="text-2xl font-display text-white text-center px-4">
-                    Bitcoin Expert
+                    {t("services.btc.title")}
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                    Czytaj więcej
+                    {t("services.more")}
                   </Button>
                 </div>
               </div>
@@ -88,7 +90,7 @@ const Services = () => {
                 variant="outline" 
                 className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
               >
-                Zobacz wszystkie usługi
+                {t("services.all")}
               </Button>
             </Link>
           </div>

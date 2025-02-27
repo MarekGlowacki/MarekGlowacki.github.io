@@ -1,36 +1,39 @@
 
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const FooterColumns = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
       <div>
         <h3 className="font-display text-xl mb-4">Marek Głowacki</h3>
         <p className="text-white/90">
-          Jako programista tworzę innowacyjne rozwiązania technologiczne, które usprawniają procesy biznesowe i wspierają osiąganie celów firm. Dążę do doskonałości, łącząc pasję z technologią w każdym projekcie.
+          {t("footer.about")}
         </p>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Usługi</h4>
+        <h4 className="font-semibold mb-4">{t("footer.services")}</h4>
         <ul className="space-y-2 text-white/90">
-          <li><Link to="/services#web-apps" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Tworzenie aplikacji internetowych</Link></li>
-          <li><Link to="/services#ai" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Szkolenia Sztucznej Inteligencji dla Firm</Link></li>
-          <li><Link to="/services#bitcoin" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Bitcoin Expert</Link></li>
+          <li><Link to="/services#web-apps" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.web")}</Link></li>
+          <li><Link to="/services#ai" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.ai")}</Link></li>
+          <li><Link to="/services#bitcoin" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.btc")}</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Odkryj mnie</h4>
+        <h4 className="font-semibold mb-4">{t("footer.discover")}</h4>
         <ul className="space-y-2 text-white/90">
-          <li><Link to="/about" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">O mnie</Link></li>
-          <li><Link to="/services" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Moja oferta</Link></li>
-          <li><Link to="/projects" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Portfolio</Link></li>
-          <li><Link to="/contact" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Kontakt</Link></li>
-          <li><Link to="/legal" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Polityka prywatności & Regulamin</Link></li>
+          <li><Link to="/about" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.about.link")}</Link></li>
+          <li><Link to="/services" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.offer")}</Link></li>
+          <li><Link to="/projects" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.portfolio")}</Link></li>
+          <li><Link to="/contact" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.contact")}</Link></li>
+          <li><Link to="/legal" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">{t("footer.legal")}</Link></li>
         </ul>
       </div>
       <div>
-        <h4 className="font-semibold mb-4">Kontakt</h4>
+        <h4 className="font-semibold mb-4">{t("footer.contact.title")}</h4>
         <ul className="space-y-3 text-white/90">
           <li>
             <a href="mailto:kontakt@marekglowacki.pl" className="flex items-center gap-2 justify-center md:justify-start hover:text-white transition-colors">
@@ -47,9 +50,9 @@ const FooterColumns = () => {
           </li>
         </ul>
         <div className="mt-6">
-          <h5 className="font-semibold mb-2">Godziny pracy:</h5>
-          <p className="text-white/90">Pon - Pt: 08:00 - 20:00</p>
-          <p className="text-white/90">Sobota - Niedziela: Zamknięte</p>
+          <h5 className="font-semibold mb-2">{t("footer.hours")}</h5>
+          <p className="text-white/90">{t("footer.weekdays")}</p>
+          <p className="text-white/90">{t("footer.weekend")}</p>
         </div>
       </div>
     </div>

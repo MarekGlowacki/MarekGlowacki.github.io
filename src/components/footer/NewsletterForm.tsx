@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Schemat walidacji email
 const emailSchema = z.object({
@@ -11,6 +12,7 @@ const emailSchema = z.object({
 });
 
 const NewsletterForm = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -82,9 +84,9 @@ const NewsletterForm = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <div className="text-center md:text-left">
-        <h3 className="text-2xl font-display mb-2">Bądź na bieżąco</h3>
+        <h3 className="text-2xl font-display mb-2">{t("footer.newsletter")}</h3>
         <p className="text-white/90">
-          Zapisz się na newsletter, aby otrzymywać informacje o nowościach, ofertach specjalnych i przydatnych poradach.
+          {t("footer.newsletter.desc")}
         </p>
       </div>
       <div>
@@ -93,7 +95,7 @@ const NewsletterForm = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Twój adres email"
+            placeholder={t("footer.newsletter.email")}
             className="px-4 py-3 rounded-md flex-1 text-black outline-none focus:ring-2 focus:ring-white"
             required
           />
@@ -102,11 +104,11 @@ const NewsletterForm = () => {
             className="bg-white text-[#49be25] hover:bg-white/90 px-6 py-3 rounded-md font-medium transition-colors"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Wysyłanie..." : "Zapisz się"}
+            {isSubmitting ? t("footer.newsletter.submitting") : t("footer.newsletter.submit")}
           </Button>
         </form>
         <p className="mt-3 text-sm text-white/80 text-center sm:text-left">
-          Twoje dane są bezpieczne. W każdej chwili możesz wypisać się z newslettera.
+          {t("footer.newsletter.privacy")}
         </p>
       </div>
     </div>
