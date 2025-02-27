@@ -2,282 +2,259 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const LegalTerms = () => {
+  const { language } = useLanguage();
+  const [searchParams] = useSearchParams();
+  const tabFromUrl = searchParams.get("tab");
+  
+  const content = {
+    pl: {
+      title: "Informacje prawne",
+      tabs: {
+        terms: "Regulamin",
+        privacy: "Polityka prywatności",
+        cookies: "Polityka cookies"
+      },
+      terms: {
+        title: "Regulamin",
+        introduction: "Witaj w serwisie marekglowacki.pl. Niniejszy regulamin określa zasady korzystania z naszych usług.",
+        points: [
+          {
+            title: "1. Postanowienia ogólne",
+            content: "Właścicielem i administratorem serwisu jest Marek Głowacki. Serwis dostarcza informacje na temat usług oferowanych przez Marka Głowackiego w zakresie programowania, sztucznej inteligencji i Bitcoina."
+          },
+          {
+            title: "2. Warunki korzystania",
+            content: "Korzystanie z serwisu jest równoznaczne z akceptacją niniejszego regulaminu. Zabrania się wykorzystywania serwisu do celów niezgodnych z prawem."
+          },
+          {
+            title: "3. Prawa autorskie",
+            content: "Wszelkie treści umieszczone na stronie są chronione prawem autorskim i stanowią własność Marka Głowackiego lub firm trzecich. Kopiowanie i rozpowszechnianie tych treści bez zgody właściciela jest zabronione."
+          },
+          {
+            title: "4. Odpowiedzialność",
+            content: "Administrator dokłada wszelkich starań, aby informacje prezentowane na stronie były aktualne i rzetelne, jednak nie ponosi odpowiedzialności za ewentualne błędy lub nieścisłości."
+          },
+          {
+            title: "5. Zmiany regulaminu",
+            content: "Administrator zastrzega sobie prawo do zmiany niniejszego regulaminu w dowolnym czasie. Zmiany wchodzą w życie z chwilą ich opublikowania na stronie."
+          }
+        ]
+      },
+      privacy: {
+        title: "Polityka prywatności",
+        introduction: "Ochrona prywatności użytkowników jest dla nas bardzo ważna. Poniżej przedstawiamy informacje dotyczące przetwarzania danych osobowych.",
+        points: [
+          {
+            title: "1. Administrator danych",
+            content: "Administratorem danych osobowych jest Marek Głowacki."
+          },
+          {
+            title: "2. Zakres zbieranych danych",
+            content: "Zbieramy dane podane dobrowolnie przez użytkowników w formularzach kontaktowych lub zapisach na newsletter (imię, adres e-mail)."
+          },
+          {
+            title: "3. Cel przetwarzania danych",
+            content: "Dane są przetwarzane w celu udzielenia odpowiedzi na zapytania, realizacji usług oraz wysyłki informacji marketingowych (w przypadku wyrażenia zgody na newsletter)."
+          },
+          {
+            title: "4. Prawa użytkowników",
+            content: "Użytkownicy mają prawo dostępu do swoich danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania, a także prawo do wniesienia sprzeciwu oraz prawo do przenoszenia danych."
+          },
+          {
+            title: "5. Okres przechowywania danych",
+            content: "Dane przechowujemy przez okres niezbędny do realizacji celów, dla których zostały zebrane, a następnie przez okres wymagany przez przepisy prawa."
+          }
+        ]
+      },
+      cookies: {
+        title: "Polityka cookies",
+        introduction: "Nasza strona wykorzystuje pliki cookies w celu zapewnienia jej prawidłowego funkcjonowania i poprawy jakości usług.",
+        points: [
+          {
+            title: "1. Czym są pliki cookies",
+            content: "Cookies to małe pliki tekstowe przechowywane na urządzeniu użytkownika, które pomagają stronie zapamiętać ustawienia i preferencje."
+          },
+          {
+            title: "2. Rodzaje wykorzystywanych cookies",
+            content: "Wykorzystujemy cookies niezbędne (zapewniające podstawowe funkcje), funkcjonalne (zapamiętujące preferencje) oraz analityczne (pomagające zrozumieć zachowania użytkowników)."
+          },
+          {
+            title: "3. Zarządzanie cookies",
+            content: "Użytkownik może samodzielnie zarządzać ustawieniami cookies poprzez zmianę ustawień przeglądarki internetowej lub korzystając z opcji dostępnych w naszym banerze cookie."
+          },
+          {
+            title: "4. Konsekwencje wyłączenia cookies",
+            content: "Wyłączenie cookies może wpłynąć na działanie niektórych funkcji strony, jednak nie uniemożliwi przeglądania jej zawartości."
+          },
+          {
+            title: "5. Aktualizacje polityki cookies",
+            content: "Zastrzegamy sobie prawo do aktualizacji niniejszej polityki cookies w dowolnym momencie, o czym poinformujemy użytkowników poprzez stronę."
+          }
+        ]
+      }
+    },
+    en: {
+      title: "Legal Information",
+      tabs: {
+        terms: "Terms & Conditions",
+        privacy: "Privacy Policy",
+        cookies: "Cookie Policy"
+      },
+      terms: {
+        title: "Terms & Conditions",
+        introduction: "Welcome to marekglowacki.pl. These terms and conditions govern your use of our services.",
+        points: [
+          {
+            title: "1. General Provisions",
+            content: "The owner and administrator of the website is Marek Głowacki. The website provides information about services offered by Marek Głowacki in the fields of programming, artificial intelligence, and Bitcoin."
+          },
+          {
+            title: "2. Terms of Use",
+            content: "Using the website constitutes acceptance of these terms and conditions. It is prohibited to use the website for purposes that violate the law."
+          },
+          {
+            title: "3. Copyright",
+            content: "All content on the website is protected by copyright and is the property of Marek Głowacki or third parties. Copying and distributing this content without the owner's consent is prohibited."
+          },
+          {
+            title: "4. Liability",
+            content: "The administrator makes every effort to ensure that the information presented on the website is current and reliable, but is not responsible for any errors or inaccuracies."
+          },
+          {
+            title: "5. Changes to Terms",
+            content: "The administrator reserves the right to change these terms at any time. Changes take effect upon their publication on the website."
+          }
+        ]
+      },
+      privacy: {
+        title: "Privacy Policy",
+        introduction: "Protecting the privacy of our users is very important to us. Below we present information on the processing of personal data.",
+        points: [
+          {
+            title: "1. Data Controller",
+            content: "The controller of personal data is Marek Głowacki."
+          },
+          {
+            title: "2. Scope of Collected Data",
+            content: "We collect data voluntarily provided by users in contact forms or newsletter subscriptions (name, email address)."
+          },
+          {
+            title: "3. Purpose of Data Processing",
+            content: "Data is processed to respond to inquiries, provide services, and send marketing information (if consent for the newsletter has been given)."
+          },
+          {
+            title: "4. User Rights",
+            content: "Users have the right to access their data, correct it, delete it or limit its processing, as well as the right to object and the right to data portability."
+          },
+          {
+            title: "5. Data Retention Period",
+            content: "We store data for the period necessary to achieve the purposes for which it was collected, and then for the period required by law."
+          }
+        ]
+      },
+      cookies: {
+        title: "Cookie Policy",
+        introduction: "Our website uses cookies to ensure its proper functioning and improve the quality of services.",
+        points: [
+          {
+            title: "1. What Are Cookies",
+            content: "Cookies are small text files stored on the user's device that help the website remember settings and preferences."
+          },
+          {
+            title: "2. Types of Cookies Used",
+            content: "We use necessary cookies (providing basic functions), functional cookies (remembering preferences) and analytical cookies (helping to understand user behavior)."
+          },
+          {
+            title: "3. Cookie Management",
+            content: "Users can manage cookie settings by changing browser settings or using the options available in our cookie banner."
+          },
+          {
+            title: "4. Consequences of Disabling Cookies",
+            content: "Disabling cookies may affect the functioning of some website features, but will not prevent browsing its content."
+          },
+          {
+            title: "5. Cookie Policy Updates",
+            content: "We reserve the right to update this cookie policy at any time, which we will inform users about through the website."
+          }
+        ]
+      }
+    }
+  };
+
+  // Wybierz odpowiednią wersję językową
+  const c = language === "pl" ? content.pl : content.en;
+
+  // Ustaw aktywną zakładkę na podstawie parametru URL
+  useEffect(() => {
+    const validTabs = ["terms", "privacy", "cookies"];
+    if (tabFromUrl && validTabs.includes(tabFromUrl)) {
+      const tabTrigger = document.querySelector(`[data-state="inactive"][data-value="${tabFromUrl}"]`) as HTMLButtonElement;
+      if (tabTrigger) {
+        tabTrigger.click();
+      }
+    }
+  }, [tabFromUrl]);
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
       <main className="py-32">
         <div className="container mx-auto px-4 max-w-4xl">
-          <h1 className="text-4xl font-display text-estate-800 mb-8 text-center">Informacje prawne</h1>
+          <h1 className="text-4xl font-display text-estate-800 mb-8 text-center">{c.title}</h1>
           
           <Tabs defaultValue="terms" className="w-full">
             <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="terms">Regulamin</TabsTrigger>
-              <TabsTrigger value="privacy">Polityka prywatności</TabsTrigger>
-              <TabsTrigger value="cookies">Polityka cookies</TabsTrigger>
+              <TabsTrigger value="terms">{c.tabs.terms}</TabsTrigger>
+              <TabsTrigger value="privacy">{c.tabs.privacy}</TabsTrigger>
+              <TabsTrigger value="cookies">{c.tabs.cookies}</TabsTrigger>
             </TabsList>
             
-<TabsContent value="terms" className="space-y-6">
-  <h2 className="text-2xl font-semibold mb-4">Regulamin świadczenia usług</h2>
-
-  <div className="space-y-4 text-estate-600">
-    <h3 className="text-xl font-semibold">§1. Postanowienia ogólne</h3>
-    <p>
-      1.1. Niniejszy regulamin określa zasady korzystania z serwisu internetowego dostępnego pod adresem https://marekglowacki.pl, prowadzonego przez Marka Głowackiego, osoby fizycznej, z siedzibą w Białej Podlaskiej.
-    </p>
-    <p>
-      1.2. Kontakt z Usługodawcą możliwy jest pod adresem e-mail: kontakt@marekglowacki.pl oraz numerem telefonu: +48 514 383 545.
-    </p>
-    <p>
-      1.3. Serwis świadczy usługi w zakresie tworzenia aplikacji internetowych, szkoleń z zakresu sztucznej inteligencji oraz doradztwa w obszarze technologii Bitcoina.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§2. Definicje</h3>
-    <p>
-      2.1. Użytkownik – osoba fizyczna, prawna lub jednostka organizacyjna korzystająca z usług świadczonych przez Usługodawcę za pośrednictwem Serwisu.
-    </p>
-    <p>
-      2.2. Serwis – strona internetowa dostępna pod adresem https://marekglowacki.pl.
-    </p>
-    <p>
-      2.3. Usługi – usługi świadczone przez Usługodawcę za pośrednictwem Serwisu, w szczególności w zakresie tworzenia aplikacji internetowych, szkoleń AI oraz doradztwa w obszarze blockchain i kryptowalut.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§3. Wymagania techniczne</h3>
-    <p>
-      3.1. Aby korzystać z usług świadczonych drogą elektroniczną, Użytkownik powinien dysponować urządzeniem z dostępem do Internetu oraz zainstalowaną przeglądarką internetową w najnowszej dostepnej wersji oraz włączoną obsługą plików cookies.
-    </p>
-    <p>
-      3.2. Użytkownik powinien również posiadać zainstalowane oprogramowanie umożliwiające korzystanie z usług.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§4. Procedura zawierania umów</h3>
-    <p>
-      4.1. Umowa o świadczenie usług drogą elektroniczną zostaje zawarta w momencie, gdy Użytkownik złoży zamówienie na Usługę poprzez formularz dostępny w Serwisie, a Usługodawca potwierdzi przyjęcie zamówienia.
-    </p>
-    <p>
-      4.2. Potwierdzenie przyjęcia zamówienia następuje drogą elektroniczną na adres e-mail podany przez Użytkownika.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§5. Warunki rozwiązania umowy</h3>
-    <p>
-      5.1. Użytkownik ma prawo odstąpić od umowy w terminie 14 dni bez podawania przyczyny, składając stosowne oświadczenie na adres e-mail: kontakt@marekglowacki.pl.
-    </p>
-    <p>
-      5.2. Usługodawca ma prawo do rozwiązania umowy w przypadku naruszenia przez Użytkownika postanowień niniejszego regulaminu.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§6. Odpowiedzialność Usługodawcy</h3>
-    <p>
-      6.1. Usługodawca odpowiada za niewykonanie lub nienależyte wykonanie usług tylko w przypadku, gdy jest to wynikiem jego winy umyślnej lub rażącego niedbalstwa.
-    </p>
-    <p>
-      6.2. Usługodawca nie ponosi odpowiedzialności za szkody powstałe w wyniku niewłaściwego korzystania z Serwisu przez Użytkownika.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§7. Postanowienia dotyczące ochrony konsumentów</h3>
-    <p>
-      7.1. Użytkownik będący konsumentem ma prawo odstąpić od umowy w terminie 14 dni bez podawania przyczyny, składając stosowne oświadczenie na adres e-mail: kontakt@marekglowacki.pl.
-    </p>
-    <p>
-      7.2. Reklamacje dotyczące świadczonych Usług można składać zgodnie z procedurą opisaną w punkcie 6.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§8. Informacje o plikach cookies</h3>
-    <p>
-      8.1. Serwis wykorzystuje pliki cookies w celu zapewnienia prawidłowego funkcjonowania oraz poprawy jakości świadczonych usług. Użytkownik może zarządzać plikami cookies poprzez ustawienia swojej przeglądarki.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">§9. Postanowienia końcowe</h3>
-    <p>
-      9.1. Usługodawca zastrzega sobie prawo do wprowadzania zmian w niniejszym regulaminie. Zmiany wchodzą w życie z dniem ich opublikowania w Serwisie.
-    </p>
-    <p>
-      9.2. W sprawach nieuregulowanych niniejszym regulaminem zastosowanie mają przepisy prawa polskiego.
-    </p>
-    <p>
-      9.3. Niniejszy regulamin obowiązuje od dnia 15.02.2025.
-    </p>
-  </div>
-</TabsContent>
-
-
+            <TabsContent value="terms" className="space-y-6">
+              <h2 className="text-2xl font-display text-estate-800 mb-4">{c.terms.title}</h2>
+              <p className="text-estate-600 mb-6">{c.terms.introduction}</p>
+              
+              <div className="space-y-6">
+                {c.terms.points.map((point, index) => (
+                  <div key={index}>
+                    <h3 className="text-xl font-display text-estate-800 mb-2">{point.title}</h3>
+                    <p className="text-estate-600">{point.content}</p>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
             
-<TabsContent value="privacy" className="space-y-6">
-  <h2 className="text-2xl font-semibold mb-4">Polityka prywatności</h2>
-
-  <div className="space-y-4 text-estate-600">
-    <h3 className="text-xl font-semibold">1. Informacje ogólne</h3>
-    <p>
-      Niniejsza polityka prywatności określa zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników w związku z korzystaniem z usług oferowanych przez stronę Marka Głowackiego.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">2. Administrator danych</h3>
-    <p>
-      Administratorem danych osobowych jest Marek Głowacki, osoba fizyczna, z siedzibą w Białej Podlaskiej.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">3. Cel przetwarzania danych</h3>
-    <p>
-      Dane osobowe Użytkowników przetwarzane są w celu:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>Realizacji usług świadczonych przez Administratora</li>
-      <li>Komunikacji z Użytkownikiem</li>
-      <li>Marketingu własnych usług Administratora</li>
-      <li>Wypełnienia obowiązków prawnych ciążących na Administratorze</li>
-      <li>Analizy ruchu na stronie oraz poprawy jej funkcjonalności</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">4. Zakres przetwarzanych danych</h3>
-    <p>
-      Administrator przetwarza następujące dane osobowe Użytkowników:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>Imię i nazwisko</li>
-      <li>Adres e-mail</li>
-      <li>Numer telefonu</li>
-      <li>Adres IP</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">5. Podstawa prawna przetwarzania danych</h3>
-    <p>
-      Dane osobowe Użytkowników przetwarzane są na podstawie:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>Zgody Użytkownika (art. 6 ust. 1 lit. a RODO)</li>
-      <li>Niezbędności do wykonania umowy (art. 6 ust. 1 lit. b RODO)</li>
-      <li>Obowiązku prawnego ciążącego na Administratorze (art. 6 ust. 1 lit. c RODO)</li>
-      <li>Prawnie uzasadnionego interesu Administratora (art. 6 ust. 1 lit. f RODO)</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">6. Prawa Użytkownika</h3>
-    <p>
-      Użytkownik ma prawo do:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>Dostępu do swoich danych osobowych</li>
-      <li>Sprostowania swoich danych osobowych</li>
-      <li>Usunięcia swoich danych osobowych</li>
-      <li>Ograniczenia przetwarzania swoich danych osobowych</li>
-      <li>Przenoszenia swoich danych osobowych</li>
-      <li>Wniesienia sprzeciwu wobec przetwarzania swoich danych osobowych</li>
-      <li>Wniesienia skargi do organu nadzorczego</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">7. Przekazywanie danych</h3>
-    <p>
-      Dane osobowe Użytkowników mogą być udostępniane podmiotom trzecim wyłącznie w zakresie niezbędnym do realizacji celów przetwarzania, takim jak dostawcy usług IT, firmy hostingowe czy podmioty świadczące usługi księgowe.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">8. Okres przechowywania danych</h3>
-    <p>
-      Dane osobowe Użytkowników przechowywane są przez okres niezbędny do realizacji celów, dla których zostały zebrane, a po ich zakończeniu przez okres wymagany przepisami prawa lub dla zabezpieczenia ewentualnych roszczeń. W przypadku przetwarzania danych na podstawie zgody, dane będą przechowywane do momentu jej cofnięcia.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">9. Zabezpieczenia danych</h3>
-    <p>
-      Administrator stosuje odpowiednie środki techniczne i organizacyjne zapewniające ochronę przetwarzanych danych osobowych, w szczególności zabezpieczające przed dostępem osób nieuprawnionych. Wszelkie dane osobowe są przechowywane w zabezpieczonych systemach informatycznych oraz są chronione przed nieautoryzowanym dostępem.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">10. Zautomatyzowane podejmowanie decyzji</h3>
-    <p>
-      Serwis nie stosuje zautomatyzowanego podejmowania decyzji, w tym profilowania, które mogłoby wywołać skutki prawne dla Użytkowników lub w podobny sposób istotnie ich dotknąć.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">11. Pliki cookies</h3>
-    <p>
-      Serwis wykorzystuje pliki cookies w celu zapewnienia jego prawidłowego działania oraz analizy ruchu na stronie. Użytkownik ma możliwość zarządzania plikami cookies w ustawieniach swojej przeglądarki.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">12. Zmiany w Polityce Prywatności</h3>
-    <p>
-      Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej Polityce Prywatności. Zmiany te będą publikowane na stronie Serwisu i wchodzą w życie z dniem ich opublikowania. Użytkownicy będą informowani o istotnych zmianach w Polityce Prywatności poprzez zamieszczenie stosownej informacji na stronie Serwisu.
-    </p>
-  </div>
-</TabsContent>
-
-
+            <TabsContent value="privacy" className="space-y-6">
+              <h2 className="text-2xl font-display text-estate-800 mb-4">{c.privacy.title}</h2>
+              <p className="text-estate-600 mb-6">{c.privacy.introduction}</p>
+              
+              <div className="space-y-6">
+                {c.privacy.points.map((point, index) => (
+                  <div key={index}>
+                    <h3 className="text-xl font-display text-estate-800 mb-2">{point.title}</h3>
+                    <p className="text-estate-600">{point.content}</p>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
             
-<TabsContent value="cookies" className="space-y-6">
-  <h2 className="text-2xl font-semibold mb-4">Polityka cookies</h2>
-
-  <div className="space-y-4 text-estate-600">
-    <h3 className="text-xl font-semibold">1. Czym są pliki cookies?</h3>
-    <p>
-      Pliki cookies (tzw. "ciasteczka") to niewielkie pliki tekstowe, które są zapisywane na urządzeniu końcowym Użytkownika podczas korzystania ze strony internetowej. Pliki te zawierają informacje, które są niezbędne do prawidłowego funkcjonowania strony.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">2. Rodzaje plików cookies</h3>
-    <p>
-      Na stronie wykorzystywane są następujące rodzaje plików cookies:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li><strong>Cookies niezbędne</strong> - pliki cookies, które są niezbędne do prawidłowego funkcjonowania strony.</li>
-      <li><strong>Cookies funkcjonalne</strong> - pliki cookies, które zapamiętują preferencje Użytkownika.</li>
-      <li><strong>Cookies analityczne</strong> - pliki cookies, które zbierają informacje o sposobie korzystania ze strony.</li>
-      <li><strong>Cookies marketingowe</strong> - pliki cookies, które są wykorzystywane do wyświetlania reklam.</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">3. Cel wykorzystywania plików cookies</h3>
-    <p>
-      Pliki cookies są wykorzystywane w celu:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li>Zapewnienia prawidłowego funkcjonowania strony.</li>
-      <li>Dostosowania strony do preferencji Użytkownika.</li>
-      <li>Analizy sposobu korzystania ze strony.</li>
-      <li>Wyświetlania reklam dostosowanych do preferencji Użytkownika.</li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">4. Podstawa prawna przetwarzania danych</h3>
-    <p>
-      Przetwarzanie danych za pomocą plików cookies odbywa się na podstawie przepisów RODO (Rozporządzenie o Ochronie Danych Osobowych) oraz ustawy Prawo telekomunikacyjne. Użytkownik wyraża zgodę na przetwarzanie danych osobowych w związku z używaniem plików cookies.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">5. Informacja o możliwości wycofania zgody</h3>
-    <p>
-      Użytkownik ma prawo do wycofania zgody na stosowanie plików cookies w dowolnym momencie. Można to zrobić poprzez zmianę ustawień przeglądarki internetowej lub poprzez skorzystanie z opcji dostępnych na stronie.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">6. Szczegółowe informacje o plikach cookies stron trzecich</h3>
-    <p>
-      Na stronie mogą być wykorzystywane pliki cookies pochodzące od podmiotów trzecich, takich jak narzędzia analityczne i reklamowe. Pliki te są stosowane w celu analizy ruchu na stronie oraz dostosowywania reklam do preferencji Użytkownika. Szczegółowe informacje na temat tych plików cookies oraz ich celów można znaleźć w politykach prywatności tych podmiotów.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">7. Czas przechowywania plików cookies</h3>
-    <p>
-      Czas przechowywania poszczególnych rodzajów plików cookies na urządzeniu Użytkownika może się różnić. Cookies sesyjne są usuwane po zamknięciu przeglądarki, natomiast cookies trwałe mogą być przechowywane przez określony czas, zazwyczaj od kilku dni do kilku lat, w zależności od ich rodzaju.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">8. Informacja o przekazywaniu danych</h3>
-    <p>
-      Dane zbierane za pomocą plików cookies mogą być przekazywane innym podmiotom, takim jak dostawcy usług analitycznych i reklamowych. Przekazywanie danych odbywa się w celu analizy oraz dostosowywania treści reklamowych. Kategorie tych podmiotów oraz cele przekazania danych są opisane w ich politykach prywatności.
-    </p>
-
-    <h3 className="text-xl font-semibold mt-6">9. Zarządzanie plikami cookies</h3>
-    <p>
-      Użytkownik może w każdej chwili zmienić ustawienia przeglądarki dotyczące plików cookies. Brak zmiany tych ustawień oznacza akceptację dla stosowanych tu plików cookies.
-    </p>
-    <p>
-      Poniżej znajdują się linki do informacji, jak zarządzać plikami cookies w najpopularniejszych przeglądarkach:
-    </p>
-    <ul className="list-disc pl-6 space-y-2">
-      <li><a href="https://support.google.com/chrome/answer/95647?hl=pl" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Google Chrome</a></li>
-      <li><a href="https://support.mozilla.org/pl/kb/ciasteczka" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Mozilla Firefox</a></li>
-      <li><a href="https://support.microsoft.com/pl-pl/microsoft-edge/usuwanie-plik%C3%B3w-cookie-w-przegl%C4%85darce-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Microsoft Edge</a></li>
-      <li><a href="https://support.apple.com/pl-pl/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Safari</a></li>
-    </ul>
-
-    <h3 className="text-xl font-semibold mt-6">10. Aktualizacja polityki cookies</h3>
-    <p>
-      Zastrzegamy sobie prawo do wprowadzania zmian w polityce cookies. O wszelkich zmianach będziemy informować Użytkowników poprzez zamieszczenie aktualnej wersji polityki na stronie. Zachęcamy do regularnego zapoznawania się z polityką cookies.
-    </p>
-  </div>
-</TabsContent>
-
-
+            <TabsContent value="cookies" className="space-y-6">
+              <h2 className="text-2xl font-display text-estate-800 mb-4">{c.cookies.title}</h2>
+              <p className="text-estate-600 mb-6">{c.cookies.introduction}</p>
+              
+              <div className="space-y-6">
+                {c.cookies.points.map((point, index) => (
+                  <div key={index}>
+                    <h3 className="text-xl font-display text-estate-800 mb-2">{point.title}</h3>
+                    <p className="text-estate-600">{point.content}</p>
+                  </div>
+                ))}
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
       </main>

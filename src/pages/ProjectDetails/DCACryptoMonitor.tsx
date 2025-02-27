@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Schemat walidacji email
 const emailSchema = z.object({
@@ -13,6 +14,7 @@ const emailSchema = z.object({
 });
 
 const DCACryptoMonitor = () => {
+  const { language } = useLanguage();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,6 +26,92 @@ const DCACryptoMonitor = () => {
   useEffect(() => {
     console.log("DCACryptoMonitor component mounted");
   }, []);
+
+  const content = {
+    pl: {
+      title: "DCA Crypto Monitor",
+      description: "Innowacyjna aplikacja do monitorowania i zarządzania strategią DCA (Dollar Cost Averaging) w inwestycjach kryptowalutowych. Projekt został stworzony z myślą o inwestorach, którzy chcą systematycznie budować swój portfel kryptowalutowy.",
+      features: {
+        title: "Główne funkcje:",
+        items: [
+          "Automatyczne śledzenie transakcji DCA",
+          "Analiza średniej ceny zakupu",
+          "Powiadomienia o planowanych zakupach",
+          "Integracja z popularnymi giełdami crypto",
+          "Raporty i statystyki inwestycji"
+        ]
+      },
+      technologies: {
+        title: "Technologie:",
+        items: [
+          "React & TypeScript",
+          "Node.js & Express",
+          "MongoDB",
+          "WebSocket dla danych real-time",
+          "Integracje API giełd kryptowalutowych"
+        ]
+      },
+      demo: "Zobacz demo",
+      subscribe: "Zapisz się na premierę",
+      hideForm: "Ukryj formularz",
+      formTitle: "Zapisz się na premierę",
+      formDescription: "Bądź pierwszym, który uzyska dostęp do pełnej wersji DCA Crypto Monitor. Zapisz się na listę oczekujących i otrzymaj specjalne promocje na start!",
+      emailPlaceholder: "Twój adres email",
+      submitButton: "Zapisz mnie",
+      checking: "Sprawdzanie...",
+      sending: "Wysyłanie...",
+      privacyNote: "Twoje dane są bezpieczne. Nie będziemy wysyłać spamu. W każdej chwili możesz wypisać się z listy.",
+      emailExists: "Ten adres email już istnieje",
+      emailExistsDesc: "Już jesteś na naszej liście oczekujących. Dziękujemy za zainteresowanie!",
+      thankYou: "Dziękujemy za zapisanie się!",
+      thankYouDesc: "Będziemy informować o postępach i promocjach związanych z DCA Crypto Monitor.",
+      error: "Wystąpił błąd",
+      errorDesc: "Nie udało się zapisać do listy oczekujących. Spróbuj ponownie później."
+    },
+    en: {
+      title: "DCA Crypto Monitor",
+      description: "An innovative application for monitoring and managing DCA (Dollar Cost Averaging) strategy in cryptocurrency investments. The project was created for investors who want to systematically build their cryptocurrency portfolio.",
+      features: {
+        title: "Main features:",
+        items: [
+          "Automatic DCA transaction tracking",
+          "Average purchase price analysis",
+          "Notifications for planned purchases",
+          "Integration with popular crypto exchanges",
+          "Investment reports and statistics"
+        ]
+      },
+      technologies: {
+        title: "Technologies:",
+        items: [
+          "React & TypeScript",
+          "Node.js & Express",
+          "MongoDB",
+          "WebSocket for real-time data",
+          "Crypto exchange API integrations"
+        ]
+      },
+      demo: "See demo",
+      subscribe: "Sign up for launch",
+      hideForm: "Hide form",
+      formTitle: "Sign up for launch",
+      formDescription: "Be the first to get access to the full version of DCA Crypto Monitor. Join the waiting list and receive special launch promotions!",
+      emailPlaceholder: "Your email address",
+      submitButton: "Sign me up",
+      checking: "Checking...",
+      sending: "Sending...",
+      privacyNote: "Your data is secure. We won't send spam. You can unsubscribe from the list at any time.",
+      emailExists: "This email already exists",
+      emailExistsDesc: "You're already on our waiting list. Thank you for your interest!",
+      thankYou: "Thank you for signing up!",
+      thankYouDesc: "We will keep you informed about progress and promotions related to DCA Crypto Monitor.",
+      error: "An error occurred",
+      errorDesc: "Unable to sign up to the waiting list. Please try again later."
+    }
+  };
+
+  // Wybierz odpowiednią wersję językową
+  const c = language === "pl" ? content.pl : content.en;
 
   const validateEmail = (email: string): boolean => {
     console.log("Validating email:", email);
@@ -74,8 +162,8 @@ const DCACryptoMonitor = () => {
       if (existingEmail) {
         console.log("Email already exists:", existingEmail);
         toast({
-          title: "Ten adres email już istnieje",
-          description: "Już jesteś na naszej liście oczekujących. Dziękujemy za zainteresowanie!",
+          title: c.emailExists,
+          description: c.emailExistsDesc,
         });
         setIsSubmitting(false);
         return;
@@ -97,8 +185,8 @@ const DCACryptoMonitor = () => {
       
       console.log("Email successfully saved to the database");
       toast({
-        title: "Dziękujemy za zapisanie się!",
-        description: "Będziemy informować o postępach i promocjach związanych z DCA Crypto Monitor.",
+        title: c.thankYou,
+        description: c.thankYouDesc,
       });
       
       // Wyczyść formularz i zamknij go
@@ -108,8 +196,8 @@ const DCACryptoMonitor = () => {
       console.error('Error:', error);
       toast({
         variant: "destructive",
-        title: "Wystąpił błąd",
-        description: "Nie udało się zapisać do listy oczekujących. Spróbuj ponownie później.",
+        title: c.error,
+        description: c.errorDesc,
       });
     } finally {
       setIsSubmitting(false);
@@ -124,33 +212,27 @@ const DCACryptoMonitor = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h1 className="text-5xl font-display text-estate-800 mb-6">DCA Crypto Monitor</h1>
+              <h1 className="text-5xl font-display text-estate-800 mb-6">{c.title}</h1>
               <p className="text-estate-600 mb-6">
-                Innowacyjna aplikacja do monitorowania i zarządzania strategią DCA (Dollar Cost Averaging) 
-                w inwestycjach kryptowalutowych. Projekt został stworzony z myślą o inwestorach, 
-                którzy chcą systematycznie budować swój portfel kryptowalutowy.
+                {c.description}
               </p>
               
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Główne funkcje:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.features.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Automatyczne śledzenie transakcji DCA</li>
-                    <li>Analiza średniej ceny zakupu</li>
-                    <li>Powiadomienia o planowanych zakupach</li>
-                    <li>Integracja z popularnymi giełdami crypto</li>
-                    <li>Raporty i statystyki inwestycji</li>
+                    {c.features.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Technologie:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.technologies.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>React & TypeScript</li>
-                    <li>Node.js & Express</li>
-                    <li>MongoDB</li>
-                    <li>WebSocket dla danych real-time</li>
-                    <li>Integracje API giełd kryptowalutowych</li>
+                    {c.technologies.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -159,7 +241,7 @@ const DCACryptoMonitor = () => {
                 <div className="flex gap-4">
                   <a href="https://gentle-klepon-d28eaf.netlify.app/" target="_blank" rel="noopener noreferrer">
                     <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                      Zobacz demo
+                      {c.demo}
                     </Button>
                   </a>
                   <Button 
@@ -167,16 +249,15 @@ const DCACryptoMonitor = () => {
                     className="border-[#49be25] text-[#49be25] hover:bg-[#f0ffe8]"
                     onClick={() => setIsFormOpen(!isFormOpen)}
                   >
-                    {isFormOpen ? "Ukryj formularz" : "Zapisz się na premierę"}
+                    {isFormOpen ? c.hideForm : c.subscribe}
                   </Button>
                 </div>
                 
                 {isFormOpen && (
                   <div className="mt-4 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30 animate-fadeIn">
-                    <h3 className="text-xl font-display text-estate-800 mb-3">Zapisz się na premierę</h3>
+                    <h3 className="text-xl font-display text-estate-800 mb-3">{c.formTitle}</h3>
                     <p className="text-estate-600 mb-4">
-                      Bądź pierwszym, który uzyska dostęp do pełnej wersji DCA Crypto Monitor.
-                      Zapisz się na listę oczekujących i otrzymaj specjalne promocje na start!
+                      {c.formDescription}
                     </p>
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div>
@@ -184,7 +265,7 @@ const DCACryptoMonitor = () => {
                           type="email"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Twój adres email"
+                          placeholder={c.emailPlaceholder}
                           className={`w-full p-3 border rounded ${emailError ? 'border-red-500' : 'border-gray-300'}`}
                           required
                         />
@@ -198,13 +279,12 @@ const DCACryptoMonitor = () => {
                         {isSubmitting ? (
                           <span className="flex items-center gap-2">
                             <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
-                            {isCheckingDB ? "Sprawdzanie..." : "Wysyłanie..."}
+                            {isCheckingDB ? c.checking : c.sending}
                           </span>
-                        ) : "Zapisz mnie"}
+                        ) : c.submitButton}
                       </Button>
                       <p className="text-xs text-gray-500 mt-2">
-                        Twoje dane są bezpieczne. Nie będziemy wysyłać spamu. 
-                        W każdej chwili możesz wypisać się z listy.
+                        {c.privacyNote}
                       </p>
                     </form>
                   </div>

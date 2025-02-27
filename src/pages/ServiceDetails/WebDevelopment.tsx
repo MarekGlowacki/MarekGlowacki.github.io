@@ -3,8 +3,67 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const WebDevelopment = () => {
+  const { language } = useLanguage();
+  
+  const content = {
+    pl: {
+      title: "Tworzenie aplikacji internetowych",
+      description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
+      services: {
+        title: "Oferowane usługi:",
+        items: [
+          "Strony i aplikacje internetowe",
+          "Systemy zarządzania treścią (CMS)",
+          "Aplikacje e-commerce",
+          "Integracje z API",
+          "Progressive Web Apps (PWA)"
+        ]
+      },
+      technologies: {
+        title: "Technologie:",
+        items: [
+          "React i TypeScript",
+          "Node.js i Express",
+          "Next.js",
+          "Tailwind CSS",
+          "MongoDB i PostgreSQL"
+        ]
+      },
+      cta: "Zamów aplikację"
+    },
+    en: {
+      title: "Web Application Development",
+      description: "I specialize in creating modern web applications tailored to your business needs. I use the latest technologies and best programming practices to deliver solutions of the highest quality.",
+      services: {
+        title: "Services offered:",
+        items: [
+          "Websites and web applications",
+          "Content Management Systems (CMS)",
+          "E-commerce applications",
+          "API integrations",
+          "Progressive Web Apps (PWA)"
+        ]
+      },
+      technologies: {
+        title: "Technologies:",
+        items: [
+          "React and TypeScript",
+          "Node.js and Express",
+          "Next.js",
+          "Tailwind CSS",
+          "MongoDB and PostgreSQL"
+        ]
+      },
+      cta: "Order an application"
+    }
+  };
+
+  // Wybierz odpowiednią wersję językową
+  const c = language === "pl" ? content.pl : content.en;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -12,40 +71,34 @@ const WebDevelopment = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h1 className="text-5xl font-display text-estate-800 mb-6">Tworzenie aplikacji internetowych</h1>
+              <h1 className="text-5xl font-display text-estate-800 mb-6">{c.title}</h1>
               <p className="text-estate-600 mb-6">
-                Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych 
-                do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze 
-                praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.
+                {c.description}
               </p>
               
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Oferowane usługi:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.services.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Strony i aplikacje internetowe</li>
-                    <li>Systemy zarządzania treścią (CMS)</li>
-                    <li>Aplikacje e-commerce</li>
-                    <li>Integracje z API</li>
-                    <li>Progressive Web Apps (PWA)</li>
+                    {c.services.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Technologie:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.technologies.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>React i TypeScript</li>
-                    <li>Node.js i Express</li>
-                    <li>Next.js</li>
-                    <li>Tailwind CSS</li>
-                    <li>MongoDB i PostgreSQL</li>
+                    {c.technologies.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
               <Link to="/contact">
                 <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                  Zamów aplikację
+                  {c.cta}
                 </Button>
               </Link>
             </div>

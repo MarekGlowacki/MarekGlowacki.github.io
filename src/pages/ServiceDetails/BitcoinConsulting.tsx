@@ -3,8 +3,67 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BitcoinConsulting = () => {
+  const { language } = useLanguage();
+  
+  const content = {
+    pl: {
+      title: "Bitcoin Expert",
+      description: "Profesjonalne doradztwo w zakresie Bitcoina i technologii blockchain. Pomagam w bezpiecznym przechowywaniu środków, implementacji rozwiązań płatniczych i edukacji zespołów w zakresie kryptowalut.",
+      services: {
+        title: "Oferowane usługi:",
+        items: [
+          "Konsultacje dot. Bitcoina",
+          "Bezpieczne przechowywanie",
+          "Implementacja płatności BTC",
+          "Szkolenia dla zespołów",
+          "Analiza techniczna"
+        ]
+      },
+      knowledge: {
+        title: "Zakres wiedzy:",
+        items: [
+          "Protokół Bitcoin",
+          "Lightning Network",
+          "Bezpieczeństwo kluczy",
+          "Hardware wallety",
+          "DCA strategia"
+        ]
+      },
+      cta: "Zamów konsultację"
+    },
+    en: {
+      title: "Bitcoin Expert",
+      description: "Professional advice on Bitcoin and blockchain technology. I help with secure storage, implementation of payment solutions, and education of teams in the field of cryptocurrencies.",
+      services: {
+        title: "Services offered:",
+        items: [
+          "Bitcoin consultations",
+          "Secure storage",
+          "BTC payment implementation",
+          "Team training",
+          "Technical analysis"
+        ]
+      },
+      knowledge: {
+        title: "Knowledge areas:",
+        items: [
+          "Bitcoin Protocol",
+          "Lightning Network",
+          "Key security",
+          "Hardware wallets",
+          "DCA strategy"
+        ]
+      },
+      cta: "Order a consultation"
+    }
+  };
+
+  // Wybierz odpowiednią wersję językową
+  const c = language === "pl" ? content.pl : content.en;
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -12,40 +71,34 @@ const BitcoinConsulting = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h1 className="text-5xl font-display text-estate-800 mb-6">Bitcoin Expert</h1>
+              <h1 className="text-5xl font-display text-estate-800 mb-6">{c.title}</h1>
               <p className="text-estate-600 mb-6">
-                Profesjonalne doradztwo w zakresie Bitcoina i technologii blockchain. 
-                Pomagam w bezpiecznym przechowywaniu środków, implementacji rozwiązań 
-                płatniczych i edukacji zespołów w zakresie kryptowalut.
+                {c.description}
               </p>
               
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Oferowane usługi:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.services.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Konsultacje dot. Bitcoina</li>
-                    <li>Bezpieczne przechowywanie</li>
-                    <li>Implementacja płatności BTC</li>
-                    <li>Szkolenia dla zespołów</li>
-                    <li>Analiza techniczna</li>
+                    {c.services.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Zakres wiedzy:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.knowledge.title}</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Protokół Bitcoin</li>
-                    <li>Lightning Network</li>
-                    <li>Bezpieczeństwo kluczy</li>
-                    <li>Hardware wallety</li>
-                    <li>DCA strategia</li>
+                    {c.knowledge.items.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
 
               <Link to="/contact">
                 <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                  Zamów konsultację
+                  {c.cta}
                 </Button>
               </Link>
             </div>
