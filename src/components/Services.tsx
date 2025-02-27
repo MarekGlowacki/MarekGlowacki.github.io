@@ -1,95 +1,62 @@
+
 import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
 import { Link, useLocation } from "react-router-dom";
 
 const Services = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
-  const services = [
-    {
-      title: "Tworzenie aplikacji internetowych",
-      image: "/images/creating-apps.jpg",
-      link: "/services#web-apps",
-    },
-    {
-      title: "Sztuczna Inteligencja dla Firm",
-      image: "/images/ai.jpg",
-      link: "/services#ai",
-    },
-    {
-      title: "Bitcoin Expert",
-      image: "/images/zwrocic-Bitcoina.jpg",
-      link: "/services#bitcoin",
-    },
-  ];
-
   return (
-    <section 
-      className="py-32 bg-white" 
-      id="uslugi"
-      style={{ willChange: 'transform' }}
-    >
+    <section className="py-32 bg-white" id="uslugi">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-display text-estate-800 mb-6">Usługi</h2>
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <Separator className="w-12" />
-            <span className="text-estate-600">Co mogę dla Ciebie zrobić?</span>
-            <Separator className="w-12" />
+        <h2 className="text-4xl sm:text-5xl font-display text-estate-800 mb-16 text-center">
+          Usługi
+        </h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="group">
+            <Link to="/services#web-apps" className="block">
+              <div className="relative overflow-hidden rounded-lg mb-4">
+                <img
+                  src="/images/creating-apps.jpg"
+                  alt="Tworzenie aplikacji"
+                  className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+              </div>
+              <h3 className="text-2xl font-display text-estate-800 mb-2">
+                Tworzenie aplikacji internetowych
+              </h3>
+            </Link>
           </div>
-          <p className="text-estate-600 max-w-2xl mx-auto">
-            Specjalizuję się w trzech głównych obszarach, które pozwalają mi dostarczać kompleksowe rozwiązania dla Twojego biznesu
-          </p>
-        </div>
 
-        <div 
-          className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-3xl shadow-2xl"
-          style={{ willChange: 'transform' }}
-        >
-          <div className="absolute inset-0 flex flex-col sm:flex-row">
-            {services.map((service, index) => (
-              <Link 
-                key={index} 
-                to={service.link}
-                className="relative group overflow-hidden flex-1"
-                style={{ 
-                  marginBottom: index !== services.length - 1 ? '2px' : '0',
-                  marginRight: 'sm:2px',
-                  transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
-                  minHeight: '100px'
-                }}
-              >
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ 
-                    backgroundImage: `url(${service.image})`,
-                    willChange: 'transform',
-                    transform: 'translateZ(0)'
-                  }}
+          <div className="group">
+            <Link to="/services#ai" className="block">
+              <div className="relative overflow-hidden rounded-lg mb-4">
+                <img
+                  src="/images/ai.jpg"
+                  alt="AI dla firm"
+                  className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div 
-                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
-                  style={{ transform: 'translateZ(0)' }}
+              </div>
+              <h3 className="text-2xl font-display text-estate-800 mb-2">
+                Sztuczna Inteligencja dla Firm
+              </h3>
+            </Link>
+          </div>
+
+          <div className="group">
+            <Link to="/services#bitcoin" className="block">
+              <div className="relative overflow-hidden rounded-lg mb-4">
+                <img
+                  src="/images/zwrocic-Bitcoina.jpg"
+                  alt="Bitcoin Expert"
+                  className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-8">
-                  <h3 className="text-xl sm:text-2xl font-display text-white mb-4 transform group-hover:-translate-y-2 transition-transform">
-                    {service.title}
-                  </h3>
-                  <div 
-                    className="w-fit transform translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all"
-                  >
-                    <Button 
-                      variant="outline"
-                      className="border-[#49be25] bg-[#49be25] hover:bg-[#3da51e] hover:text-white text-white text-sm sm:text-base"
-                    >
-                      Czytaj więcej
-                    </Button>
-                  </div>
-                </div>
-              </Link>
-            ))}
+              </div>
+              <h3 className="text-2xl font-display text-estate-800 mb-2">
+                Bitcoin Expert
+              </h3>
+            </Link>
           </div>
         </div>
 
