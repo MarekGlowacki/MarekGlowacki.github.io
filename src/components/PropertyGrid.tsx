@@ -16,7 +16,7 @@ const PropertyGrid = () => {
       slug: "ai-for-business",
     },
     {
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
+      image: "/images/real-calendar.jpg",
       title: "System zarządzania szkołą",
       location: "Świat",
       slug: "crm",
