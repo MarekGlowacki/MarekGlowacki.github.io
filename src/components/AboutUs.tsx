@@ -14,11 +14,11 @@ const AboutUs = () => {
     <section className="py-20 bg-estate-50">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Sekcja O mnie */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&q=80&w=1200"
+                src="/public/lovable-uploads/066019c8-0c94-403f-a6af-0dc0e5d170ba.png"
                 alt="Marek Głowacki - Expert Bitcoin & Developer"
                 className="w-full h-full object-cover"
               />
@@ -208,7 +208,7 @@ const AboutUs = () => {
           <div className="relative">
             <div className="aspect-video rounded-3xl overflow-hidden">
               <img
-                src="/public/lovable-uploads/066019c8-0c94-403f-a6af-0dc0e5d170ba.png"
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&q=80&w=1200"
                 alt="Nowoczesny dom z dużymi oknami"
                 className="w-full h-full object-cover"
               />
