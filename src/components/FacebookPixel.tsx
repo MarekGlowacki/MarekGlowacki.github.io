@@ -2,17 +2,10 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-// Typ dla obiektu Facebook Pixel
-interface FacebookPixelType {
-  init: (pixelId: string, advancedMatching?: object, options?: object) => void;
-  pageView: () => void;
-  track: (event: string, data?: object) => void;
-}
-
-// Deklaracja dla globalnego obiektu fbq
+// Właściwa deklaracja typów dla Facebook Pixel
 declare global {
   interface Window {
-    fbq: FacebookPixelType;
+    fbq: any;
     _fbq: any;
   }
 }
@@ -27,16 +20,23 @@ const FacebookPixel = () => {
     // Inicjalizacja kodu piksela Facebook
     if (!window.fbq) {
       window.fbq = function() {
-        (window.fbq as any).callMethod 
-          ? (window.fbq as any).callMethod.apply(window.fbq, arguments) 
-          : (window.fbq as any).queue.push(arguments);
+        // @ts-ignore - obchodzimy typowanie dla zachowania oryginalnej logiki
+        window.fbq.callMethod ? 
+          // @ts-ignore
+          window.fbq.callMethod.apply(window.fbq, arguments) : 
+          // @ts-ignore
+          window.fbq.queue.push(arguments);
       };
       
       if (!window._fbq) window._fbq = window.fbq;
       
+      // @ts-ignore - dynamicznie dodajemy właściwości do obiektu fbq
       window.fbq.push = window.fbq;
+      // @ts-ignore
       window.fbq.loaded = true;
+      // @ts-ignore
       window.fbq.version = '2.0';
+      // @ts-ignore
       window.fbq.queue = [];
     }
 
@@ -47,20 +47,25 @@ const FacebookPixel = () => {
     document.head.appendChild(script);
 
     // Inicjalizacja piksela
+    // @ts-ignore - pozwalamy na wywołanie fbq jako funkcji
     window.fbq('init', FACEBOOK_PIXEL_ID);
     
     // Wywołanie pierwszego PageView
+    // @ts-ignore
     window.fbq('track', 'PageView');
 
     // Funkcja czyszcząca
     return () => {
-      document.head.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
   }, []);
 
   // Rejestruj PageView przy każdej zmianie ścieżki
   useEffect(() => {
     if (window.fbq) {
+      // @ts-ignore
       window.fbq('track', 'PageView');
     }
   }, [location.pathname]);
