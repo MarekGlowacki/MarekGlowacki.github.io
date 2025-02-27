@@ -33,11 +33,11 @@ const BitcoinConsulting = () => {
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Obszary specjalizacji:</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Multisig & Hardware Wallets</li>
+                    <li>Portfele sprzętowe</li>
                     <li>Lightning Network</li>
                     <li>Bitcoin Core</li>
-                    <li>Sovereign Computing</li>
-                    <li>Privacy & Security</li>
+                    <li>Suwerenne obliczenia</li>
+                    <li>Prywatność i bezpieczeństwo</li>
                   </ul>
                 </div>
               </div>
@@ -48,11 +48,6 @@ const BitcoinConsulting = () => {
                     Umów konsultację
                   </Button>
                 </Link>
-                <a href="https://bitcoin-faq.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline">
-                    FAQ
-                  </Button>
-                </a>
               </div>
             </div>
             

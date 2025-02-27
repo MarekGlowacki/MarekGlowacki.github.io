@@ -18,14 +18,10 @@ const AboutUs = () => {
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden">
               <img
-                src="/public/lovable-uploads/066019c8-0c94-403f-a6af-0dc0e5d170ba.png"
+                src="/images/moje.jpg"
                 alt="Marek Głowacki - Expert Bitcoin & Developer"
                 className="w-full h-full object-cover"
               />
-            </div>
-            <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-lg shadow-xl">
-              <p className="text-4xl font-display text-estate-800 mb-2">5+ lat</p>
-              <p className="text-estate-600">doświadczenia w branży IT</p>
             </div>
           </div>
 
@@ -113,34 +109,14 @@ const AboutUs = () => {
                   <MapPin className="w-6 h-6 text-[#49be25]" />
                 </span>
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie Międzynarodowe</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Światowy człowiek</h3>
                   <p className="text-estate-600">
-                    Rok doświadczenia w pracy zdalnej z Zanzibaru, co pokazuje moją elastyczność i umiejętność adaptacji.
+                    Mieszkałem rok na Zanzibarze, co odmieniło moje życie.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 p-6 bg-white rounded-lg shadow-lg">
-              <h3 className="text-xl font-display text-estate-800 mb-4">Nie czekaj - skontaktuj się już teraz!</h3>
-              <p className="text-estate-600 mb-4">
-                Umów się na bezpłatną konsultację i dowiedz się, jak mogę pomóc w rozwoju Twojego biznesu.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a 
-                  href="tel:+48514383545" 
-                  className="inline-flex items-center justify-center px-6 py-3 bg-[#49be25] text-white rounded-lg hover:bg-[#3da51e] transition-colors"
-                >
-                  Zadzwoń teraz: +48 514 383 545
-                </a>
-                <a 
-                  href="mailto:kontakt@marekglowacki.pl" 
-                  className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#49be25] text-[#49be25] rounded-lg hover:bg-[#49be25] hover:text-white transition-colors"
-                >
-                  Wyślij email
-                </a>
-              </div>
-            </div>
           </div>
         </div>
 

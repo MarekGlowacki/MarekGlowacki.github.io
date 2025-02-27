@@ -41,18 +41,6 @@ const AIForBusiness = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <a href="https://ai-case-study.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                    Case Study
-                  </Button>
-                </a>
-                <a href="https://ai-presentation.marekglowacki.pl" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline">
-                    Prezentacja
-                  </Button>
-                </a>
-              </div>
             </div>
             
             <div className="space-y-8">

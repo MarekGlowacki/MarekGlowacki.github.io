@@ -47,11 +47,6 @@ const DCACryptoMonitor = () => {
                     Zobacz demo
                   </Button>
                 </a>
-                <a href="https://docs.dcacryptomonitor.pl" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline">
-                    Dokumentacja
-                  </Button>
-                </a>
               </div>
             </div>
             
