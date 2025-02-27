@@ -59,7 +59,7 @@ const CRM = () => {
             
             <div className="space-y-8">
               <img 
-                src="https://images.unsplash.com/photo-1557063419-564dc3d0e4e8"
+                src="images/real-calendar.jpg"
                 alt="School CRM System"
                 className="rounded-lg shadow-xl w-full object-cover h-[400px]"
               />
