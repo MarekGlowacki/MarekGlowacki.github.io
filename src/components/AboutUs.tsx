@@ -1,4 +1,14 @@
 
+import { 
+  Briefcase,
+  BadgeDollarSign,
+  LineChart,
+  ShieldCheck,
+  Rocket,
+  Bot,
+  MapPin
+} from "lucide-react";
+
 const AboutUs = () => {
   return (
     <section className="py-20 bg-estate-50">
@@ -26,7 +36,9 @@ const AboutUs = () => {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">💰</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <BadgeDollarSign className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Wolność Finansowa</h3>
                   <p className="text-estate-600">
@@ -36,7 +48,9 @@ const AboutUs = () => {
               </div>
               
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">💻</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <Briefcase className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie Korporacyjne</h3>
                   <p className="text-estate-600">
@@ -46,7 +60,9 @@ const AboutUs = () => {
               </div>
               
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">📈</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <LineChart className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Background Finansowy</h3>
                   <p className="text-estate-600">
@@ -56,7 +72,9 @@ const AboutUs = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">🔒</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <ShieldCheck className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Cyberbezpieczeństwo</h3>
                   <p className="text-estate-600">
@@ -66,7 +84,9 @@ const AboutUs = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">🚀</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <Rocket className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Expert Bitcoin</h3>
                   <p className="text-estate-600">
@@ -76,7 +96,9 @@ const AboutUs = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">🤖</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <Bot className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Trading Bots</h3>
                   <p className="text-estate-600">
@@ -86,7 +108,9 @@ const AboutUs = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <span className="text-4xl text-[#49be25]">🏝️</span>
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <MapPin className="w-6 h-6 text-[#49be25]" />
+                </span>
                 <div>
                   <h3 className="text-xl font-display text-estate-800 mb-2">Doświadczenie Międzynarodowe</h3>
                   <p className="text-estate-600">
@@ -95,7 +119,7 @@ const AboutUs = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-8 p-6 bg-white rounded-lg shadow-lg">
               <h3 className="text-xl font-display text-estate-800 mb-4">Nie czekaj - skontaktuj się już teraz!</h3>
               <p className="text-estate-600 mb-4">
