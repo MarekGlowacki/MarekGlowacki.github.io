@@ -1,10 +1,70 @@
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Zapisz wiadomość w Supabase
+      const { error: dbError } = await supabase
+        .from('contact_messages')
+        .insert([formData]);
+
+      if (dbError) throw dbError;
+
+      // Wyślij email
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Wiadomość wysłana!",
+        description: "Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe.",
+      });
+
+      // Wyczyść formularz
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        variant: "destructive",
+        title: "Wystąpił błąd",
+        description: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -30,15 +90,51 @@ const Contact = () => {
               </div>
             </div>
             <div>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input type="text" placeholder="Imię" className="w-full p-3 border rounded" />
-                  <input type="email" placeholder="Email" className="w-full p-3 border rounded" />
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Imię"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full p-3 border rounded"
+                  />
                 </div>
-                <input type="text" placeholder="Temat" className="w-full p-3 border rounded" />
-                <textarea placeholder="Wiadomość" rows={5} className="w-full p-3 border rounded"></textarea>
-                <Button className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]">
-                  Wyślij wiadomość
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Temat"
+                  required
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded"
+                />
+                <textarea
+                  name="message"
+                  placeholder="Wiadomość"
+                  rows={5}
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded"
+                ></textarea>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Wysyłanie..." : "Wyślij wiadomość"}
                 </Button>
               </form>
             </div>
