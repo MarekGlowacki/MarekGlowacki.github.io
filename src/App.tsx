@@ -14,6 +14,8 @@ import DCACryptoMonitor from "./pages/ProjectDetails/DCACryptoMonitor";
 import AIForBusiness from "./pages/ProjectDetails/AIForBusiness";
 import BitcoinConsulting from "./pages/ProjectDetails/BitcoinConsulting";
 import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
+import AIBusiness from "./pages/ServiceDetails/AIBusiness";
+import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/web-development" element={<WebDevelopment />} />
+          <Route path="/services/ai-business" element={<AIBusiness />} />
+          <Route path="/services/bitcoin-consulting" element={<BitcoinService />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
           <Route path="/project/ai-for-business" element={<AIForBusiness />} />

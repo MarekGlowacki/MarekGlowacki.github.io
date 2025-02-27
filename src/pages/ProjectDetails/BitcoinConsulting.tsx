@@ -59,20 +59,20 @@ const BitcoinConsulting = () => {
             
             <div className="space-y-8">
               <img 
-                src="/images/projekt-btc.jpg"
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
                 alt="School CRM System"
-                className="rounded-lg shadow-xl w-full"
+                className="rounded-lg shadow-xl w-full object-cover h-[400px]"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="/images/creating-apps.jpg"
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
                   alt="School Management"
-                  className="rounded-lg shadow-lg w-full"
+                  className="rounded-lg shadow-lg w-full object-cover h-48"
                 />
                 <img 
-                  src="/images/ai-kobieta.jpg"
+                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7"
                   alt="Class Schedule"
-                  className="rounded-lg shadow-lg w-full"
+                  className="rounded-lg shadow-lg w-full object-cover h-48"
                 />
               </div>
             </div>

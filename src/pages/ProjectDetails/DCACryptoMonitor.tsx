@@ -53,18 +53,18 @@ const DCACryptoMonitor = () => {
             
             <div className="space-y-8">
               <img 
-                src="https://images.unsplash.com/photo-1605792657660-596af9009e82"
+                src="https://images.unsplash.com/photo-1642790106426-538137f05e85"
                 alt="DCA Crypto Monitor Dashboard"
                 className="rounded-lg shadow-xl w-full"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d"
+                  src="https://images.unsplash.com/photo-1640833906651-6bd1af7aeea3"
                   alt="Crypto Analytics"
                   className="rounded-lg shadow-lg w-full"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1516245834210-c4c142787335"
+                  src="https://images.unsplash.com/photo-1624996379697-f01d168b1a52"
                   alt="Portfolio Tracking"
                   className="rounded-lg shadow-lg w-full"
                 />
