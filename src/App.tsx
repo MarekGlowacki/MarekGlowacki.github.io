@@ -16,6 +16,7 @@ import CRM from "./pages/ProjectDetails/CRM";
 import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 import AIBusiness from "./pages/ServiceDetails/AIBusiness";
 import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
+import LegalTerms from "./pages/LegalTerms";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
           <Route path="/project/ai-for-business" element={<AIForBusiness />} />
           <Route path="/project/crm" element={<CRM />} />
+          <Route path="/legal" element={<LegalTerms />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

@@ -28,6 +28,7 @@ const Footer = () => {
               <li><Link to="/services" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Moja oferta</Link></li>
               <li><Link to="/projects" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Portfolio</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Kontakt</Link></li>
+              <li><Link to="/legal" className="hover:text-white transition-colors transform hover:translate-x-2 inline-block">Polityka prywatności & Regulamin</Link></li>
             </ul>
           </div>
           <div>
@@ -73,6 +74,11 @@ const Footer = () => {
             </a>
           </div>
           <p className="text-white/90">&copy; {new Date().getFullYear()} Marek Głowacki. Wszelkie prawa zastrzeżone.</p>
+          <p className="text-white/90 mt-2">
+            <Link to="/legal" className="hover:text-white transition-colors">Regulamin</Link> | 
+            <Link to="/legal?tab=privacy" className="hover:text-white transition-colors ml-2">Polityka prywatności</Link> | 
+            <Link to="/legal?tab=cookies" className="hover:text-white transition-colors ml-2">Cookies</Link>
+          </p>
         </div>
       </div>
     </footer>
