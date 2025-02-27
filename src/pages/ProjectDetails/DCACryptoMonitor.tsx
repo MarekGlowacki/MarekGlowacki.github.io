@@ -1,9 +1,96 @@
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+
+// Schemat walidacji email
+const emailSchema = z.object({
+  email: z.string().email("Proszę podać poprawny adres email")
+});
 
 const DCACryptoMonitor = () => {
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  const validateEmail = (email: string): boolean => {
+    try {
+      emailSchema.parse({ email });
+      setEmailError(null);
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setEmailError(error.errors[0].message);
+      }
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateEmail(email)) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Sanityzacja adresu email
+      const sanitizedEmail = email.trim().toLowerCase();
+      
+      // Sprawdź czy adres email już istnieje
+      const { data: existingEmail } = await supabase
+        .from('waiting_list')
+        .select('email')
+        .eq('email', sanitizedEmail)
+        .single();
+      
+      if (existingEmail) {
+        toast({
+          title: "Ten adres email już istnieje",
+          description: "Już jesteś na naszej liście oczekujących. Dziękujemy za zainteresowanie!",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Zapisz email do bazy danych
+      const { error } = await supabase
+        .from('waiting_list')
+        .insert([{ 
+          email: sanitizedEmail,
+          application: 'dca-crypto-monitor'
+        }]);
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Dziękujemy za zapisanie się!",
+        description: "Będziemy informować o postępach i promocjach związanych z DCA Crypto Monitor.",
+      });
+      
+      // Wyczyść formularz i zamknij go
+      setEmail("");
+      setIsFormOpen(false);
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        variant: "destructive",
+        title: "Wystąpił błąd",
+        description: "Nie udało się zapisać do listy oczekujących. Spróbuj ponownie później.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -42,12 +129,55 @@ const DCACryptoMonitor = () => {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <a href="https://gentle-klepon-d28eaf.netlify.app/" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                    Zobacz demo
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-4">
+                  <a href="https://gentle-klepon-d28eaf.netlify.app/" target="_blank" rel="noopener noreferrer">
+                    <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                      Zobacz demo
+                    </Button>
+                  </a>
+                  <Button 
+                    variant="outline" 
+                    className="border-[#49be25] text-[#49be25] hover:bg-[#f0ffe8]"
+                    onClick={() => setIsFormOpen(!isFormOpen)}
+                  >
+                    {isFormOpen ? "Ukryj formularz" : "Zapisz się na premierę"}
                   </Button>
-                </a>
+                </div>
+                
+                {isFormOpen && (
+                  <div className="mt-4 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30 animate-fadeIn">
+                    <h3 className="text-xl font-display text-estate-800 mb-3">Zapisz się na premierę</h3>
+                    <p className="text-estate-600 mb-4">
+                      Bądź pierwszym, który uzyska dostęp do DCA Crypto Monitor. 
+                      Zapisz się na listę oczekujących i otrzymaj specjalne promocje na start!
+                    </p>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Twój adres email"
+                          className={`w-full p-3 border rounded ${emailError ? 'border-red-500' : 'border-gray-300'}`}
+                          required
+                        />
+                        {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-[#49be25] hover:bg-[#3da51e]"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Wysyłanie..." : "Zapisz mnie"}
+                      </Button>
+                      <p className="text-xs text-gray-500 mt-2">
+                        Twoje dane są bezpieczne. Nie będziemy wysyłać spamu. 
+                        W każdej chwili możesz wypisać się z listy.
+                      </p>
+                    </form>
+                  </div>
+                )}
               </div>
             </div>
             

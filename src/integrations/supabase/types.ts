@@ -36,6 +36,30 @@ export type Database = {
         }
         Relationships: []
       }
+      waiting_list: {
+        Row: {
+          application: string
+          created_at: string
+          email: string
+          id: string
+          is_verified: boolean
+        }
+        Insert: {
+          application?: string
+          created_at?: string
+          email: string
+          id?: string
+          is_verified?: boolean
+        }
+        Update: {
+          application?: string
+          created_at?: string
+          email?: string
+          id?: string
+          is_verified?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
