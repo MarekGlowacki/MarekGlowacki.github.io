@@ -51,12 +51,12 @@ const AIForBusiness = () => {
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&q=80&w=600"
+                  src="/images/ai.jpg"
                   alt="AI Analytics"
                   className="rounded-lg shadow-lg w-full"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1673187456649-3159e76d43f7?auto=format&q=80&w=600"
+                  src="/images/creating-apps.jpg"
                   alt="Machine Learning Models"
                   className="rounded-lg shadow-lg w-full"
                 />

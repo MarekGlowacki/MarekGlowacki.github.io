@@ -1,9 +1,11 @@
-
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Services = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   const services = [
     {
       title: "Tworzenie aplikacji internetowych",
@@ -91,16 +93,18 @@ const Services = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <Link to="/services">
-            <Button 
-              variant="outline" 
-              className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
-            >
-              Zobacz wszystkie usługi
-            </Button>
-          </Link>
-        </div>
+        {isHomePage && (
+          <div className="mt-12 flex justify-center">
+            <Link to="/services">
+              <Button 
+                variant="outline" 
+                className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
+              >
+                Zobacz wszystkie usługi
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

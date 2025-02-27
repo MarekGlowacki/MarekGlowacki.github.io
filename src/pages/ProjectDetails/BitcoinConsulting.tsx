@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -11,41 +12,46 @@ const BitcoinConsulting = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <h1 className="text-5xl font-display text-estate-800 mb-6">Doradztwo Bitcoin</h1>
+              <h1 className="text-5xl font-display text-estate-800 mb-6">CRM System zarządzania szkołą</h1>
               <p className="text-estate-600 mb-6">
-                Profesjonalne doradztwo w zakresie inwestycji w Bitcoin, bezpieczeństwa 
-                przechowywania środków oraz implementacji rozwiązań płatniczych opartych 
-                na Lightning Network dla firm i klientów indywidualnych.
+                Kompleksowy system zarządzania planami zajęć uczniów z różnych szkół. 
+                Umożliwia łatwe dodawanie szkół, uczniów oraz tworzenie i zarządzanie 
+                planami zajęć w intuicyjny sposób.
               </p>
               
               <div className="space-y-6 mb-8">
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Zakres usług:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Główne funkcje:</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Konsultacje inwestycyjne</li>
-                    <li>Audyty bezpieczeństwa portfeli</li>
-                    <li>Implementacja Lightning Network</li>
-                    <li>Szkolenia dla zespołów</li>
-                    <li>Wsparcie techniczne 24/7</li>
+                    <li>Zarządzanie szkołami i klasami</li>
+                    <li>Dodawanie i edycja uczniów</li>
+                    <li>Tworzenie planów zajęć</li>
+                    <li>Zarządzanie nauczycielami</li>
+                    <li>Harmonogramowanie zajęć</li>
                   </ul>
                 </div>
                 
                 <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">Obszary specjalizacji:</h3>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">Korzyści:</h3>
                   <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    <li>Portfele sprzętowe</li>
-                    <li>Lightning Network</li>
-                    <li>Bitcoin Core</li>
-                    <li>Suwerenne obliczenia</li>
-                    <li>Prywatność i bezpieczeństwo</li>
+                    <li>Efektywne zarządzanie czasem</li>
+                    <li>Automatyzacja procesów</li>
+                    <li>Łatwy dostęp do informacji</li>
+                    <li>Redukcja błędów</li>
+                    <li>Oszczędność czasu i zasobów</li>
                   </ul>
                 </div>
               </div>
 
               <div className="flex gap-4">
-                <Link to="/contact">
+                <a href="https://candid-lamington-83dcb0.netlify.app/" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#49be25] hover:bg-[#3da51e]">
-                    Umów konsultację
+                    Zobacz demo
+                  </Button>
+                </a>
+                <Link to="/contact">
+                  <Button variant="outline">
+                    Zamów podobny system
                   </Button>
                 </Link>
               </div>
@@ -54,18 +60,18 @@ const BitcoinConsulting = () => {
             <div className="space-y-8">
               <img 
                 src="/images/projekt-btc.jpg"
-                alt="Bitcoin Consulting"
+                alt="School CRM System"
                 className="rounded-lg shadow-xl w-full"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&q=80&w=600"
-                  alt="Bitcoin Security"
+                  src="/images/creating-apps.jpg"
+                  alt="School Management"
                   className="rounded-lg shadow-lg w-full"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1605792657660-596af9009e82?auto=format&q=80&w=600"
-                  alt="Lightning Network"
+                  src="/images/ai.jpg"
+                  alt="Class Schedule"
                   className="rounded-lg shadow-lg w-full"
                 />
               </div>
