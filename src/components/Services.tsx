@@ -28,7 +28,7 @@ const Services = () => {
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                  <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                     Czytaj więcej
                   </Button>
                 </div>
@@ -50,7 +50,7 @@ const Services = () => {
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                  <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                     Czytaj więcej
                   </Button>
                 </div>
@@ -72,7 +72,7 @@ const Services = () => {
                   </h3>
                 </div>
                 <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                  <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                     Czytaj więcej
                   </Button>
                 </div>

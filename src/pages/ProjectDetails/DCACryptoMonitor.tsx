@@ -132,7 +132,7 @@ const DCACryptoMonitor = () => {
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
                   <a href="https://gentle-klepon-d28eaf.netlify.app/" target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                    <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                       Zobacz demo
                     </Button>
                   </a>
@@ -149,7 +149,7 @@ const DCACryptoMonitor = () => {
                   <div className="mt-4 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30 animate-fadeIn">
                     <h3 className="text-xl font-display text-estate-800 mb-3">Zapisz się na premierę</h3>
                     <p className="text-estate-600 mb-4">
-                      Bądź pierwszym, który uzyska dostęp do DCA Crypto Monitor. 
+                      Bądź pierwszym, który uzyska dostęp do pełnej wersji DCA Crypto Monitor.
                       Zapisz się na listę oczekujących i otrzymaj specjalne promocje na start!
                     </p>
                     <form onSubmit={handleSubmit} className="space-y-4">
@@ -166,7 +166,7 @@ const DCACryptoMonitor = () => {
                       </div>
                       <Button 
                         type="submit" 
-                        className="w-full bg-[#49be25] hover:bg-[#3da51e]"
+                        className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Wysyłanie..." : "Zapisz mnie"}

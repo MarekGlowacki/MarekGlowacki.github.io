@@ -31,7 +31,7 @@ const Services = () => {
                 Od prostych stron po zaawansowane systemy zarządzania, tworzę rozwiązania szyte na miarę potrzeb klienta.
               </p>
               <Link to="/services/web-development">
-                <Button className="w-fit bg-[#49be25] hover:bg-[#3da51e]">
+                <Button className="w-fit bg-[#49be25] text-white hover:bg-[#3da51e]">
                   Dowiedz się więcej
                 </Button>
               </Link>
@@ -48,7 +48,7 @@ const Services = () => {
                 podejmowaniu lepszych decyzji biznesowych.
               </p>
               <Link to="/project/ai-for-business">
-                <Button className="w-fit bg-[#49be25] hover:bg-[#3da51e]">
+                <Button className="w-fit bg-[#49be25] text-white hover:bg-[#3da51e]">
                   Dowiedz się więcej
                 </Button>
               </Link>
@@ -79,7 +79,7 @@ const Services = () => {
                 płatniczych i edukacji zespołów w zakresie kryptowalut.
               </p>
               <Link to="/services/bitcoin-consulting">
-                <Button className="w-fit bg-[#49be25] hover:bg-[#3da51e]">
+                <Button className="w-fit bg-[#49be25] text-white hover:bg-[#3da51e]">
                   Dowiedz się więcej
                 </Button>
               </Link>

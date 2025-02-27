@@ -45,7 +45,7 @@ const CRM = () => {
 
               <div className="flex gap-4">
                 <a href="https://candid-lamington-83dcb0.netlify.app/" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                  <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                     Zobacz demo
                   </Button>
                 </a>

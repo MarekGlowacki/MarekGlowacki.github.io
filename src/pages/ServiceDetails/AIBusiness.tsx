@@ -44,7 +44,7 @@ const AIBusiness = () => {
               </div>
 
               <Link to="/contact">
-                <Button className="bg-[#49be25] hover:bg-[#3da51e]">
+                <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                   Zamów konsultację
                 </Button>
               </Link>
