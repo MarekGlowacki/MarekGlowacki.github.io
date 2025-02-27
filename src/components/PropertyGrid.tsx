@@ -17,7 +17,7 @@ const PropertyGrid = () => {
     },
     {
       image: "images/projekt-btc.jpg",
-      title: "Doradztwo Bitcoin",
+      title: "System zarządzania szkołą",
       location: "Świat",
       slug: "bitcoin-consulting",
     },
