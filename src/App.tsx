@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "@/components/ScrollToTop";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-import FacebookPixel from "@/components/FacebookPixel";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -29,7 +29,7 @@ const App = () => (
       <LanguageProvider>
         <BrowserRouter>
           <ScrollToTop />
-          <FacebookPixel />
+          <GoogleAnalytics />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
