@@ -36,7 +36,7 @@ const Contact = () => {
 
       if (dbError) throw dbError;
 
-      // Wyślij email
+      // Wyślij email przez Edge Function
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
