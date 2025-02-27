@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,15 @@ const DCACryptoMonitor = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [isCheckingDB, setIsCheckingDB] = useState(false);
+
+  // Dodajemy efekt do logowania podczas montowania komponentu
+  useEffect(() => {
+    console.log("DCACryptoMonitor component mounted");
+  }, []);
 
   const validateEmail = (email: string): boolean => {
+    console.log("Validating email:", email);
     try {
       emailSchema.parse({ email });
       setEmailError(null);
@@ -34,25 +41,38 @@ const DCACryptoMonitor = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted with email:", email);
     
     if (!validateEmail(email)) {
+      console.log("Email validation failed");
       return;
     }
 
     setIsSubmitting(true);
+    setIsCheckingDB(true);
     
     try {
       // Sanityzacja adresu email
       const sanitizedEmail = email.trim().toLowerCase();
+      console.log("Sanitized email:", sanitizedEmail);
       
       // Sprawdź czy adres email już istnieje
-      const { data: existingEmail } = await supabase
+      console.log("Checking if email exists in the database...");
+      const { data: existingEmail, error: checkError } = await supabase
         .from('waiting_list')
         .select('email')
         .eq('email', sanitizedEmail)
-        .single();
+        .maybeSingle();
+      
+      if (checkError) {
+        console.error("Error checking email:", checkError);
+        throw checkError;
+      }
+      
+      setIsCheckingDB(false);
       
       if (existingEmail) {
+        console.log("Email already exists:", existingEmail);
         toast({
           title: "Ten adres email już istnieje",
           description: "Już jesteś na naszej liście oczekujących. Dziękujemy za zainteresowanie!",
@@ -62,15 +82,20 @@ const DCACryptoMonitor = () => {
       }
       
       // Zapisz email do bazy danych
-      const { error } = await supabase
+      console.log("Inserting email into the database...");
+      const { error: insertError } = await supabase
         .from('waiting_list')
         .insert([{ 
           email: sanitizedEmail,
           application: 'dca-crypto-monitor'
         }]);
       
-      if (error) throw error;
+      if (insertError) {
+        console.error("Error inserting email:", insertError);
+        throw insertError;
+      }
       
+      console.log("Email successfully saved to the database");
       toast({
         title: "Dziękujemy za zapisanie się!",
         description: "Będziemy informować o postępach i promocjach związanych z DCA Crypto Monitor.",
@@ -88,6 +113,7 @@ const DCACryptoMonitor = () => {
       });
     } finally {
       setIsSubmitting(false);
+      setIsCheckingDB(false);
     }
   };
 
@@ -169,7 +195,12 @@ const DCACryptoMonitor = () => {
                         className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                         disabled={isSubmitting}
                       >
-                        {isSubmitting ? "Wysyłanie..." : "Zapisz mnie"}
+                        {isSubmitting ? (
+                          <span className="flex items-center gap-2">
+                            <span className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span>
+                            {isCheckingDB ? "Sprawdzanie..." : "Wysyłanie..."}
+                          </span>
+                        ) : "Zapisz mnie"}
                       </Button>
                       <p className="text-xs text-gray-500 mt-2">
                         Twoje dane są bezpieczne. Nie będziemy wysyłać spamu. 
