@@ -1,5 +1,5 @@
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import AboutUs from "@/components/AboutUs";
@@ -12,6 +12,19 @@ const Testimonials = lazy(() => import("@/components/Testimonials"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
+  // Obsługa przewijania do sekcji newslettera po załadowaniu strony
+  useEffect(() => {
+    if (window.location.hash === '#newsletter') {
+      // Opóźnij przewijanie, aby dać czas na załadowanie komponentów lazy
+      setTimeout(() => {
+        const newsletterSection = document.getElementById('newsletter');
+        if (newsletterSection) {
+          newsletterSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 1000);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />

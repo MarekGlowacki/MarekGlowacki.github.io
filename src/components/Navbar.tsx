@@ -9,6 +9,17 @@ import {
 } from "./ui/sheet";
 
 const Navbar = () => {
+  // Funkcja do przewijania do sekcji newslettera
+  const scrollToNewsletter = () => {
+    const newsletterSection = document.getElementById('newsletter');
+    if (newsletterSection) {
+      newsletterSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Jeśli nie jesteśmy na stronie głównej, przekieruj na główną z parametrem
+      window.location.href = '/#newsletter';
+    }
+  };
+
   return (
     <>
       {/* Contact Info Bar */}
@@ -56,6 +67,12 @@ const Navbar = () => {
               <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Moja oferta</Link>
               <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Portfolio</Link>
               <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">Kontakt</Link>
+              <button 
+                onClick={scrollToNewsletter} 
+                className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap cursor-pointer"
+              >
+                Bądź na bieżąco
+              </button>
               <Button
                 className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                 onClick={() => (window.location.href = '/cv.html')}>
@@ -77,6 +94,16 @@ const Navbar = () => {
                     <Link to="/services" className="text-lg">Moja oferta</Link>
                     <Link to="/projects" className="text-lg">Portfolio</Link>
                     <Link to="/contact" className="text-lg">Kontakt</Link>
+                    <button 
+                      onClick={() => {
+                        scrollToNewsletter();
+                        const sheetCloseButton = document.querySelector('[data-radix-collection-item]') as HTMLElement;
+                        if (sheetCloseButton) sheetCloseButton.click();
+                      }} 
+                      className="text-lg text-left"
+                    >
+                      Bądź na bieżąco
+                    </button>
                     <Button
                       className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
                       onClick={() => (window.location.href = '/cv.html')}>
