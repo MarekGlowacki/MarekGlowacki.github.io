@@ -1,4 +1,3 @@
-
 import { Facebook, Github, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -37,10 +36,9 @@ const Footer = () => {
       
       // Sprawdź czy adres email już istnieje
       const { data: existingEmail } = await supabase
-        .from('waiting_list')
+        .from('newsletter_subscribers')
         .select('email')
         .eq('email', sanitizedEmail)
-        .eq('application', 'newsletter')
         .maybeSingle();
       
       if (existingEmail) {
@@ -52,12 +50,11 @@ const Footer = () => {
         return;
       }
       
-      // Zapisz email do bazy danych
+      // Zapisz email do nowej tabeli newsletter_subscribers
       const { error } = await supabase
-        .from('waiting_list')
+        .from('newsletter_subscribers')
         .insert([{ 
-          email: sanitizedEmail,
-          application: 'newsletter'
+          email: sanitizedEmail
         }]);
       
       if (error) throw error;
