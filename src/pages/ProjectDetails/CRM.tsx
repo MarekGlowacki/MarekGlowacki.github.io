@@ -59,20 +59,20 @@ const CRM = () => {
             
             <div className="space-y-8">
               <img 
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                src="https://images.unsplash.com/photo-1557063419-564dc3d0e4e8"
                 alt="School CRM System"
                 className="rounded-lg shadow-xl w-full object-cover h-[400px]"
               />
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+                  src="https://images.unsplash.com/photo-1581726690015-c9861fa5057f"
                   alt="School Management"
-                  className="rounded-lg shadow-lg w-full object-cover h-48"
+                  className="rounded-lg shadow-lg w-full object-cover h-[400px]"
                 />
                 <img 
-                  src="https://images.unsplash.com/photo-1509062522246-3755977927d7"
+                  src="https://images.unsplash.com/photo-1600431521340-491eca880813"
                   alt="Class Schedule"
-                  className="rounded-lg shadow-lg w-full object-cover h-48"
+                  className="rounded-lg shadow-lg w-full object-cover h-[400px]"
                 />
               </div>
             </div>
