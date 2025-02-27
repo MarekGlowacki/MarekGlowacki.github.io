@@ -70,7 +70,7 @@ const BitcoinConsulting = () => {
                   className="rounded-lg shadow-lg w-full"
                 />
                 <img 
-                  src="/images/ai.jpg"
+                  src="/images/ai-kobieta.jpg"
                   alt="Class Schedule"
                   className="rounded-lg shadow-lg w-full"
                 />

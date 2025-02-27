@@ -55,7 +55,7 @@ const Services = () => {
             </div>
             <div>
               <img 
-                src="/images/ai.jpg"
+                src="/images/ai-kobieta.jpg"
                 alt="AI dla Firm"
                 className="rounded-lg shadow-xl w-full"
               />

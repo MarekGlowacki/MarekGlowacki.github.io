@@ -33,7 +33,7 @@ const Services = () => {
             <Link to="/services#ai" className="block">
               <div className="relative overflow-hidden rounded-lg mb-4">
                 <img
-                  src="/images/ai.jpg"
+                  src="/images/ai-kobieta.jpg"
                   alt="AI dla firm"
                   className="w-full aspect-square object-cover transition-transform duration-300 group-hover:scale-110"
                 />
