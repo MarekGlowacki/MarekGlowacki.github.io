@@ -12,7 +12,7 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import DCACryptoMonitor from "./pages/ProjectDetails/DCACryptoMonitor";
 import AIForBusiness from "./pages/ProjectDetails/AIForBusiness";
-import BitcoinConsulting from "./pages/ProjectDetails/BitcoinConsulting";
+import CRM from "./pages/ProjectDetails/CRM";
 import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 import AIBusiness from "./pages/ServiceDetails/AIBusiness";
 import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
@@ -35,7 +35,7 @@ const App = () => (
           <Route path="/projects" element={<Projects />} />
           <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
           <Route path="/project/ai-for-business" element={<AIForBusiness />} />
-          <Route path="/project/bitcoin-consulting" element={<BitcoinConsulting />} />
+          <Route path="/project/crm" element={<CRM />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

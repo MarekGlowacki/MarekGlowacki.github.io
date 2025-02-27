@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const BitcoinConsulting = () => {
+const CRM = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -84,4 +84,4 @@ const BitcoinConsulting = () => {
   );
 };
 
-export default BitcoinConsulting;
+export default CRM;

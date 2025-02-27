@@ -19,7 +19,7 @@ const PropertyGrid = () => {
       image: "https://images.unsplash.com/photo-1490971588422-52f6262a237a",
       title: "System zarządzania szkołą",
       location: "Świat",
-      slug: "bitcoin-consulting",
+      slug: "CRM",
     },
   ];
 

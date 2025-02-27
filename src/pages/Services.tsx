@@ -30,7 +30,7 @@ const Services = () => {
                 Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych z wykorzystaniem najnowszych technologii.
                 Od prostych stron po zaawansowane systemy zarządzania, tworzę rozwiązania szyte na miarę potrzeb klienta.
               </p>
-              <Link to="/project/dca-crypto-monitor">
+              <Link to="/services/web-development">
                 <Button className="w-fit bg-[#49be25] hover:bg-[#3da51e]">
                   Dowiedz się więcej
                 </Button>
@@ -78,7 +78,7 @@ const Services = () => {
                 Pomagam w bezpiecznym przechowywaniu środków, implementacji rozwiązań 
                 płatniczych i edukacji zespołów w zakresie kryptowalut.
               </p>
-              <Link to="/project/bitcoin-consulting">
+              <Link to="/services/bitcoin-consulting">
                 <Button className="w-fit bg-[#49be25] hover:bg-[#3da51e]">
                   Dowiedz się więcej
                 </Button>
