@@ -17,6 +17,7 @@ import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 import AIBusiness from "./pages/ServiceDetails/AIBusiness";
 import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
 import LegalTerms from "./pages/LegalTerms";
+import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/project/crm" element={<CRM />} />
           <Route path="/legal" element={<LegalTerms />} />
         </Routes>
+        <CookieConsent />
       </BrowserRouter>
       <Toaster />
       <Sonner />

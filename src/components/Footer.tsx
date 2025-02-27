@@ -3,6 +3,12 @@ import { Facebook, Github, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } fro
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  // Funkcja do resetowania zgody na ciasteczka
+  const resetCookieConsent = () => {
+    localStorage.removeItem("cookieConsent");
+    window.location.reload();
+  };
+
   return (
     <footer className="bg-[#49be25] text-white py-16">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -78,6 +84,12 @@ const Footer = () => {
             <Link to="/legal" className="hover:text-white transition-colors">Regulamin</Link> | 
             <Link to="/legal?tab=privacy" className="hover:text-white transition-colors ml-2">Polityka prywatności</Link> | 
             <Link to="/legal?tab=cookies" className="hover:text-white transition-colors ml-2">Cookies</Link>
+            <button 
+              onClick={resetCookieConsent} 
+              className="ml-2 underline hover:text-white transition-colors text-white/90"
+            >
+              Zarządzaj cookies
+            </button>
           </p>
         </div>
       </div>
