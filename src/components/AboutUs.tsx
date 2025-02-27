@@ -13,7 +13,8 @@ const AboutUs = () => {
   return (
     <section className="py-20 bg-estate-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Sekcja O mnie */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-32">
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden">
               <img
@@ -139,6 +140,82 @@ const AboutUs = () => {
                   Wyślij email
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sekcja Dlaczego warto */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="space-y-16">
+            <div>
+              <h2 className="text-4xl font-display text-estate-800 mb-12">Dlaczego warto?</h2>
+              
+              <div className="space-y-12">
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-[#49be25] text-4xl font-display">01</span>
+                    <h3 className="text-2xl font-display text-estate-800">Doświadczenie i Wiedza</h3>
+                  </div>
+                  <p className="text-estate-600 leading-relaxed">
+                    Posiadam bogate doświadczenie w tworzeniu aplikacji internetowych, szkoleniach AI oraz doradztwie w zakresie Bitcoina. Moje rozwiązania są zawsze dostosowane do indywidualnych potrzeb klienta.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-[#49be25] text-4xl font-display">02</span>
+                    <h3 className="text-2xl font-display text-estate-800">Innowacyjne Podejście</h3>
+                  </div>
+                  <p className="text-estate-600 leading-relaxed">
+                    Wykorzystuję najnowsze technologie i trendy, aby dostarczać rozwiązania, które nie tylko spełniają obecne potrzeby, ale są też gotowe na przyszłe wyzwania.
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-[#49be25] text-4xl font-display">03</span>
+                    <h3 className="text-2xl font-display text-estate-800">Wsparcie na Każdym Etapie</h3>
+                  </div>
+                  <p className="text-estate-600 leading-relaxed">
+                    Zapewniam kompleksową obsługę od konsultacji, przez wdrożenie, aż po wsparcie techniczne. Zawsze jestem dostępny dla moich klientów.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12 p-8 bg-white rounded-lg shadow-lg">
+                <h3 className="text-2xl font-display text-estate-800 mb-4">Nie czekaj - skontaktuj się już teraz!</h3>
+                <p className="text-estate-600 mb-6">
+                  Umów się na bezpłatną konsultację i dowiedz się, jak mogę pomóc w rozwoju Twojego biznesu.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a 
+                    href="tel:+48514383545" 
+                    className="inline-flex items-center justify-center px-6 py-3 bg-[#49be25] text-white rounded-lg hover:bg-[#3da51e] transition-colors"
+                  >
+                    Zadzwoń teraz: +48 514 383 545
+                  </a>
+                  <a 
+                    href="mailto:kontakt@marekglowacki.pl" 
+                    className="inline-flex items-center justify-center px-6 py-3 border-2 border-[#49be25] text-[#49be25] rounded-lg hover:bg-[#49be25] hover:text-white transition-colors"
+                  >
+                    Wyślij email
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="aspect-video rounded-3xl overflow-hidden">
+              <img
+                src="/public/lovable-uploads/066019c8-0c94-403f-a6af-0dc0e5d170ba.png"
+                alt="Nowoczesny dom z dużymi oknami"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute bottom-8 right-8 bg-white p-8 rounded-lg shadow-xl">
+              <p className="text-5xl font-display text-estate-800 mb-2">5+ lat</p>
+              <p className="text-lg text-estate-600">doświadczenia w branży IT</p>
             </div>
           </div>
         </div>
