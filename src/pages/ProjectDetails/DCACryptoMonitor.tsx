@@ -43,7 +43,7 @@ const DCACryptoMonitor = () => {
               </div>
 
               <div className="flex gap-4">
-                <a href="https://demo.dcacryptomonitor.pl" target="_blank" rel="noopener noreferrer">
+                <a href="https://gentle-klepon-d28eaf.netlify.app/" target="_blank" rel="noopener noreferrer">
                   <Button className="bg-[#49be25] hover:bg-[#3da51e]">
                     Zobacz demo
                   </Button>
