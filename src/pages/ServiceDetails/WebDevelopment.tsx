@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Rocket, Globe, Database, Calendar, CreditCard } from "lucide-react";
+import { Check, Rocket, Globe, Database, Calendar, CreditCard, Shield, Clock } from "lucide-react";
 
 const WebDevelopment = () => {
   const { language } = useLanguage();
@@ -51,7 +51,25 @@ const WebDevelopment = () => {
           title: "Twoja strona w 1 dzień!",
           subtitle: "Sprawdź mnie!"
         }
-      }
+      },
+      advantages: [
+        {
+          title: "Najnowocześniejsze technologie",
+          description: "Wykorzystuję najnowsze frameworki i biblioteki dla najlepszej wydajności."
+        },
+        {
+          title: "Błyskawiczny czas realizacji",
+          description: "Dzięki sprawnym procesom pracy, dostarczam projekty nawet o 70% szybciej niż konkurencja."
+        },
+        {
+          title: "Bezpieczeństwo i niezawodność",
+          description: "Implementuję zaawansowane protokoły zabezpieczeń chroniące Twoje dane i aplikacje przed zagrożeniami."
+        },
+        {
+          title: "Kompleksowa optymalizacja",
+          description: "Każda aplikacja jest zoptymalizowana pod kątem wydajności, SEO i doświadczeń użytkownika."
+        }
+      ]
     },
     en: {
       title: "Web Application Development",
@@ -93,7 +111,25 @@ const WebDevelopment = () => {
           title: "Your website in 1 day!",
           subtitle: "Try me!"
         }
-      }
+      },
+      advantages: [
+        {
+          title: "Cutting-edge technologies",
+          description: "I use the latest frameworks and libraries for the best performance."
+        },
+        {
+          title: "Lightning-fast delivery",
+          description: "Thanks to efficient work processes, I deliver projects up to 70% faster than competitors."
+        },
+        {
+          title: "Security and reliability",
+          description: "I implement advanced security protocols protecting your data and applications from threats."
+        },
+        {
+          title: "Comprehensive optimization",
+          description: "Every application is optimized for performance, SEO, and user experience."
+        }
+      ]
     }
   };
 
@@ -196,19 +232,17 @@ const WebDevelopment = () => {
           
           {/* Lista zalet z ikonami */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2, 3, 4].map((i) => (
+            {c.advantages.map((advantage, i) => (
               <div key={i} className="flex items-start space-x-4">
                 <div className="mt-1 bg-[#f0faf0] p-2 rounded-full">
                   <Check className="w-5 h-5 text-[#49be25]" />
                 </div>
                 <div>
                   <h3 className="text-lg font-display text-estate-800 mb-1">
-                    {language === "pl" ? "Najnowocześniejsze technologie" : "Cutting-edge technologies"}
+                    {advantage.title}
                   </h3>
                   <p className="text-estate-600">
-                    {language === "pl" 
-                      ? "Wykorzystuję najnowsze frameworki i biblioteki dla najlepszej wydajności." 
-                      : "I use the latest frameworks and libraries for the best performance."}
+                    {advantage.description}
                   </p>
                 </div>
               </div>
