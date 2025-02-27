@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 const PropertyGrid = lazy(() => import("@/components/PropertyGrid"));
 const OurVision = lazy(() => import("@/components/OurVision"));
 const Testimonials = lazy(() => import("@/components/Testimonials"));
-const Footer = lazy(() => import("@/components/Footer"));
+const Footer = lazy(() => import("@/components/footer"));
 
 const Index = () => {
   // Obsługa przewijania do sekcji newslettera po załadowaniu strony
