@@ -4,6 +4,8 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Card, CardContent } from "@/components/ui/card";
+import { Check, Rocket, Globe, Database, Calendar, CreditCard } from "lucide-react";
 
 const WebDevelopment = () => {
   const { language } = useLanguage();
@@ -32,7 +34,24 @@ const WebDevelopment = () => {
           "MongoDB i PostgreSQL"
         ]
       },
-      cta: "Zamów aplikację"
+      cta: "Zamów aplikację",
+      marketingSection: {
+        title: "Kompleksowe rozwiązania cyfrowe",
+        subtitle: "Wszystko szyte na miarę na najwyższym światowym poziomie",
+        services: [
+          { name: "Strony internetowe", icon: <Globe className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Aplikacje webowe", icon: <Rocket className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Portale i platformy", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Systemy CRM", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Komunikatory", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Systemy rezerwacji", icon: <Calendar className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Zintegrowane płatności", icon: <CreditCard className="w-6 h-6 text-[#49be25]" /> }
+        ],
+        fastDelivery: {
+          title: "Twoja strona w 1 dzień!",
+          subtitle: "Sprawdź mnie!"
+        }
+      }
     },
     en: {
       title: "Web Application Development",
@@ -57,7 +76,24 @@ const WebDevelopment = () => {
           "MongoDB and PostgreSQL"
         ]
       },
-      cta: "Order an application"
+      cta: "Order an application",
+      marketingSection: {
+        title: "Comprehensive Digital Solutions",
+        subtitle: "Everything custom-tailored at the highest global standards",
+        services: [
+          { name: "Websites", icon: <Globe className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Web applications", icon: <Rocket className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Portals and platforms", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "CRM systems", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Messengers", icon: <Database className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Reservation systems", icon: <Calendar className="w-6 h-6 text-[#49be25]" /> },
+          { name: "Integrated payments", icon: <CreditCard className="w-6 h-6 text-[#49be25]" /> }
+        ],
+        fastDelivery: {
+          title: "Your website in 1 day!",
+          subtitle: "Try me!"
+        }
+      }
     }
   };
 
@@ -122,6 +158,61 @@ const WebDevelopment = () => {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Nowa sekcja marketingowa */}
+          <div className="mt-24 bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-2xl p-8 shadow-lg">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-display text-estate-800 mb-4">{c.marketingSection.title}</h2>
+              <p className="text-xl text-estate-600 max-w-3xl mx-auto">{c.marketingSection.subtitle}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+              {c.marketingSection.services.map((service, index) => (
+                <Card key={index} className="border-2 border-[#e8f4ff] hover:border-[#49be25] transition-colors duration-300 bg-white hover:shadow-md">
+                  <CardContent className="p-6 flex flex-col items-center text-center">
+                    <div className="mb-4 p-3 bg-[#f0faf0] rounded-full">
+                      {service.icon}
+                    </div>
+                    <h3 className="font-display text-estate-800">{service.name}</h3>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="bg-[#49be25] text-white rounded-xl p-8 text-center animate-pulse">
+              <h2 className="text-3xl font-display mb-2">{c.marketingSection.fastDelivery.title}</h2>
+              <p className="text-xl font-medium">{c.marketingSection.fastDelivery.subtitle}</p>
+            </div>
+
+            <div className="mt-12 flex justify-center">
+              <Link to="/contact">
+                <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] text-lg px-8 py-6 h-auto">
+                  {c.cta}
+                </Button>
+              </Link>
+            </div>
+          </div>
+          
+          {/* Lista zalet z ikonami */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="flex items-start space-x-4">
+                <div className="mt-1 bg-[#f0faf0] p-2 rounded-full">
+                  <Check className="w-5 h-5 text-[#49be25]" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-display text-estate-800 mb-1">
+                    {language === "pl" ? "Najnowocześniejsze technologie" : "Cutting-edge technologies"}
+                  </h3>
+                  <p className="text-estate-600">
+                    {language === "pl" 
+                      ? "Wykorzystuję najnowsze frameworki i biblioteki dla najlepszej wydajności." 
+                      : "I use the latest frameworks and libraries for the best performance."}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>
