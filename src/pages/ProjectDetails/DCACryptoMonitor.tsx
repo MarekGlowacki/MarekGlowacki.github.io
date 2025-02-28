@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
@@ -185,7 +184,7 @@ const DCACryptoMonitor = () => {
             description: c.emailExistsDesc,
           });
         } else {
-          // Email istnieje, ale nie został zweryfikowany - wyślij ponownie link weryfikacyjny
+          // Email istnieje, ale nie został zweryfikowany - wy��lij ponownie link weryfikacyjny
           const verificationToken = generateVerificationToken();
           
           const { error: updateError } = await supabase

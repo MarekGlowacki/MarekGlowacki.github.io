@@ -3,7 +3,7 @@ import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
-const baseUrl = "https://inwestorbtc.pl"; // Hardcoded URL instead of using environment variable
+const baseUrl = "https://marekglowacki.pl"; // Zaktualizowana domena strony
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -40,7 +40,7 @@ const handler = async (req: Request): Promise<Response> => {
     let subject, heading, description;
     
     if (type === 'newsletter') {
-      subject = "Potwierdź swój adres email - Newsletter InwestorBTC";
+      subject = "Potwierdź swój adres email - Newsletter Marek Głowacki";
       heading = "Potwierdź swój adres email";
       description = "Dziękujemy za zapisanie się do naszego newslettera. Kliknij poniższy link, aby potwierdzić swój adres email i otrzymywać od nas wiadomości.";
     } else {
@@ -50,12 +50,18 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Użyj domeny zweryfikowanej w Resend
-    const from = "InwestorBTC <onboarding@resend.dev>";
+    // UWAGA: Aby używać własnego adresu email, musisz zweryfikować domenę w Resend
+    // Obecnie używamy domyślnego adresu Resend, ale z nazwą "Marek Głowacki"
+    const from = "Marek Głowacki <onboarding@resend.dev>";
+    
+    // Dla faktycznie zweryfikowanej domeny można użyć:
+    // const from = "Marek Głowacki <kontakt@marekglowacki.pl>";
 
     // Wysłanie emaila z linkiem weryfikacyjnym
     const emailResponse = await resend.emails.send({
       from: from,
       to: [email],
+      reply_to: "kontakt@marekglowacki.pl", // Dodajemy reply-to z właściwym adresem
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
@@ -64,7 +70,7 @@ const handler = async (req: Request): Promise<Response> => {
           <a href="${verificationUrl}" style="display: inline-block; background-color: #49be25; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; margin-bottom: 20px;">Potwierdź adres email</a>
           <p style="margin-bottom: 20px; line-height: 1.5;">Jeśli nie rejestrowałeś się na naszej stronie, możesz zignorować tę wiadomość.</p>
           <p style="margin-bottom: 5px; line-height: 1.5;">Z poważaniem,</p>
-          <p style="margin-top: 0; line-height: 1.5;">Zespół InwestorBTC</p>
+          <p style="margin-top: 0; line-height: 1.5;">Marek Głowacki</p>
         </div>
       `,
     });
