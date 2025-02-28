@@ -2,3 +2,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+
+# Przekierowanie wszystkich ścieżek do index.html dla React Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

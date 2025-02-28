@@ -16,11 +16,12 @@ const VerifyEmail = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
+  // Pobierz parametry z URL
   const token = searchParams.get("token");
   const type = searchParams.get("type");
   const application = searchParams.get("application");
   
-  console.log("URL parameters:", { token, type, application });
+  console.log("[VerifyEmail] URL parameters:", { token, type, application });
   
   const content = {
     pl: {
@@ -52,18 +53,21 @@ const VerifyEmail = () => {
   const c = language === "pl" ? content.pl : content.en;
   
   useEffect(() => {
+    // Funkcja do weryfikacji emaila
     const verifyEmail = async () => {
+      // Sprawdź, czy mamy wszystkie potrzebne parametry
       if (!token || !type) {
         setError(c.errorInvalidToken);
         setIsLoading(false);
-        console.error("Token or type is missing in URL params");
+        console.error("[VerifyEmail] Token or type is missing in URL params:", { token, type });
         return;
       }
       
       try {
         setIsLoading(true);
-        console.log("Starting verification process");
+        console.log("[VerifyEmail] Starting verification process with parameters:", { token, type, application });
         
+        // Określ tabelę na podstawie typu
         let table;
         if (type === 'newsletter') {
           table = 'newsletter_subscribers';
@@ -72,11 +76,11 @@ const VerifyEmail = () => {
         } else {
           setError(c.invalidType);
           setIsLoading(false);
-          console.error("Invalid verification type:", type);
+          console.error("[VerifyEmail] Invalid verification type:", type);
           return;
         }
         
-        console.log(`Looking for record in table: ${table} with token: ${token}`);
+        console.log(`[VerifyEmail] Looking for record in table: ${table} with token: ${token}`);
         
         // Znajdź rekord z podanym tokenem
         const { data, error } = await supabase
@@ -86,18 +90,18 @@ const VerifyEmail = () => {
           .maybeSingle();
         
         if (error) {
-          console.error("Supabase error:", error);
+          console.error("[VerifyEmail] Supabase error:", error);
           throw error;
         }
         
         if (!data) {
-          console.error("No record found with token:", token);
+          console.error("[VerifyEmail] No record found with token:", token);
           setError(c.errorInvalidToken);
           setIsLoading(false);
           return;
         }
         
-        console.log("Record found:", data);
+        console.log("[VerifyEmail] Record found:", data);
         
         // Aktualizuj rekord jako zweryfikowany
         const { error: updateError } = await supabase
@@ -109,11 +113,11 @@ const VerifyEmail = () => {
           .eq('verification_token', token);
         
         if (updateError) {
-          console.error("Update error:", updateError);
+          console.error("[VerifyEmail] Update error:", updateError);
           throw updateError;
         }
         
-        console.log("Record updated successfully");
+        console.log("[VerifyEmail] Record updated successfully");
         setIsVerified(true);
         
         // Wyświetl powiadomienie o sukcesie
@@ -122,13 +126,14 @@ const VerifyEmail = () => {
           description: type === 'newsletter' ? c.newsletterSuccess : c.waitingListSuccess,
         });
       } catch (error) {
-        console.error("Verification error:", error);
+        console.error("[VerifyEmail] Verification error:", error);
         setError(c.error);
       } finally {
         setIsLoading(false);
       }
     };
     
+    // Wywołaj funkcję weryfikacji po załadowaniu komponentu
     verifyEmail();
   }, [token, type, c, toast, application]);
 
@@ -174,6 +179,19 @@ const VerifyEmail = () => {
               >
                 {c.backToHome}
               </button>
+            </div>
+          )}
+
+          {/* Diagnostyczne informacje (widoczne tylko w środowisku deweloperskim) */}
+          {process.env.NODE_ENV === 'development' && (
+            <div className="mt-8 p-4 bg-gray-100 rounded-lg text-left">
+              <h3 className="font-bold mb-2">Diagnostyka (tylko dev):</h3>
+              <div>
+                <p><strong>Token:</strong> {token || 'brak'}</p>
+                <p><strong>Typ:</strong> {type || 'brak'}</p>
+                <p><strong>Aplikacja:</strong> {application || 'brak'}</p>
+                <p><strong>Stan:</strong> {isLoading ? 'ładowanie' : isVerified ? 'zweryfikowano' : 'błąd'}</p>
+              </div>
             </div>
           )}
         </div>
