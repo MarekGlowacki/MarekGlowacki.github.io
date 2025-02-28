@@ -19,6 +19,7 @@ import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 import AIBusiness from "./pages/ServiceDetails/AIBusiness";
 import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
 import LegalTerms from "./pages/LegalTerms";
+import VerifyEmail from "./pages/VerifyEmail";
 import CookieConsent from "./components/CookieConsent";
 
 const queryClient = new QueryClient();
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/project/ai-for-business" element={<AIForBusiness />} />
             <Route path="/project/crm" element={<CRM />} />
             <Route path="/legal" element={<LegalTerms />} />
+            <Route path="/verify-email" element={<VerifyEmail />} />
           </Routes>
           <CookieConsent />
         </BrowserRouter>

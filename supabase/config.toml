@@ -1,1 +1,9 @@
+
 project_id = "nvtxqityoyksixawlmzz"
+
+[api]
+enabled_apis = ["rest", "graphql", "realtime"]
+
+[[fetch.environment]]
+name = "BASE_URL"
+value = "https://inwestorbtc.pl"

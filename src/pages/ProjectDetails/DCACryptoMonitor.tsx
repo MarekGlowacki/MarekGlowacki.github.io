@@ -13,6 +13,12 @@ const emailSchema = z.object({
   email: z.string().email("Proszę podać poprawny adres email")
 });
 
+// Generowanie losowego tokenu weryfikacyjnego
+const generateVerificationToken = () => {
+  return Math.random().toString(36).substring(2, 15) + 
+         Math.random().toString(36).substring(2, 15);
+};
+
 const DCACryptoMonitor = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
@@ -21,6 +27,7 @@ const DCACryptoMonitor = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [isCheckingDB, setIsCheckingDB] = useState(false);
+  const [isVerificationSent, setIsVerificationSent] = useState(false);
 
   // Dodajemy efekt do logowania podczas montowania komponentu
   useEffect(() => {
@@ -66,7 +73,12 @@ const DCACryptoMonitor = () => {
       thankYou: "Dziękujemy za zapisanie się!",
       thankYouDesc: "Będziemy informować o postępach i promocjach związanych z DCA Crypto Monitor.",
       error: "Wystąpił błąd",
-      errorDesc: "Nie udało się zapisać do listy oczekujących. Spróbuj ponownie później."
+      errorDesc: "Nie udało się zapisać do listy oczekujących. Spróbuj ponownie później.",
+      verificationSent: "Sprawdź swoją skrzynkę email",
+      verificationSentDesc: "Wysłaliśmy link weryfikacyjny na podany adres email. Kliknij w link, aby potwierdzić swój adres i dokończyć proces rejestracji.",
+      verificationSuccess: "Weryfikacja zakończona pomyślnie!",
+      verificationSuccessDesc: "Twój adres email został pomyślnie zweryfikowany. Dziękujemy za dołączenie do naszej listy oczekujących!",
+      backToForm: "Powrót do formularza"
     },
     en: {
       title: "DCA Crypto Monitor",
@@ -106,7 +118,12 @@ const DCACryptoMonitor = () => {
       thankYou: "Thank you for signing up!",
       thankYouDesc: "We will keep you informed about progress and promotions related to DCA Crypto Monitor.",
       error: "An error occurred",
-      errorDesc: "Unable to sign up to the waiting list. Please try again later."
+      errorDesc: "Unable to sign up to the waiting list. Please try again later.",
+      verificationSent: "Check your email",
+      verificationSentDesc: "We've sent a verification link to your email address. Click the link to confirm your email and complete the registration process.",
+      verificationSuccess: "Verification successful!",
+      verificationSuccessDesc: "Your email has been successfully verified. Thank you for joining our waiting list!",
+      backToForm: "Back to form"
     }
   };
 
@@ -148,7 +165,7 @@ const DCACryptoMonitor = () => {
       console.log("Checking if email exists in the database...");
       const { data: existingEmail, error: checkError } = await supabase
         .from('waiting_list')
-        .select('email')
+        .select('email, is_verified')
         .eq('email', sanitizedEmail)
         .maybeSingle();
       
@@ -161,13 +178,48 @@ const DCACryptoMonitor = () => {
       
       if (existingEmail) {
         console.log("Email already exists:", existingEmail);
-        toast({
-          title: c.emailExists,
-          description: c.emailExistsDesc,
-        });
+        
+        if (existingEmail.is_verified) {
+          toast({
+            title: c.emailExists,
+            description: c.emailExistsDesc,
+          });
+        } else {
+          // Email istnieje, ale nie został zweryfikowany - wyślij ponownie link weryfikacyjny
+          const verificationToken = generateVerificationToken();
+          
+          const { error: updateError } = await supabase
+            .from('waiting_list')
+            .update({ verification_token: verificationToken })
+            .eq('email', sanitizedEmail);
+            
+          if (updateError) throw updateError;
+          
+          // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+          const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+            body: { 
+              email: sanitizedEmail, 
+              token: verificationToken,
+              type: 'waiting_list',
+              application: 'dca-crypto-monitor'
+            }
+          });
+          
+          if (sendError) throw sendError;
+          
+          setIsVerificationSent(true);
+          toast({
+            title: c.verificationSent,
+            description: c.verificationSentDesc,
+          });
+        }
+        
         setIsSubmitting(false);
         return;
       }
+      
+      // Generuj token weryfikacyjny
+      const verificationToken = generateVerificationToken();
       
       // Zapisz email do bazy danych
       console.log("Inserting email into the database...");
@@ -175,7 +227,9 @@ const DCACryptoMonitor = () => {
         .from('waiting_list')
         .insert([{ 
           email: sanitizedEmail,
-          application: 'dca-crypto-monitor'
+          application: 'dca-crypto-monitor',
+          verification_token: verificationToken,
+          is_verified: false
         }]);
       
       if (insertError) {
@@ -183,15 +237,27 @@ const DCACryptoMonitor = () => {
         throw insertError;
       }
       
-      console.log("Email successfully saved to the database");
-      toast({
-        title: c.thankYou,
-        description: c.thankYouDesc,
+      // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+      const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+        body: { 
+          email: sanitizedEmail, 
+          token: verificationToken,
+          type: 'waiting_list',
+          application: 'dca-crypto-monitor'
+        }
       });
       
-      // Wyczyść formularz i zamknij go
+      if (sendError) throw sendError;
+      
+      console.log("Email successfully saved to the database");
+      setIsVerificationSent(true);
+      toast({
+        title: c.verificationSent,
+        description: c.verificationSentDesc,
+      });
+      
+      // Wyczyść formularz
       setEmail("");
-      setIsFormOpen(false);
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -253,7 +319,7 @@ const DCACryptoMonitor = () => {
                   </Button>
                 </div>
                 
-                {isFormOpen && (
+                {isFormOpen && !isVerificationSent && (
                   <div className="mt-4 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30 animate-fadeIn">
                     <h3 className="text-xl font-display text-estate-800 mb-3">{c.formTitle}</h3>
                     <p className="text-estate-600 mb-4">
@@ -287,6 +353,21 @@ const DCACryptoMonitor = () => {
                         {c.privacyNote}
                       </p>
                     </form>
+                  </div>
+                )}
+                
+                {isFormOpen && isVerificationSent && (
+                  <div className="mt-4 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30 animate-fadeIn">
+                    <h3 className="text-xl font-display text-estate-800 mb-3">{c.verificationSent}</h3>
+                    <p className="text-estate-600 mb-6">
+                      {c.verificationSentDesc}
+                    </p>
+                    <Button 
+                      onClick={() => setIsVerificationSent(false)}
+                      className="w-full bg-[#49be25] text-white hover:bg-[#3da51e]"
+                    >
+                      {c.backToForm}
+                    </Button>
                   </div>
                 )}
               </div>
