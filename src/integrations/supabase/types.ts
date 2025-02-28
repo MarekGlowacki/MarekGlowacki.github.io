@@ -43,6 +43,7 @@ export type Database = {
           id: string
           is_verified: boolean
           unsubscribed_at: string | null
+          verification_token: string | null
         }
         Insert: {
           created_at?: string
@@ -50,6 +51,7 @@ export type Database = {
           id?: string
           is_verified?: boolean
           unsubscribed_at?: string | null
+          verification_token?: string | null
         }
         Update: {
           created_at?: string
@@ -57,6 +59,7 @@ export type Database = {
           id?: string
           is_verified?: boolean
           unsubscribed_at?: string | null
+          verification_token?: string | null
         }
         Relationships: []
       }
@@ -67,6 +70,7 @@ export type Database = {
           email: string
           id: string
           is_verified: boolean
+          verification_token: string | null
         }
         Insert: {
           application?: string
@@ -74,6 +78,7 @@ export type Database = {
           email: string
           id?: string
           is_verified?: boolean
+          verification_token?: string | null
         }
         Update: {
           application?: string
@@ -81,6 +86,7 @@ export type Database = {
           email?: string
           id?: string
           is_verified?: boolean
+          verification_token?: string | null
         }
         Relationships: []
       }

@@ -1,9 +1,5 @@
 
+# This is the default project configuration file.
+# Visit https://supabase.com/docs/guides/functions/project-setup#project-configuration to learn more.
+
 project_id = "nvtxqityoyksixawlmzz"
-
-[api]
-enabled_apis = ["rest", "graphql", "realtime"]
-
-[[fetch.environment]]
-name = "BASE_URL"
-value = "https://inwestorbtc.pl"
