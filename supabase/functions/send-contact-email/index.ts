@@ -32,17 +32,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log("Received contact form submission:", { name, email, subject });
 
-    // Adres 'from' - używamy domyślnego adresu Resend, ale z nazwą "Marek Głowacki"
-    const from = "Marek Głowacki <onboarding@resend.dev>";
-    
-    // Dla faktycznie zweryfikowanej domeny można użyć:
-    // const from = "Marek Głowacki <kontakt@marekglowacki.pl>";
+    // Używamy zweryfikowanej domeny jako nadawcy
+    const from = "Marek Głowacki <kontakt@marekglowacki.pl>";
 
     // 1. Wysyłka emaila potwierdzającego do osoby kontaktującej się
     const clientEmailResponse = await resend.emails.send({
       from: from,
       to: [email],
-      reply_to: "kontakt@marekglowacki.pl",
       subject: "Dziękujemy za kontakt - Marek Głowacki",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">

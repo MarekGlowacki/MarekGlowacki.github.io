@@ -49,19 +49,13 @@ const handler = async (req: Request): Promise<Response> => {
       description = `Dziękujemy za zapisanie się na listę oczekujących ${application ? 'na ' + application : ''}. Kliknij poniższy link, aby potwierdzić swój adres email i zostać powiadomionym o premierze.`;
     }
 
-    // Użyj domeny zweryfikowanej w Resend
-    // UWAGA: Aby używać własnego adresu email, musisz zweryfikować domenę w Resend
-    // Obecnie używamy domyślnego adresu Resend, ale z nazwą "Marek Głowacki"
-    const from = "Marek Głowacki <onboarding@resend.dev>";
-    
-    // Dla faktycznie zweryfikowanej domeny można użyć:
-    // const from = "Marek Głowacki <kontakt@marekglowacki.pl>";
+    // Używamy zweryfikowanej domeny jako nadawcy
+    const from = "Marek Głowacki <kontakt@marekglowacki.pl>";
 
     // Wysłanie emaila z linkiem weryfikacyjnym
     const emailResponse = await resend.emails.send({
       from: from,
       to: [email],
-      reply_to: "kontakt@marekglowacki.pl", // Dodajemy reply-to z właściwym adresem
       subject: subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
