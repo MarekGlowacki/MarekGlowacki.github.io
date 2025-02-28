@@ -18,6 +18,8 @@ const VerifyEmail = () => {
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
   const [resendingEmail, setResendingEmail] = useState(false);
+  // Dodajemy nowy stan do kontroli, czy weryfikacja została już wykonana
+  const [verificationDone, setVerificationDone] = useState(false);
   
   // Pobierz parametry z URL
   const token = searchParams.get("token");
@@ -184,12 +186,18 @@ const VerifyEmail = () => {
   };
   
   useEffect(() => {
+    // Uruchamiamy weryfikację tylko raz, gdy komponent się załaduje
+    if (!verificationDone) {
+      verifyEmail();
+    }
+    
     // Funkcja do weryfikacji emaila
-    const verifyEmail = async () => {
+    async function verifyEmail() {
       // Jeśli nie mamy tokenu, nie próbujemy weryfikować - tylko pokazujemy formularz ponownego wysyłania
       if (!token || !type) {
         setError(c.errorInvalidToken);
         setIsLoading(false);
+        setVerificationDone(true);
         console.error("[VerifyEmail] Token or type is missing in URL params:", { token, type });
         return;
       }
@@ -215,6 +223,7 @@ const VerifyEmail = () => {
             console.error("[VerifyEmail] No record found with token:", token);
             setError(c.errorInvalidToken);
             setIsLoading(false);
+            setVerificationDone(true);
             return;
           }
           
@@ -239,8 +248,11 @@ const VerifyEmail = () => {
           
           console.log("[VerifyEmail] Record updated successfully");
           
-          // Zakończ ładowanie i ustaw weryfikację jako pomyślną
+          // Oznaczamy weryfikację jako zakończoną
+          setVerificationDone(true);
+          // Ustawiamy stan ładowania na false
           setIsLoading(false);
+          // Ustawiamy stan weryfikacji na true
           setIsVerified(true);
           
           // Wyświetl powiadomienie o sukcesie (z dłuższym czasem wyświetlania)
@@ -249,8 +261,6 @@ const VerifyEmail = () => {
             description: c.newsletterSuccess,
             duration: 8000, // Ustawienie długiego czasu wyświetlania
           });
-          
-          return; // Wczesne wyjście, aby uniknąć ponownego ustawienia stanu na końcu
           
         } else if (type === 'waiting_list') {
           // Znajdź rekord z podanym tokenem
@@ -269,6 +279,7 @@ const VerifyEmail = () => {
             console.error("[VerifyEmail] No record found with token:", token);
             setError(c.errorInvalidToken);
             setIsLoading(false);
+            setVerificationDone(true);
             return;
           }
           
@@ -293,8 +304,11 @@ const VerifyEmail = () => {
           
           console.log("[VerifyEmail] Record updated successfully");
           
-          // Zakończ ładowanie i ustaw weryfikację jako pomyślną
+          // Oznaczamy weryfikację jako zakończoną
+          setVerificationDone(true);
+          // Ustawiamy stan ładowania na false
           setIsLoading(false);
+          // Ustawiamy stan weryfikacji na true
           setIsVerified(true);
           
           // Wyświetl powiadomienie o sukcesie (z dłuższym czasem wyświetlania)
@@ -304,11 +318,10 @@ const VerifyEmail = () => {
             duration: 8000, // Ustawienie długiego czasu wyświetlania
           });
           
-          return; // Wczesne wyjście, aby uniknąć ponownego ustawienia stanu na końcu
-          
         } else {
           setError(c.invalidType);
           setIsLoading(false);
+          setVerificationDone(true);
           console.error("[VerifyEmail] Invalid verification type:", type);
           return;
         }
@@ -316,6 +329,8 @@ const VerifyEmail = () => {
       } catch (error) {
         console.error("[VerifyEmail] Verification error:", error);
         setError(c.error);
+        setVerificationDone(true);
+        setIsLoading(false);
         
         // Wyświetl powiadomienie o błędzie (z dłuższym czasem wyświetlania)
         toast({
@@ -324,15 +339,9 @@ const VerifyEmail = () => {
           description: String(error),
           duration: 8000, // Ustawienie długiego czasu wyświetlania
         });
-      } finally {
-        // Ten blok zostanie wykonany tylko w przypadku błędu (w przypadku sukcesu mamy wcześniejsze wyjście z funkcji)
-        setIsLoading(false);
       }
-    };
-    
-    // Wywołaj funkcję weryfikacji po załadowaniu komponentu
-    verifyEmail();
-  }, [token, type, c, toast, application]);
+    }
+  }, [token, type, application, c, toast, verificationDone]);
 
   // Formularz do ponownego wysłania emaila weryfikacyjnego
   const ResendForm = () => (
@@ -365,7 +374,7 @@ const VerifyEmail = () => {
         <div className="container mx-auto px-4 max-w-2xl text-center">
           <h1 className="text-4xl font-display text-estate-800 mb-8">{c.title}</h1>
           
-          {isLoading ? (
+          {isLoading && !verificationDone ? (
             <div className="flex flex-col items-center justify-center space-y-4">
               <div className="animate-spin h-12 w-12 border-4 border-[#49be25] border-t-transparent rounded-full"></div>
               <p className="text-xl text-estate-600">{c.verifying}</p>
@@ -404,7 +413,7 @@ const VerifyEmail = () => {
           )}
           
           {/* Formularz ponownego wysyłania, jeśli weryfikacja nie powiodła się */}
-          {!isLoading && !isVerified && <ResendForm />}
+          {verificationDone && !isLoading && !isVerified && <ResendForm />}
 
           {/* Diagnostyczne informacje (widoczne tylko w środowisku deweloperskim) */}
           {process.env.NODE_ENV === 'development' && (
@@ -416,6 +425,7 @@ const VerifyEmail = () => {
                 <p><strong>Aplikacja:</strong> {application || 'brak'}</p>
                 <p><strong>Stan:</strong> {isLoading ? 'ładowanie' : isVerified ? 'zweryfikowano' : 'błąd'}</p>
                 <p><strong>Email:</strong> {email || 'brak'}</p>
+                <p><strong>Weryfikacja zakończona:</strong> {verificationDone ? 'tak' : 'nie'}</p>
               </div>
             </div>
           )}
