@@ -122,6 +122,20 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.cookies": "Cookies",
     "footer.cookies.manage": "Zarządzaj cookies",
 
+    // Newsletter - brakujące klucze
+    "footer.newsletter.invalidEmail.title": "Nieprawidłowy adres email",
+    "footer.newsletter.invalidEmail.desc": "Proszę podać poprawny adres email.",
+    "footer.newsletter.error.title": "Wystąpił błąd",
+    "footer.newsletter.error.desc": "Nie udało się zapisać do newslettera. Spróbuj ponownie później.",
+    "footer.newsletter.emailExists.title": "Email już istnieje",
+    "footer.newsletter.emailExists.desc": "Ten adres email jest już zapisany do naszego newslettera.",
+    
+    "footer.newsletter.verificationSent.title": "Sprawdź swoją skrzynkę email",
+    "footer.newsletter.verificationSent.desc": "Wysłaliśmy link weryfikacyjny na podany adres email.",
+    "footer.newsletter.verificationSent.longDesc": "Aby dokończyć proces rejestracji, kliknij w link, który właśnie wysłaliśmy na podany adres email. Sprawdź również folder Spam, jeśli nie widzisz wiadomości w skrzynce odbiorczej.",
+    "footer.newsletter.verificationSent.checkEmail": "Sprawdź swoją skrzynkę odbiorczą i kliknij w link weryfikacyjny.",
+    "footer.newsletter.verificationSent.backToForm": "Powrót do formularza",
+
     // Language
     "language": "EN",
     "language.switch": "Zmień język na angielski"
@@ -234,6 +248,20 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.privacy": "Privacy Policy",
     "footer.cookies": "Cookies",
     "footer.cookies.manage": "Manage cookies",
+
+    // Newsletter - dodane brakujące klucze
+    "footer.newsletter.invalidEmail.title": "Invalid email address",
+    "footer.newsletter.invalidEmail.desc": "Please provide a valid email address.",
+    "footer.newsletter.error.title": "An error occurred",
+    "footer.newsletter.error.desc": "Failed to subscribe to the newsletter. Please try again later.",
+    "footer.newsletter.emailExists.title": "Email already exists",
+    "footer.newsletter.emailExists.desc": "This email address is already subscribed to our newsletter.",
+    
+    "footer.newsletter.verificationSent.title": "Check your email",
+    "footer.newsletter.verificationSent.desc": "We've sent a verification link to your email address.",
+    "footer.newsletter.verificationSent.longDesc": "To complete the registration process, click on the link we just sent to your email address. Also check your Spam folder if you don't see the message in your inbox.",
+    "footer.newsletter.verificationSent.checkEmail": "Check your inbox and click on the verification link.",
+    "footer.newsletter.verificationSent.backToForm": "Back to form",
 
     // Language
     "language": "PL",
