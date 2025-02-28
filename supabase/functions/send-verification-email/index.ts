@@ -32,6 +32,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     console.log(`Sending verification email to ${email} for ${type}`);
+    console.log(`Verification URL will be: ${baseUrl}/verify-email?token=${token}&type=${type}${application ? `&application=${application}` : ''}`);
 
     // Tworzenie linku weryfikacyjnego
     const verificationUrl = `${baseUrl}/verify-email?token=${token}&type=${type}${application ? `&application=${application}` : ''}`;
@@ -61,7 +62,9 @@ const handler = async (req: Request): Promise<Response> => {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <h1 style="color: #49be25; margin-bottom: 20px;">${heading}</h1>
           <p style="margin-bottom: 20px; line-height: 1.5;">${description}</p>
+          <p style="margin-bottom: 20px; line-height: 1.5;">Link weryfikacyjny: <a href="${verificationUrl}" style="color: #49be25; text-decoration: underline;">${verificationUrl}</a></p>
           <a href="${verificationUrl}" style="display: inline-block; background-color: #49be25; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; margin-bottom: 20px;">Potwierdź adres email</a>
+          <p style="margin-bottom: 20px; line-height: 1.5;">Jeśli przycisk nie działa, skopiuj i wklej powyższy link do przeglądarki.</p>
           <p style="margin-bottom: 20px; line-height: 1.5;">Jeśli nie rejestrowałeś się na naszej stronie, możesz zignorować tę wiadomość.</p>
           <p style="margin-bottom: 5px; line-height: 1.5;">Z poważaniem,</p>
           <p style="margin-top: 0; line-height: 1.5;">Marek Głowacki</p>

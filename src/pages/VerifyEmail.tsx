@@ -20,6 +20,8 @@ const VerifyEmail = () => {
   const type = searchParams.get("type");
   const application = searchParams.get("application");
   
+  console.log("URL parameters:", { token, type, application });
+  
   const content = {
     pl: {
       title: "Weryfikacja adresu email",
@@ -54,11 +56,13 @@ const VerifyEmail = () => {
       if (!token || !type) {
         setError(c.errorInvalidToken);
         setIsLoading(false);
+        console.error("Token or type is missing in URL params");
         return;
       }
       
       try {
         setIsLoading(true);
+        console.log("Starting verification process");
         
         let table;
         if (type === 'newsletter') {
@@ -68,8 +72,11 @@ const VerifyEmail = () => {
         } else {
           setError(c.invalidType);
           setIsLoading(false);
+          console.error("Invalid verification type:", type);
           return;
         }
+        
+        console.log(`Looking for record in table: ${table} with token: ${token}`);
         
         // Znajdź rekord z podanym tokenem
         const { data, error } = await supabase
@@ -78,13 +85,19 @@ const VerifyEmail = () => {
           .eq('verification_token', token)
           .maybeSingle();
         
-        if (error) throw error;
+        if (error) {
+          console.error("Supabase error:", error);
+          throw error;
+        }
         
         if (!data) {
+          console.error("No record found with token:", token);
           setError(c.errorInvalidToken);
           setIsLoading(false);
           return;
         }
+        
+        console.log("Record found:", data);
         
         // Aktualizuj rekord jako zweryfikowany
         const { error: updateError } = await supabase
@@ -95,8 +108,12 @@ const VerifyEmail = () => {
           })
           .eq('verification_token', token);
         
-        if (updateError) throw updateError;
+        if (updateError) {
+          console.error("Update error:", updateError);
+          throw updateError;
+        }
         
+        console.log("Record updated successfully");
         setIsVerified(true);
         
         // Wyświetl powiadomienie o sukcesie
