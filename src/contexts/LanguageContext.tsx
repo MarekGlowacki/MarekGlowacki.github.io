@@ -111,6 +111,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.weekdays": "Pon - Pt: 08:00 - 20:00",
     "footer.weekend": "Sobota - Niedziela: Zamknięte",
     "footer.newsletter": "Bądź na bieżąco",
+    "footer.newsletter.title": "Dołącz do newslettera", // Dodany brakujący klucz
     "footer.newsletter.desc": "Zapisz się na newsletter, aby otrzymywać informacje o nowościach, ofertach specjalnych i przydatnych poradach.",
     "footer.newsletter.email": "Twój adres email",
     "footer.newsletter.submit": "Zapisz się",
@@ -238,6 +239,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.weekdays": "Mon - Fri: 08:00 - 20:00",
     "footer.weekend": "Saturday - Sunday: Closed",
     "footer.newsletter": "Stay updated",
+    "footer.newsletter.title": "Join our newsletter", // Dodany brakujący klucz
     "footer.newsletter.desc": "Subscribe to our newsletter to receive information about news, special offers, and useful tips.",
     "footer.newsletter.email": "Your email address",
     "footer.newsletter.submit": "Subscribe",

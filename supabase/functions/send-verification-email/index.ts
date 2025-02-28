@@ -40,18 +40,21 @@ const handler = async (req: Request): Promise<Response> => {
     let subject, heading, description;
     
     if (type === 'newsletter') {
-      subject = "Potwierdź swój adres email - Newsletter";
+      subject = "Potwierdź swój adres email - Newsletter InwestorBTC";
       heading = "Potwierdź swój adres email";
       description = "Dziękujemy za zapisanie się do naszego newslettera. Kliknij poniższy link, aby potwierdzić swój adres email i otrzymywać od nas wiadomości.";
     } else {
       subject = "Potwierdź swój adres email - Lista oczekujących";
       heading = "Potwierdź swój adres email";
-      description = `Dziękujemy za zapisanie się na listę oczekujących ${application || ''}. Kliknij poniższy link, aby potwierdzić swój adres email i zostać powiadomionym o premierze.`;
+      description = `Dziękujemy za zapisanie się na listę oczekujących ${application ? 'na ' + application : ''}. Kliknij poniższy link, aby potwierdzić swój adres email i zostać powiadomionym o premierze.`;
     }
+
+    // Użyj domeny zweryfikowanej w Resend
+    const from = "InwestorBTC <onboarding@resend.dev>";
 
     // Wysłanie emaila z linkiem weryfikacyjnym
     const emailResponse = await resend.emails.send({
-      from: "InwestorBTC <no-reply@inwestorbtc.pl>",
+      from: from,
       to: [email],
       subject: subject,
       html: `
