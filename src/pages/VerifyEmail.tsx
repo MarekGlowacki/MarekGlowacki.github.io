@@ -81,47 +81,87 @@ const VerifyEmail = () => {
       setResendingEmail(true);
       
       // Sprawdź, czy email istnieje w odpowiedniej tabeli
-      let table = type === 'newsletter' ? 'newsletter_subscribers' : 'waiting_list';
-      
-      const { data, error: checkError } = await supabase
-        .from(table)
-        .select('*')
-        .eq('email', email.trim().toLowerCase())
-        .maybeSingle();
-      
-      if (checkError) throw checkError;
-      
-      if (!data) {
-        toast({
-          variant: "destructive",
-          title: c.error,
-          description: "Podany adres email nie jest zarejestrowany.",
-        });
-        return;
-      }
-      
-      // Generuj nowy token
-      const verificationToken = generateVerificationToken();
-      
-      // Aktualizuj rekord z nowym tokenem
-      const { error: updateError } = await supabase
-        .from(table)
-        .update({ verification_token: verificationToken })
-        .eq('email', email.trim().toLowerCase());
-      
-      if (updateError) throw updateError;
-      
-      // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
-      const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
-        body: { 
-          email: email.trim().toLowerCase(), 
-          token: verificationToken,
-          type: type || 'newsletter',
-          application: application
+      if (type === 'newsletter') {
+        const { data, error: checkError } = await supabase
+          .from('newsletter_subscribers')
+          .select('*')
+          .eq('email', email.trim().toLowerCase())
+          .maybeSingle();
+        
+        if (checkError) throw checkError;
+        
+        if (!data) {
+          toast({
+            variant: "destructive",
+            title: c.error,
+            description: "Podany adres email nie jest zarejestrowany.",
+          });
+          return;
         }
-      });
-      
-      if (sendError) throw sendError;
+        
+        // Generuj nowy token
+        const verificationToken = generateVerificationToken();
+        
+        // Aktualizuj rekord z nowym tokenem
+        const { error: updateError } = await supabase
+          .from('newsletter_subscribers')
+          .update({ verification_token: verificationToken })
+          .eq('email', email.trim().toLowerCase());
+        
+        if (updateError) throw updateError;
+        
+        // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+        const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+          body: { 
+            email: email.trim().toLowerCase(), 
+            token: verificationToken,
+            type: 'newsletter',
+            application: application
+          }
+        });
+        
+        if (sendError) throw sendError;
+      } else if (type === 'waiting_list') {
+        const { data, error: checkError } = await supabase
+          .from('waiting_list')
+          .select('*')
+          .eq('email', email.trim().toLowerCase())
+          .maybeSingle();
+        
+        if (checkError) throw checkError;
+        
+        if (!data) {
+          toast({
+            variant: "destructive",
+            title: c.error,
+            description: "Podany adres email nie jest zarejestrowany.",
+          });
+          return;
+        }
+        
+        // Generuj nowy token
+        const verificationToken = generateVerificationToken();
+        
+        // Aktualizuj rekord z nowym tokenem
+        const { error: updateError } = await supabase
+          .from('waiting_list')
+          .update({ verification_token: verificationToken })
+          .eq('email', email.trim().toLowerCase());
+        
+        if (updateError) throw updateError;
+        
+        // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+        const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+          body: { 
+            email: email.trim().toLowerCase(), 
+            token: verificationToken,
+            type: 'waiting_list',
+            application: application
+          }
+        });
+        
+        if (sendError) throw sendError;
+      }
       
       toast({
         title: c.success,
@@ -154,61 +194,95 @@ const VerifyEmail = () => {
         setIsLoading(true);
         console.log("[VerifyEmail] Starting verification process with parameters:", { token, type, application });
         
-        // Określ tabelę na podstawie typu
-        let table;
         if (type === 'newsletter') {
-          table = 'newsletter_subscribers';
+          // Znajdź rekord z podanym tokenem
+          const { data, error } = await supabase
+            .from('newsletter_subscribers')
+            .select('*')
+            .eq('verification_token', token)
+            .maybeSingle();
+          
+          if (error) {
+            console.error("[VerifyEmail] Supabase error:", error);
+            throw error;
+          }
+          
+          if (!data) {
+            console.error("[VerifyEmail] No record found with token:", token);
+            setError(c.errorInvalidToken);
+            setIsLoading(false);
+            return;
+          }
+          
+          console.log("[VerifyEmail] Record found:", data);
+          
+          // Zapisz email do stanu, żeby użytkownik mógł ponownie wysłać weryfikację
+          setEmail(data.email);
+          
+          // Aktualizuj rekord jako zweryfikowany
+          const { error: updateError } = await supabase
+            .from('newsletter_subscribers')
+            .update({ 
+              is_verified: true,
+              verification_token: null
+            })
+            .eq('verification_token', token);
+          
+          if (updateError) {
+            console.error("[VerifyEmail] Update error:", updateError);
+            throw updateError;
+          }
+          
+          console.log("[VerifyEmail] Record updated successfully");
+          setIsVerified(true);
+          
         } else if (type === 'waiting_list') {
-          table = 'waiting_list';
+          // Znajdź rekord z podanym tokenem
+          const { data, error } = await supabase
+            .from('waiting_list')
+            .select('*')
+            .eq('verification_token', token)
+            .maybeSingle();
+          
+          if (error) {
+            console.error("[VerifyEmail] Supabase error:", error);
+            throw error;
+          }
+          
+          if (!data) {
+            console.error("[VerifyEmail] No record found with token:", token);
+            setError(c.errorInvalidToken);
+            setIsLoading(false);
+            return;
+          }
+          
+          console.log("[VerifyEmail] Record found:", data);
+          
+          // Zapisz email do stanu, żeby użytkownik mógł ponownie wysłać weryfikację
+          setEmail(data.email);
+          
+          // Aktualizuj rekord jako zweryfikowany
+          const { error: updateError } = await supabase
+            .from('waiting_list')
+            .update({ 
+              is_verified: true,
+              verification_token: null
+            })
+            .eq('verification_token', token);
+          
+          if (updateError) {
+            console.error("[VerifyEmail] Update error:", updateError);
+            throw updateError;
+          }
+          
+          console.log("[VerifyEmail] Record updated successfully");
+          setIsVerified(true);
         } else {
           setError(c.invalidType);
           setIsLoading(false);
           console.error("[VerifyEmail] Invalid verification type:", type);
           return;
         }
-        
-        console.log(`[VerifyEmail] Looking for record in table: ${table} with token: ${token}`);
-        
-        // Znajdź rekord z podanym tokenem
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .eq('verification_token', token)
-          .maybeSingle();
-        
-        if (error) {
-          console.error("[VerifyEmail] Supabase error:", error);
-          throw error;
-        }
-        
-        if (!data) {
-          console.error("[VerifyEmail] No record found with token:", token);
-          setError(c.errorInvalidToken);
-          setIsLoading(false);
-          return;
-        }
-        
-        console.log("[VerifyEmail] Record found:", data);
-        
-        // Zapisz email do stanu, żeby użytkownik mógł ponownie wysłać weryfikację
-        setEmail(data.email);
-        
-        // Aktualizuj rekord jako zweryfikowany
-        const { error: updateError } = await supabase
-          .from(table)
-          .update({ 
-            is_verified: true,
-            verification_token: null
-          })
-          .eq('verification_token', token);
-        
-        if (updateError) {
-          console.error("[VerifyEmail] Update error:", updateError);
-          throw updateError;
-        }
-        
-        console.log("[VerifyEmail] Record updated successfully");
-        setIsVerified(true);
         
         // Wyświetl powiadomienie o sukcesie
         toast({
