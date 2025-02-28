@@ -4,7 +4,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { supabase } from "@/integrations/supabase/client";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 
@@ -95,6 +95,7 @@ const VerifyEmail = () => {
             variant: "destructive",
             title: c.error,
             description: "Podany adres email nie jest zarejestrowany.",
+            duration: 8000, // Ustawienie długiego czasu wyświetlania
           });
           return;
         }
@@ -135,6 +136,7 @@ const VerifyEmail = () => {
             variant: "destructive",
             title: c.error,
             description: "Podany adres email nie jest zarejestrowany.",
+            duration: 8000, // Ustawienie długiego czasu wyświetlania
           });
           return;
         }
@@ -166,6 +168,7 @@ const VerifyEmail = () => {
       toast({
         title: c.success,
         description: c.resendSuccess,
+        duration: 8000, // Ustawienie długiego czasu wyświetlania
       });
     } catch (error) {
       console.error("[VerifyEmail] Resend error:", error);
@@ -173,6 +176,7 @@ const VerifyEmail = () => {
         variant: "destructive",
         title: c.error,
         description: c.resendError,
+        duration: 8000, // Ustawienie długiego czasu wyświetlania
       });
     } finally {
       setResendingEmail(false);
@@ -234,7 +238,19 @@ const VerifyEmail = () => {
           }
           
           console.log("[VerifyEmail] Record updated successfully");
+          
+          // Zakończ ładowanie i ustaw weryfikację jako pomyślną
+          setIsLoading(false);
           setIsVerified(true);
+          
+          // Wyświetl powiadomienie o sukcesie (z dłuższym czasem wyświetlania)
+          toast({
+            title: c.success,
+            description: c.newsletterSuccess,
+            duration: 8000, // Ustawienie długiego czasu wyświetlania
+          });
+          
+          return; // Wczesne wyjście, aby uniknąć ponownego ustawienia stanu na końcu
           
         } else if (type === 'waiting_list') {
           // Znajdź rekord z podanym tokenem
@@ -276,7 +292,20 @@ const VerifyEmail = () => {
           }
           
           console.log("[VerifyEmail] Record updated successfully");
+          
+          // Zakończ ładowanie i ustaw weryfikację jako pomyślną
+          setIsLoading(false);
           setIsVerified(true);
+          
+          // Wyświetl powiadomienie o sukcesie (z dłuższym czasem wyświetlania)
+          toast({
+            title: c.success,
+            description: c.waitingListSuccess,
+            duration: 8000, // Ustawienie długiego czasu wyświetlania
+          });
+          
+          return; // Wczesne wyjście, aby uniknąć ponownego ustawienia stanu na końcu
+          
         } else {
           setError(c.invalidType);
           setIsLoading(false);
@@ -284,15 +313,19 @@ const VerifyEmail = () => {
           return;
         }
         
-        // Wyświetl powiadomienie o sukcesie
-        toast({
-          title: c.success,
-          description: type === 'newsletter' ? c.newsletterSuccess : c.waitingListSuccess,
-        });
       } catch (error) {
         console.error("[VerifyEmail] Verification error:", error);
         setError(c.error);
+        
+        // Wyświetl powiadomienie o błędzie (z dłuższym czasem wyświetlania)
+        toast({
+          variant: "destructive",
+          title: c.error,
+          description: String(error),
+          duration: 8000, // Ustawienie długiego czasu wyświetlania
+        });
       } finally {
+        // Ten blok zostanie wykonany tylko w przypadku błędu (w przypadku sukcesu mamy wcześniejsze wyjście z funkcji)
         setIsLoading(false);
       }
     };
