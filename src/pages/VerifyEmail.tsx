@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { Button } from "@/components/ui/button";
 
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
@@ -15,6 +16,8 @@ const VerifyEmail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [resendingEmail, setResendingEmail] = useState(false);
   
   // Pobierz parametry z URL
   const token = searchParams.get("token");
@@ -34,7 +37,13 @@ const VerifyEmail = () => {
       error: "Wystąpił błąd podczas weryfikacji",
       errorInvalidToken: "Nieprawidłowy lub wygasły token weryfikacyjny.",
       backToHome: "Wróć do strony głównej",
-      invalidType: "Nieprawidłowy typ weryfikacji."
+      invalidType: "Nieprawidłowy typ weryfikacji.",
+      resendVerification: "Wyślij ponownie email weryfikacyjny",
+      resendingVerification: "Wysyłanie...",
+      resendSuccess: "Link weryfikacyjny został wysłany ponownie",
+      resendError: "Nie udało się wysłać linku weryfikacyjnego",
+      enterEmail: "Podaj swój adres email, aby wysłać ponownie link weryfikacyjny:",
+      emailPlaceholder: "Twój adres email"
     },
     en: {
       title: "Email Verification",
@@ -46,16 +55,134 @@ const VerifyEmail = () => {
       error: "An error occurred during verification",
       errorInvalidToken: "Invalid or expired verification token.",
       backToHome: "Back to homepage",
-      invalidType: "Invalid verification type."
+      invalidType: "Invalid verification type.",
+      resendVerification: "Resend verification email",
+      resendingVerification: "Sending...",
+      resendSuccess: "Verification link has been resent",
+      resendError: "Failed to resend verification link",
+      enterEmail: "Enter your email to resend the verification link:",
+      emailPlaceholder: "Your email address"
     }
   };
 
   const c = language === "pl" ? content.pl : content.en;
   
+  // Generowanie losowego tokenu weryfikacyjnego
+  const generateVerificationToken = () => {
+    return Math.random().toString(36).substring(2, 15) + 
+           Math.random().toString(36).substring(2, 15);
+  };
+  
+  // Funkcja do ponownego wysłania emaila weryfikacyjnego
+  const handleResendVerification = async () => {
+    if (!email) return;
+    
+    try {
+      setResendingEmail(true);
+      
+      // Sprawdź, czy email istnieje w odpowiedniej tabeli
+      if (type === 'newsletter') {
+        const { data, error: checkError } = await supabase
+          .from('newsletter_subscribers')
+          .select('*')
+          .eq('email', email.trim().toLowerCase())
+          .maybeSingle();
+        
+        if (checkError) throw checkError;
+        
+        if (!data) {
+          toast({
+            variant: "destructive",
+            title: c.error,
+            description: "Podany adres email nie jest zarejestrowany.",
+          });
+          return;
+        }
+        
+        // Generuj nowy token
+        const verificationToken = generateVerificationToken();
+        
+        // Aktualizuj rekord z nowym tokenem
+        const { error: updateError } = await supabase
+          .from('newsletter_subscribers')
+          .update({ verification_token: verificationToken })
+          .eq('email', email.trim().toLowerCase());
+        
+        if (updateError) throw updateError;
+        
+        // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+        const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+          body: { 
+            email: email.trim().toLowerCase(), 
+            token: verificationToken,
+            type: 'newsletter',
+            application: application
+          }
+        });
+        
+        if (sendError) throw sendError;
+      } else if (type === 'waiting_list') {
+        const { data, error: checkError } = await supabase
+          .from('waiting_list')
+          .select('*')
+          .eq('email', email.trim().toLowerCase())
+          .maybeSingle();
+        
+        if (checkError) throw checkError;
+        
+        if (!data) {
+          toast({
+            variant: "destructive",
+            title: c.error,
+            description: "Podany adres email nie jest zarejestrowany.",
+          });
+          return;
+        }
+        
+        // Generuj nowy token
+        const verificationToken = generateVerificationToken();
+        
+        // Aktualizuj rekord z nowym tokenem
+        const { error: updateError } = await supabase
+          .from('waiting_list')
+          .update({ verification_token: verificationToken })
+          .eq('email', email.trim().toLowerCase());
+        
+        if (updateError) throw updateError;
+        
+        // Wywołaj funkcję Edge do wysłania emaila weryfikacyjnego
+        const { error: sendError } = await supabase.functions.invoke('send-verification-email', {
+          body: { 
+            email: email.trim().toLowerCase(), 
+            token: verificationToken,
+            type: 'waiting_list',
+            application: application
+          }
+        });
+        
+        if (sendError) throw sendError;
+      }
+      
+      toast({
+        title: c.success,
+        description: c.resendSuccess,
+      });
+    } catch (error) {
+      console.error("[VerifyEmail] Resend error:", error);
+      toast({
+        variant: "destructive",
+        title: c.error,
+        description: c.resendError,
+      });
+    } finally {
+      setResendingEmail(false);
+    }
+  };
+  
   useEffect(() => {
     // Funkcja do weryfikacji emaila
     const verifyEmail = async () => {
-      // Sprawdź, czy mamy wszystkie potrzebne parametry
+      // Jeśli nie mamy tokenu, nie próbujemy weryfikować - tylko pokazujemy formularz ponownego wysyłania
       if (!token || !type) {
         setError(c.errorInvalidToken);
         setIsLoading(false);
@@ -67,58 +194,95 @@ const VerifyEmail = () => {
         setIsLoading(true);
         console.log("[VerifyEmail] Starting verification process with parameters:", { token, type, application });
         
-        // Określ tabelę na podstawie typu
-        let table;
         if (type === 'newsletter') {
-          table = 'newsletter_subscribers';
+          // Znajdź rekord z podanym tokenem
+          const { data, error } = await supabase
+            .from('newsletter_subscribers')
+            .select('*')
+            .eq('verification_token', token)
+            .maybeSingle();
+          
+          if (error) {
+            console.error("[VerifyEmail] Supabase error:", error);
+            throw error;
+          }
+          
+          if (!data) {
+            console.error("[VerifyEmail] No record found with token:", token);
+            setError(c.errorInvalidToken);
+            setIsLoading(false);
+            return;
+          }
+          
+          console.log("[VerifyEmail] Record found:", data);
+          
+          // Zapisz email do stanu, żeby użytkownik mógł ponownie wysłać weryfikację
+          setEmail(data.email);
+          
+          // Aktualizuj rekord jako zweryfikowany
+          const { error: updateError } = await supabase
+            .from('newsletter_subscribers')
+            .update({ 
+              is_verified: true,
+              verification_token: null
+            })
+            .eq('verification_token', token);
+          
+          if (updateError) {
+            console.error("[VerifyEmail] Update error:", updateError);
+            throw updateError;
+          }
+          
+          console.log("[VerifyEmail] Record updated successfully");
+          setIsVerified(true);
+          
         } else if (type === 'waiting_list') {
-          table = 'waiting_list';
+          // Znajdź rekord z podanym tokenem
+          const { data, error } = await supabase
+            .from('waiting_list')
+            .select('*')
+            .eq('verification_token', token)
+            .maybeSingle();
+          
+          if (error) {
+            console.error("[VerifyEmail] Supabase error:", error);
+            throw error;
+          }
+          
+          if (!data) {
+            console.error("[VerifyEmail] No record found with token:", token);
+            setError(c.errorInvalidToken);
+            setIsLoading(false);
+            return;
+          }
+          
+          console.log("[VerifyEmail] Record found:", data);
+          
+          // Zapisz email do stanu, żeby użytkownik mógł ponownie wysłać weryfikację
+          setEmail(data.email);
+          
+          // Aktualizuj rekord jako zweryfikowany
+          const { error: updateError } = await supabase
+            .from('waiting_list')
+            .update({ 
+              is_verified: true,
+              verification_token: null
+            })
+            .eq('verification_token', token);
+          
+          if (updateError) {
+            console.error("[VerifyEmail] Update error:", updateError);
+            throw updateError;
+          }
+          
+          console.log("[VerifyEmail] Record updated successfully");
+          setIsVerified(true);
         } else {
           setError(c.invalidType);
           setIsLoading(false);
           console.error("[VerifyEmail] Invalid verification type:", type);
           return;
         }
-        
-        console.log(`[VerifyEmail] Looking for record in table: ${table} with token: ${token}`);
-        
-        // Znajdź rekord z podanym tokenem
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
-          .eq('verification_token', token)
-          .maybeSingle();
-        
-        if (error) {
-          console.error("[VerifyEmail] Supabase error:", error);
-          throw error;
-        }
-        
-        if (!data) {
-          console.error("[VerifyEmail] No record found with token:", token);
-          setError(c.errorInvalidToken);
-          setIsLoading(false);
-          return;
-        }
-        
-        console.log("[VerifyEmail] Record found:", data);
-        
-        // Aktualizuj rekord jako zweryfikowany
-        const { error: updateError } = await supabase
-          .from(table)
-          .update({ 
-            is_verified: true,
-            verification_token: null
-          })
-          .eq('verification_token', token);
-        
-        if (updateError) {
-          console.error("[VerifyEmail] Update error:", updateError);
-          throw updateError;
-        }
-        
-        console.log("[VerifyEmail] Record updated successfully");
-        setIsVerified(true);
         
         // Wyświetl powiadomienie o sukcesie
         toast({
@@ -136,6 +300,30 @@ const VerifyEmail = () => {
     // Wywołaj funkcję weryfikacji po załadowaniu komponentu
     verifyEmail();
   }, [token, type, c, toast, application]);
+
+  // Formularz do ponownego wysłania emaila weryfikacyjnego
+  const ResendForm = () => (
+    <div className="mt-8 bg-[#f0ffe8] p-6 rounded-lg border border-[#49be25]/30">
+      <h3 className="text-xl font-display text-estate-800 mb-3">{c.enterEmail}</h3>
+      <div className="flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          value={email || ''}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder={c.emailPlaceholder}
+          className="px-4 py-3 rounded-md flex-1 border border-gray-300 outline-none focus:ring-2 focus:ring-[#49be25]"
+          required
+        />
+        <Button 
+          onClick={handleResendVerification}
+          className="bg-[#49be25] text-white hover:bg-[#3da51e]"
+          disabled={resendingEmail || !email}
+        >
+          {resendingEmail ? c.resendingVerification : c.resendVerification}
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white">
@@ -181,6 +369,9 @@ const VerifyEmail = () => {
               </button>
             </div>
           )}
+          
+          {/* Formularz ponownego wysyłania, jeśli weryfikacja nie powiodła się */}
+          {!isLoading && !isVerified && <ResendForm />}
 
           {/* Diagnostyczne informacje (widoczne tylko w środowisku deweloperskim) */}
           {process.env.NODE_ENV === 'development' && (
@@ -191,6 +382,7 @@ const VerifyEmail = () => {
                 <p><strong>Typ:</strong> {type || 'brak'}</p>
                 <p><strong>Aplikacja:</strong> {application || 'brak'}</p>
                 <p><strong>Stan:</strong> {isLoading ? 'ładowanie' : isVerified ? 'zweryfikowano' : 'błąd'}</p>
+                <p><strong>Email:</strong> {email || 'brak'}</p>
               </div>
             </div>
           )}
