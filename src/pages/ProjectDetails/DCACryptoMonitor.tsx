@@ -311,7 +311,7 @@ const DCACryptoMonitor = () => {
                   </a>
                   <Button 
                     variant="outline" 
-                    className="border-[#49be25] text-[#49be25] hover:bg-[#f0ffe8]"
+                    className="border-[#49be25] text-[#49be25] hover:bg-[#f0ffe8] hover:text-white"
                     onClick={() => setIsFormOpen(!isFormOpen)}
                   >
                     {isFormOpen ? c.hideForm : c.subscribe}
