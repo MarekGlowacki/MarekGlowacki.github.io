@@ -45,9 +45,20 @@ const EmailComposer = () => {
         hasAttachments: data.attachments ? data.attachments.length > 0 : false
       });
 
+      // Check if VITE_SUPABASE_URL is defined and properly formatted
+      if (!import.meta.env.VITE_SUPABASE_URL) {
+        throw new Error('VITE_SUPABASE_URL is not defined in environment variables');
+      }
+
+      // Ensure the URL is properly formatted without trailing slashes
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL.replace(/\/$/, '');
+      const edgeFunctionUrl = `${supabaseUrl}/functions/v1/send-custom-email`;
+      
+      console.log("Using edge function URL:", edgeFunctionUrl);
+
       // Bezpośrednie wywołanie funkcji Edge z FormData dla załączników
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-custom-email`,
+        edgeFunctionUrl,
         {
           method: 'POST',
           headers: {
@@ -58,13 +69,26 @@ const EmailComposer = () => {
       );
       
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error response from server:', errorData);
-        throw new Error(errorData.error || 'Błąd wysyłania wiadomości');
+        let errorMessage = 'Błąd wysyłania wiadomości';
+        try {
+          const errorData = await response.json();
+          console.error('Error response from server:', errorData);
+          errorMessage = errorData.error || errorMessage;
+        } catch (jsonError) {
+          console.error('Failed to parse error response:', response.status, response.statusText);
+          errorMessage = `HTTP Error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
 
-      const result = await response.json();
-      console.log('Email sent successfully, server response:', result);
+      let result;
+      try {
+        result = await response.json();
+        console.log('Email sent successfully, server response:', result);
+      } catch (jsonError) {
+        console.error('Failed to parse success response:', jsonError);
+        throw new Error('Invalid response from server');
+      }
       
       toast({
         title: "Email wysłany pomyślnie",
@@ -72,12 +96,12 @@ const EmailComposer = () => {
       });
       
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending email:', error);
       toast({
         variant: "destructive",
         title: "Błąd wysyłania",
-        description: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
+        description: error.message || "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
       });
       return false;
     } finally {
