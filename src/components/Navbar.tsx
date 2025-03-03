@@ -1,5 +1,5 @@
 
-import { Menu, Mail, Phone, Facebook, Twitter, Youtube, Linkedin, Github, Globe, Edit3 } from "lucide-react";
+import { Menu, Mail, Phone, Facebook, Twitter, Youtube, Linkedin, Github, Globe } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -40,9 +40,7 @@ const Navbar = () => {
             <a href="tel:+48514383545" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors whitespace-nowrap text-xs sm:text-sm">
               <Phone className="h-4 w-4" /> +48 514 383 545
             </a>
-            <Link to="/email-composer" className="flex items-center gap-2 text-white/90 hover:text-white transition-colors whitespace-nowrap text-xs sm:text-sm">
-              <Edit3 className="h-4 w-4" /> Email Composer
-            </Link>
+            {/* Removed Email Composer link */}
           </div>
           <div className="flex items-center gap-4 mt-2 sm:mt-0">
             <a href="https://facebook.com/marekglowacki" target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
@@ -78,12 +76,7 @@ const Navbar = () => {
               <Link to="/services" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.services")}</Link>
               <Link to="/projects" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.portfolio")}</Link>
               <Link to="/contact" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">{t("navbar.contact")}</Link>
-              <Link to="/email-composer" className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap">
-                <span className="flex items-center gap-1">
-                  <Edit3 className="h-4 w-4" /> 
-                  Email
-                </span>
-              </Link>
+              {/* Removed Email Composer link */}
               <button 
                 onClick={scrollToNewsletter} 
                 className="text-estate-600 hover:text-estate-800 transition-colors whitespace-nowrap cursor-pointer"
@@ -130,9 +123,7 @@ const Navbar = () => {
                     <Link to="/services" className="text-lg">{t("navbar.services")}</Link>
                     <Link to="/projects" className="text-lg">{t("navbar.portfolio")}</Link>
                     <Link to="/contact" className="text-lg">{t("navbar.contact")}</Link>
-                    <Link to="/email-composer" className="text-lg flex items-center gap-2">
-                      <Edit3 className="h-4 w-4" /> Email Composer
-                    </Link>
+                    {/* Removed Email Composer link */}
                     <button 
                       onClick={() => {
                         scrollToNewsletter();

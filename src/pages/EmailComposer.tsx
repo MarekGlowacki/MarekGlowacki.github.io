@@ -6,11 +6,14 @@ import { EmailEditor } from "@/components/email/EmailEditor";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { PasswordProtection } from "@/components/PasswordProtection";
 
 const EmailComposer = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const [isSending, setIsSending] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const correctPassword = "email musi byc komponowany";
   
   const handleSendEmail = async (data: { 
     to: string; 
@@ -126,7 +129,15 @@ const EmailComposer = () => {
       <main className="py-32">
         <div className="container mx-auto px-4 max-w-6xl">
           <h1 className="text-5xl font-display text-estate-800 mb-8 text-center">Kompozytor Email</h1>
-          <EmailEditor onSendEmail={handleSendEmail} isSending={isSending} />
+          
+          {isAuthenticated ? (
+            <EmailEditor onSendEmail={handleSendEmail} isSending={isSending} />
+          ) : (
+            <PasswordProtection 
+              correctPassword={correctPassword} 
+              onSuccess={() => setIsAuthenticated(true)} 
+            />
+          )}
         </div>
       </main>
       <Footer />
