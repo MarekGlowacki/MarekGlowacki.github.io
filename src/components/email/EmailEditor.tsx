@@ -263,10 +263,14 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
                 </div>
               )}
             </div>
-            <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
+            <div 
+              className="prose prose-sm max-w-none border border-gray-200 p-4 rounded-md bg-white" 
+              dangerouslySetInnerHTML={{ __html: content }} 
+            />
           </div>
         </TabsContent>
       </Tabs>
     </div>
   );
 };
+
