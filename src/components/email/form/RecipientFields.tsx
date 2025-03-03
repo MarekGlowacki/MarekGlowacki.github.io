@@ -21,7 +21,7 @@ export const RecipientFields = ({ to, setTo, subject, setSubject }: RecipientFie
           value={to}
           onChange={(e) => setTo(e.target.value)}
           placeholder="adres@email.com"
-          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
           required
         />
       </div>
@@ -36,7 +36,7 @@ export const RecipientFields = ({ to, setTo, subject, setSubject }: RecipientFie
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           placeholder="Temat wiadomości"
-          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
           required
         />
       </div>

@@ -38,7 +38,7 @@ export const AdvancedOptions = ({
               value={replyTo}
               onChange={(e) => setReplyTo(e.target.value)}
               placeholder="twoj@email.com"
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
             <p className="text-xs text-gray-500 mt-1">
               Jeśli chcesz, aby odpowiedzi przychodziły na inny adres niż kontakt@marekglowacki.pl

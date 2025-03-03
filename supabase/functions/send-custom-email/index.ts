@@ -45,9 +45,12 @@ const handler = async (req: Request): Promise<Response> => {
             const file = value;
             const buffer = await file.arrayBuffer();
             
+            console.log(`Przetwarzanie załącznika: ${key}, nazwa: ${file.name}, typ: ${file.type}, rozmiar: ${file.size} bajtów`);
+            
             attachments.push({
               filename: file.name,
               content: new Uint8Array(buffer),
+              contentType: file.type,
             });
             
             console.log(`Dodano załącznik: ${file.name}, rozmiar: ${file.size} bajtów`);
@@ -82,6 +85,10 @@ const handler = async (req: Request): Promise<Response> => {
     console.log(`Temat: ${subject}`);
     console.log(`ReplyTo: ${replyTo || 'Not specified'}`);
     console.log(`Załączniki: ${attachments.length}`);
+    
+    if (attachments.length > 0) {
+      console.log(`Szczegóły załączników:`, attachments.map(a => ({ filename: a.filename, contentType: a.contentType, size: a.content.length })));
+    }
     
     const emailOptions = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",

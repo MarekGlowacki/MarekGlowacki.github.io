@@ -35,14 +35,17 @@ const EmailComposer = () => {
       // Dodaj załączniki, jeśli istnieją
       if (data.attachments && data.attachments.length > 0) {
         data.attachments.forEach((file, index) => {
-          formData.append(`attachment${index}`, file);
+          // Dodanie nazwy pliku do załącznika jest kluczowe dla poprawnego przetwarzania
+          formData.append(`attachment${index}`, file, file.name);
+          console.log(`Dodano załącznik ${index}: ${file.name}, rozmiar: ${file.size} bajtów`);
         });
       }
       
       console.log("Wysyłanie żądania do edge function", {
         to: data.to,
         subject: data.subject,
-        hasAttachments: data.attachments ? data.attachments.length > 0 : false
+        hasAttachments: data.attachments ? data.attachments.length > 0 : false,
+        attachmentsCount: data.attachments ? data.attachments.length : 0
       });
 
       // Use a hardcoded Supabase URL since we can't access the protected properties
