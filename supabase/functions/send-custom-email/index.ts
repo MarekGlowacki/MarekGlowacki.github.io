@@ -44,16 +44,18 @@ const handler = async (req: Request): Promise<Response> => {
           if (key.startsWith("attachment") && value instanceof File) {
             const file = value;
             const buffer = await file.arrayBuffer();
+            const uint8Array = new Uint8Array(buffer);
             
             console.log(`Przetwarzanie załącznika: ${key}, nazwa: ${file.name}, typ: ${file.type}, rozmiar: ${file.size} bajtów`);
+            console.log(`Typ zawartości załącznika: ${typeof uint8Array}, czy jest Array: ${Array.isArray(uint8Array)}, czy jest Uint8Array: ${uint8Array instanceof Uint8Array}`);
             
             attachments.push({
               filename: file.name,
-              content: new Uint8Array(buffer),
+              content: uint8Array,
               contentType: file.type,
             });
             
-            console.log(`Dodano załącznik: ${file.name}, rozmiar: ${file.size} bajtów`);
+            console.log(`Dodano załącznik: ${file.name}, rozmiar: ${uint8Array.length} bajtów`);
           }
         }
       } catch (formError) {
@@ -97,16 +99,26 @@ const handler = async (req: Request): Promise<Response> => {
       console.log(`Szczegóły załączników:`, attachments.map(a => ({ filename: a.filename, contentType: a.contentType, size: a.content.length })));
     }
     
-    const emailOptions = {
+    const emailOptions: any = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",
       to: recipients,
       subject: subject,
       html: content,
       reply_to: replyTo,
-      attachments: attachments.length > 0 ? attachments : undefined,
     };
+
+    // Dodaj załączniki tylko jeśli istnieją
+    if (attachments.length > 0) {
+      emailOptions.attachments = attachments;
+      console.log("Dodano załączniki do opcji emaila");
+    }
     
     console.log("Wysyłanie email przez Resend API");
+    console.log("Opcje emaila:", JSON.stringify({
+      ...emailOptions,
+      attachments: emailOptions.attachments ? `${emailOptions.attachments.length} załączników` : undefined
+    }));
+    
     try {
       const emailResponse = await resend.emails.send(emailOptions);
       console.log("Email wysłany pomyślnie:", emailResponse);
@@ -118,8 +130,11 @@ const handler = async (req: Request): Promise<Response> => {
           ...corsHeaders,
         },
       });
-    } catch (resendError) {
+    } catch (resendError: any) {
       console.error("Błąd API Resend:", resendError);
+      if (resendError.response) {
+        console.error("Szczegóły odpowiedzi Resend:", resendError.response);
+      }
       throw new Error(`Błąd wysyłania przez Resend API: ${resendError.message}`);
     }
   } catch (error: any) {
