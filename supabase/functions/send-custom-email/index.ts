@@ -16,6 +16,8 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  console.log("Otrzymano żądanie wysłania wiadomości email");
+
   try {
     // Sprawdź Content-Type i przetwórz odpowiednio
     const contentType = req.headers.get("content-type") || "";
@@ -34,6 +36,8 @@ const handler = async (req: Request): Promise<Response> => {
       content = formData.get("content") as string;
       replyTo = formData.get("replyTo") as string || undefined;
       
+      console.log("Dane z formularza:", { to, subject, replyTo });
+      
       // Zbierz wszystkie załączniki
       for (const [key, value] of formData.entries()) {
         if (key.startsWith("attachment") && value instanceof File) {
@@ -44,6 +48,8 @@ const handler = async (req: Request): Promise<Response> => {
             filename: file.name,
             content: new Uint8Array(buffer),
           });
+          
+          console.log(`Dodano załącznik: ${file.name}, rozmiar: ${file.size} bajtów`);
         }
       }
     } else {
@@ -53,16 +59,19 @@ const handler = async (req: Request): Promise<Response> => {
       subject = jsonSubject;
       content = jsonContent;
       replyTo = jsonReplyTo;
+      
+      console.log("Dane z JSON:", { to, subject, replyTo });
     }
 
     if (!to || !subject || !content) {
+      console.error("Brak wymaganych pól");
       throw new Error("Missing required fields: to, subject, or content");
     }
 
-    console.log(`Sending email to: ${to}`);
-    console.log(`Subject: ${subject}`);
+    console.log(`Wysyłanie email do: ${to}`);
+    console.log(`Temat: ${subject}`);
     console.log(`ReplyTo: ${replyTo || 'Not specified'}`);
-    console.log(`Attachments: ${attachments.length}`);
+    console.log(`Załączniki: ${attachments.length}`);
     
     const emailOptions = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",
@@ -73,9 +82,10 @@ const handler = async (req: Request): Promise<Response> => {
       attachments: attachments.length > 0 ? attachments : undefined,
     };
     
+    console.log("Wysyłanie email przez Resend API");
     const emailResponse = await resend.emails.send(emailOptions);
 
-    console.log("Email sent successfully:", emailResponse);
+    console.log("Email wysłany pomyślnie:", emailResponse);
 
     return new Response(JSON.stringify(emailResponse), {
       status: 200,
@@ -85,9 +95,11 @@ const handler = async (req: Request): Promise<Response> => {
       },
     });
   } catch (error: any) {
-    console.error("Error in send-custom-email function:", error);
+    console.error("Błąd w funkcji send-custom-email:", error);
+    console.error("Szczegóły błędu:", error.message);
+    
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message || "Unknown error" }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

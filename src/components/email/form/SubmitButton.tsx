@@ -13,6 +13,7 @@ export const SubmitButton = ({ isSending }: SubmitButtonProps) => {
         type="submit" 
         className="bg-[#49be25] text-white hover:bg-[#3da51e]"
         disabled={isSending}
+        aria-disabled={isSending}
       >
         {isSending ? (
           <span className="flex items-center gap-2">

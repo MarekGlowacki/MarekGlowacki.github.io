@@ -39,6 +39,12 @@ const EmailComposer = () => {
         });
       }
       
+      console.log("Wysyłanie żądania do edge function", {
+        to: data.to,
+        subject: data.subject,
+        hasAttachments: data.attachments ? data.attachments.length > 0 : false
+      });
+
       // Bezpośrednie wywołanie funkcji Edge z FormData dla załączników
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-custom-email`,
@@ -51,11 +57,14 @@ const EmailComposer = () => {
         }
       );
       
-      const result = await response.json();
-      
       if (!response.ok) {
-        throw new Error(result.error || 'Błąd wysyłania wiadomości');
+        const errorData = await response.json();
+        console.error('Error response from server:', errorData);
+        throw new Error(errorData.error || 'Błąd wysyłania wiadomości');
       }
+
+      const result = await response.json();
+      console.log('Email sent successfully, server response:', result);
       
       toast({
         title: "Email wysłany pomyślnie",
