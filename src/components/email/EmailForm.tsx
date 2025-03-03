@@ -38,6 +38,43 @@ export const EmailForm = ({
   isSending
 }: EmailFormProps) => {
   const { toast } = useToast();
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
+  
+  const validateEmails = (emails: string) => {
+    if (!emails) return false;
+    
+    // Split by semicolon and trim whitespace
+    const emailList = emails.split(';').map(email => email.trim()).filter(email => email);
+    
+    if (emailList.length === 0) return false;
+    
+    // Basic email regex pattern
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Check if all emails in the list are valid
+    return emailList.every(email => emailPattern.test(email));
+  };
+  
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Reset errors
+    setErrors({});
+    
+    // Validate emails
+    if (!validateEmails(to)) {
+      setErrors(prev => ({ ...prev, to: "Proszę podać poprawne adresy email oddzielone średnikami" }));
+      toast({
+        variant: "destructive",
+        title: "Błąd walidacji",
+        description: "Proszę podać poprawne adresy email oddzielone średnikami",
+      });
+      return;
+    }
+    
+    // Proceed with form submission
+    handleSubmit(e);
+  };
   
   const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -65,13 +102,16 @@ export const EmailForm = ({
   };
   
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={onSubmit} className="space-y-6">
       <RecipientFields
         to={to}
         setTo={setTo}
         subject={subject}
         setSubject={setSubject}
       />
+      {errors.to && (
+        <p className="text-red-500 text-sm mt-1">{errors.to}</p>
+      )}
       
       <EditorSection
         content={content}
