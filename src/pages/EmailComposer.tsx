@@ -45,13 +45,19 @@ const EmailComposer = () => {
         hasAttachments: data.attachments ? data.attachments.length > 0 : false
       });
 
-      // Check if VITE_SUPABASE_URL is defined and properly formatted
-      if (!import.meta.env.VITE_SUPABASE_URL) {
-        throw new Error('VITE_SUPABASE_URL is not defined in environment variables');
+      // Get Supabase URL and key from the client instance, which is safer than direct env access
+      const supabaseUrl = supabase.supabaseUrl;
+      const supabaseKey = supabase.supabaseKey;
+      
+      if (!supabaseUrl) {
+        throw new Error('Błąd: Adres URL Supabase jest niedostępny');
       }
 
-      // Ensure the URL is properly formatted without trailing slashes
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL.replace(/\/$/, '');
+      if (!supabaseKey) {
+        throw new Error('Błąd: Klucz Supabase jest niedostępny');
+      }
+
+      // Ensure the URL is properly formatted
       const edgeFunctionUrl = `${supabaseUrl}/functions/v1/send-custom-email`;
       
       console.log("Using edge function URL:", edgeFunctionUrl);
@@ -62,7 +68,7 @@ const EmailComposer = () => {
         {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+            'Authorization': `Bearer ${supabaseKey}`
           },
           body: formData
         }
