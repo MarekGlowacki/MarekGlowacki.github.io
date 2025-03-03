@@ -45,9 +45,11 @@ const EmailComposer = () => {
         hasAttachments: data.attachments ? data.attachments.length > 0 : false
       });
 
-      // Get Supabase URL and key from the client instance, which is safer than direct env access
-      const supabaseUrl = supabase.supabaseUrl;
-      const supabaseKey = supabase.supabaseKey;
+      // Use a hardcoded Supabase URL since we can't access the protected properties
+      // This is the same URL that was configured in the client.ts file
+      const supabaseUrl = "https://nvtxqityoyksixawlmzz.supabase.co";
+      // Use the anon key from the client
+      const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52dHhxaXR5b3lrc2l4YXdsbXp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAyMTc3MjAsImV4cCI6MjA1NTc5MzcyMH0.5pDexd_iTa5l_YLGTYq18QzQk4TR4wWhycfkx_eyP0U";
       
       if (!supabaseUrl) {
         throw new Error('Błąd: Adres URL Supabase jest niedostępny');
