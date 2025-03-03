@@ -4,32 +4,41 @@ import { Button } from "@/components/ui/button";
 import { 
   Bold, Italic, Underline, AlignLeft, AlignCenter, 
   AlignRight, AlignJustify, Link as LinkIcon, 
-  List, ListOrdered, Undo, Redo 
+  List, ListOrdered, Undo, Redo, Code
 } from "lucide-react";
 
 interface RichTextEditorProps {
   id?: string;
   value: string;
   onChange: (value: string) => void;
+  htmlMode?: boolean;
 }
 
-export const RichTextEditor = ({ id, value, onChange }: RichTextEditorProps) => {
+export const RichTextEditor = ({ id, value, onChange, htmlMode = false }: RichTextEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isEditorReady, setIsEditorReady] = useState(false);
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [linkUrl, setLinkUrl] = useState('');
   
   useEffect(() => {
-    if (editorRef.current) {
+    if (editorRef.current && !htmlMode) {
       editorRef.current.innerHTML = value;
       setIsEditorReady(true);
     }
-  }, []);
+    if (textareaRef.current && htmlMode) {
+      textareaRef.current.value = value;
+    }
+  }, [htmlMode]);
   
   const handleEditorChange = () => {
-    if (editorRef.current) {
+    if (editorRef.current && !htmlMode) {
       onChange(editorRef.current.innerHTML);
     }
+  };
+  
+  const handleHtmlChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onChange(e.target.value);
   };
   
   const execCommand = (command: string, value: string = '') => {
@@ -47,6 +56,24 @@ export const RichTextEditor = ({ id, value, onChange }: RichTextEditorProps) => 
       setShowLinkInput(false);
     }
   };
+  
+  if (htmlMode) {
+    return (
+      <div className="border border-gray-300 rounded-md overflow-hidden">
+        <div className="bg-gray-50 border-b border-gray-300 p-2 flex items-center">
+          <Code size={16} className="text-gray-500 mr-2" />
+          <span className="text-sm text-gray-600">Tryb edycji HTML</span>
+        </div>
+        <textarea
+          ref={textareaRef}
+          defaultValue={value}
+          onChange={handleHtmlChange}
+          className="w-full h-[300px] p-4 font-mono text-sm focus:outline-none"
+          placeholder="<p>Wprowadź kod HTML tutaj...</p>"
+        />
+      </div>
+    );
+  }
   
   return (
     <div className="border border-gray-300 rounded-md overflow-hidden">

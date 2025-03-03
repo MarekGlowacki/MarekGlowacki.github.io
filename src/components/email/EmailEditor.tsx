@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "./RichTextEditor";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { X, Paperclip } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface EmailEditorProps {
   onSendEmail: (data: { 
@@ -11,18 +13,22 @@ interface EmailEditorProps {
     subject: string; 
     content: string;
     replyTo?: string;
+    attachments?: File[];
   }) => Promise<boolean>;
   isSending: boolean;
 }
 
 export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
   const [content, setContent] = useState("<p>Witam,</p><p><br></p><p>Z poważaniem,</p><p>Marek Głowacki</p>");
   const [replyTo, setReplyTo] = useState("");
   const [preview, setPreview] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [htmlMode, setHtmlMode] = useState(false);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +41,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       to,
       subject,
       content,
-      replyTo: replyTo || undefined
+      replyTo: replyTo || undefined,
+      attachments: attachments.length > 0 ? attachments : undefined
     });
     
     if (success) {
@@ -44,7 +51,33 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       setSubject("");
       setContent("<p>Witam,</p><p><br></p><p>Z poważaniem,</p><p>Marek Głowacki</p>");
       setReplyTo("");
+      setAttachments([]);
     }
+  };
+
+  const handleAttachmentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      const totalSize = [...attachments, ...newFiles].reduce((acc, file) => acc + file.size, 0);
+      
+      // Limit total attachment size to 10MB (10 * 1024 * 1024 bytes)
+      if (totalSize > 10 * 1024 * 1024) {
+        toast({
+          variant: "destructive",
+          title: "Zbyt duże załączniki",
+          description: "Całkowity rozmiar załączników nie może przekraczać 10MB.",
+        });
+        return;
+      }
+      
+      setAttachments(prev => [...prev, ...newFiles]);
+    }
+    // Clear the input value to allow selecting the same file again
+    e.target.value = '';
+  };
+  
+  const removeAttachment = (index: number) => {
+    setAttachments(prev => prev.filter((_, i) => i !== index));
   };
   
   return (
@@ -88,14 +121,75 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
             </div>
             
             <div>
-              <label htmlFor="editor" className="block text-sm font-medium text-gray-700 mb-1">
-                Treść:
-              </label>
+              <div className="flex justify-between items-center mb-1">
+                <label htmlFor="editor" className="block text-sm font-medium text-gray-700">
+                  Treść:
+                </label>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setHtmlMode(!htmlMode)}
+                  className="text-xs h-7"
+                >
+                  {htmlMode ? "Tryb wizualny" : "Tryb HTML"}
+                </Button>
+              </div>
               <RichTextEditor 
                 id="editor"
                 value={content} 
                 onChange={setContent} 
+                htmlMode={htmlMode}
               />
+            </div>
+
+            <div>
+              <label htmlFor="attachments" className="block text-sm font-medium text-gray-700 mb-1">
+                Załączniki:
+              </label>
+              <div className="mt-1 flex items-center gap-2">
+                <label className="cursor-pointer">
+                  <span className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                    <Paperclip className="h-4 w-4 mr-2" />
+                    Dodaj załącznik
+                  </span>
+                  <input
+                    type="file"
+                    id="attachments"
+                    onChange={handleAttachmentChange}
+                    className="sr-only"
+                    multiple
+                  />
+                </label>
+                <span className="text-xs text-gray-500">
+                  Maks. łączny rozmiar 10MB
+                </span>
+              </div>
+
+              {attachments.length > 0 && (
+                <div className="mt-3 space-y-2">
+                  {attachments.map((file, index) => (
+                    <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded-md">
+                      <div className="flex items-center">
+                        <Paperclip className="h-4 w-4 mr-2 text-gray-400" />
+                        <span className="text-sm truncate max-w-[250px]">{file.name}</span>
+                        <span className="text-xs text-gray-500 ml-2">
+                          {(file.size / 1024).toFixed(0)} KB
+                        </span>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeAttachment(index)}
+                        className="h-6 w-6 p-0"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             
             <div>
@@ -154,6 +248,20 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
               <p className="text-sm text-gray-600">Do: <span className="font-medium">{to || "adres@email.com"}</span></p>
               {replyTo && <p className="text-sm text-gray-600">Odpowiedź do: <span className="font-medium">{replyTo}</span></p>}
               <p className="text-sm text-gray-600">Temat: <span className="font-medium">{subject || "Temat wiadomości"}</span></p>
+              
+              {attachments.length > 0 && (
+                <div className="mt-2">
+                  <p className="text-sm text-gray-600">Załączniki:</p>
+                  <div className="ml-2 mt-1">
+                    {attachments.map((file, index) => (
+                      <div key={index} className="flex items-center text-sm text-gray-600">
+                        <Paperclip className="h-3 w-3 mr-1" />
+                        <span>{file.name} ({(file.size / 1024).toFixed(0)} KB)</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
             <div className="prose prose-sm max-w-none" dangerouslySetInnerHTML={{ __html: content }} />
           </div>

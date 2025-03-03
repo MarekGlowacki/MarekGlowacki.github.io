@@ -17,15 +17,45 @@ const EmailComposer = () => {
     subject: string; 
     content: string;
     replyTo?: string;
+    attachments?: File[];
   }) => {
     setIsSending(true);
     
     try {
-      const { error } = await supabase.functions.invoke('send-custom-email', {
-        body: data
-      });
+      // Przygotuj dane do wysłania
+      const formData = new FormData();
+      formData.append('to', data.to);
+      formData.append('subject', data.subject);
+      formData.append('content', data.content);
       
-      if (error) throw error;
+      if (data.replyTo) {
+        formData.append('replyTo', data.replyTo);
+      }
+      
+      // Dodaj załączniki, jeśli istnieją
+      if (data.attachments && data.attachments.length > 0) {
+        data.attachments.forEach((file, index) => {
+          formData.append(`attachment${index}`, file);
+        });
+      }
+      
+      // Bezpośrednie wywołanie funkcji Edge z FormData dla załączników
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-custom-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`
+          },
+          body: formData
+        }
+      );
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Błąd wysyłania wiadomości');
+      }
       
       toast({
         title: "Email wysłany pomyślnie",
