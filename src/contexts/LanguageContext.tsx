@@ -65,7 +65,7 @@ const translations: Record<Language, Record<string, string>> = {
     "services.title": "Usługi",
     "services.all": "Zobacz wszystkie usługi",
     "services.web.title": "Tworzenie aplikacji internetowych",
-    "services.web.subtitle1": "Zabłyśnij w internecie",
+    "services.web.subtitle1": "Zabłyśnij w internecie i poczuj moc najbardziej zaawansowanych komputerów świata",
     "services.web.subtitle2": "Robię szybko, robię tanio, robię dobrze",
     "services.web.subtitle3": "Zamów stronę, z której duma będzie Cię rozpierać",
     "services.web.desc": "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych z wykorzystaniem najnowszych technologii. Od prostych stron po zaawansowane systemy zarządzania, tworzę rozwiązania szyte na miarę potrzeb klienta.",
