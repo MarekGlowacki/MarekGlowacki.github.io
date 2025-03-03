@@ -22,16 +22,24 @@ export const VisualEditor = ({
   onLinkCancel 
 }: VisualEditorProps) => {
   const editorRef = useRef<HTMLDivElement>(null);
+  const isUpdatingRef = useRef(false);
   
+  // This effect only runs when the value prop changes from outside
   useEffect(() => {
-    if (editorRef.current) {
-      editorRef.current.innerHTML = value;
+    if (editorRef.current && !isUpdatingRef.current) {
+      // Only update innerHTML if it's different from current value
+      // to avoid cursor reset when typing
+      if (editorRef.current.innerHTML !== value) {
+        editorRef.current.innerHTML = value;
+      }
     }
   }, [value]);
   
   const handleEditorChange = () => {
     if (editorRef.current) {
+      isUpdatingRef.current = true;
       onChange(editorRef.current.innerHTML);
+      isUpdatingRef.current = false;
     }
   };
   

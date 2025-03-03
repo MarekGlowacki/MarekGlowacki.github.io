@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
@@ -25,11 +24,16 @@ const EmailComposer = () => {
     setIsSending(true);
     
     try {
+      // Clean up the content to prevent extra linebreaks
+      const cleanedContent = data.content
+        .replace(/<p><br><\/p>/g, '<p></p>')
+        .replace(/<br><br>/g, '<br>');
+      
       // Przygotuj dane do wysłania
       const formData = new FormData();
       formData.append('to', data.to);
       formData.append('subject', data.subject);
-      formData.append('content', data.content);
+      formData.append('content', cleanedContent);
       
       if (data.replyTo) {
         formData.append('replyTo', data.replyTo);

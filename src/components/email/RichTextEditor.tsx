@@ -43,6 +43,18 @@ export const RichTextEditor = ({ id, value, onChange, htmlMode = false }: RichTe
     setShowLinkInput(false);
   };
   
+  // Handler for content changes that normalizes line breaks
+  const handleContentChange = (newContent: string) => {
+    // Normalize content to prevent extra line breaks
+    // We don't remove all <br> tags since they're needed for actual line breaks
+    // But we prevent double <br> tags which cause the "scattered" appearance
+    const normalizedContent = newContent
+      .replace(/<p><br><\/p>/g, '<p></p>')
+      .replace(/<p>(\s*)<\/p>/g, '<p></p>');
+    
+    onChange(normalizedContent);
+  };
+  
   if (htmlMode) {
     return <HtmlEditor value={value} onChange={onChange} />;
   }
@@ -54,7 +66,7 @@ export const RichTextEditor = ({ id, value, onChange, htmlMode = false }: RichTe
       <VisualEditor 
         id={id}
         value={value}
-        onChange={onChange}
+        onChange={handleContentChange}
         execCommand={execCommand}
         showLinkInput={showLinkInput}
         onLinkInsert={handleLinkInsert}
