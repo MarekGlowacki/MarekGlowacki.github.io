@@ -11,7 +11,7 @@ export const HtmlEditor = ({ value, onChange }: HtmlEditorProps) => {
     <textarea
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full h-64 p-4 font-mono text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+      className="w-full h-64 p-4 font-mono text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
       placeholder="<p>Wprowadź kod HTML tutaj...</p>"
     />
   );

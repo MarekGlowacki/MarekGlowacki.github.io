@@ -81,7 +81,14 @@ const handler = async (req: Request): Promise<Response> => {
       throw new Error("Missing required fields: to, subject, or content");
     }
 
-    console.log(`Wysyłanie email do: ${to}`);
+    // Split recipients by semicolon and trim whitespace
+    const recipients = to.split(';').map(email => email.trim()).filter(email => email);
+    
+    if (recipients.length === 0) {
+      throw new Error("No valid recipient email addresses provided");
+    }
+
+    console.log(`Wysyłanie email do ${recipients.length} odbiorców:`, recipients);
     console.log(`Temat: ${subject}`);
     console.log(`ReplyTo: ${replyTo || 'Not specified'}`);
     console.log(`Załączniki: ${attachments.length}`);
@@ -92,7 +99,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     const emailOptions = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",
-      to: [to],
+      to: recipients,
       subject: subject,
       html: content,
       reply_to: replyTo,

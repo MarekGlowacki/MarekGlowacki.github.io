@@ -20,10 +20,12 @@ export const RecipientFields = ({ to, setTo, subject, setSubject }: RecipientFie
           type="email"
           value={to}
           onChange={(e) => setTo(e.target.value)}
-          placeholder="adres@email.com"
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+          placeholder="adres@email.com; drugi@email.com; trzeci@email.com"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           required
+          multiple
         />
+        <p className="mt-1 text-xs text-gray-500">Możesz wpisać wiele adresów email oddzielonych średnikiem (;)</p>
       </div>
       
       <div>
@@ -36,7 +38,7 @@ export const RecipientFields = ({ to, setTo, subject, setSubject }: RecipientFie
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           placeholder="Temat wiadomości"
-          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+          className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
           required
         />
       </div>
