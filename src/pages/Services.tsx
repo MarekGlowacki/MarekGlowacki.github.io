@@ -4,8 +4,6 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Card, CardContent } from "@/components/ui/card";
-import { Rocket, Globe, Database, Calendar, CreditCard, Shield, Clock } from "lucide-react";
 
 const Services = () => {
   const { t } = useLanguage();
@@ -28,17 +26,9 @@ const Services = () => {
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center">
               <h2 className="text-3xl font-display text-estate-800 mb-6">{t("services.web.title")}</h2>
-              <div className="space-y-4 mb-6">
-                <p className="text-xl font-medium text-estate-600">
-                  {t("services.web.subtitle1")}
-                </p>
-                <p className="text-lg font-semibold text-[#49be25]">
-                  {t("services.web.subtitle2")}
-                </p>
-                <p className="text-lg text-estate-600 italic">
-                  {t("services.web.subtitle3")}
-                </p>
-              </div>
+              <p className="text-estate-600 mb-6">
+                {t("services.web.desc")}
+              </p>
               <Link to="/services/web-development">
                 <Button className="w-fit bg-[#49be25] text-white hover:bg-[#3da51e]">
                   {t("services.more")}
@@ -54,7 +44,7 @@ const Services = () => {
               <p className="text-estate-600 mb-6">
                 {t("services.ai.desc")}
               </p>
-              <Link to="/services/ai-business">
+              <Link to="/project/ai-for-business">
                 <Button className="w-fit bg-[#49be25] text-white hover:bg-[#3da51e]">
                   {t("services.more")}
                 </Button>

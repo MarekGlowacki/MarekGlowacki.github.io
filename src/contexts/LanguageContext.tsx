@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type Language = "pl" | "en";
@@ -110,7 +111,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.weekdays": "Pon - Pt: 08:00 - 20:00",
     "footer.weekend": "Sobota - Niedziela: Zamknięte",
     "footer.newsletter": "Bądź na bieżąco",
-    "footer.newsletter.title": "Dołącz do newslettera",
+    "footer.newsletter.title": "Dołącz do newslettera", // Dodany brakujący klucz
     "footer.newsletter.desc": "Zapisz się na newsletter, aby otrzymywać informacje o nowościach, ofertach specjalnych i przydatnych poradach.",
     "footer.newsletter.email": "Twój adres email",
     "footer.newsletter.submit": "Zapisz się",
@@ -122,7 +123,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.cookies": "Cookies",
     "footer.cookies.manage": "Zarządzaj cookies",
 
-    // Newsletter
+    // Newsletter - brakujące klucze
     "footer.newsletter.invalidEmail.title": "Nieprawidłowy adres email",
     "footer.newsletter.invalidEmail.desc": "Proszę podać poprawny adres email.",
     "footer.newsletter.error.title": "Wystąpił błąd",
@@ -192,8 +193,8 @@ const translations: Record<Language, Record<string, string>> = {
     "services.title": "Services",
     "services.all": "See all services",
     "services.web.title": "Web Application Development",
-    "services.web.subtitle1": "Shine online and feel the power of the world's most advanced computers",
-    "services.web.subtitle2": "I work fast, affordably, and well",
+    "services.web.subtitle1": "Shine online",
+    "services.web.subtitle2": "I work fast, affordable, and well",
     "services.web.subtitle3": "Order a website that will make you proud",
     "services.web.desc": "I specialize in creating modern web applications using the latest technologies. From simple websites to advanced management systems, I create solutions tailored to the client's needs.",
     "services.ai.title": "Artificial Intelligence for Business",
@@ -238,7 +239,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.weekdays": "Mon - Fri: 08:00 - 20:00",
     "footer.weekend": "Saturday - Sunday: Closed",
     "footer.newsletter": "Stay updated",
-    "footer.newsletter.title": "Join our newsletter",
+    "footer.newsletter.title": "Join our newsletter", // Dodany brakujący klucz
     "footer.newsletter.desc": "Subscribe to our newsletter to receive information about news, special offers, and useful tips.",
     "footer.newsletter.email": "Your email address",
     "footer.newsletter.submit": "Subscribe",
@@ -250,7 +251,7 @@ const translations: Record<Language, Record<string, string>> = {
     "footer.cookies": "Cookies",
     "footer.cookies.manage": "Manage cookies",
 
-    // Newsletter
+    // Newsletter - dodane brakujące klucze
     "footer.newsletter.invalidEmail.title": "Invalid email address",
     "footer.newsletter.invalidEmail.desc": "Please provide a valid email address.",
     "footer.newsletter.error.title": "An error occurred",
