@@ -18,7 +18,8 @@ import {
   Zap, 
   DollarSign, 
   Hammer, 
-  Languages
+  Languages,
+  ExternalLink
 } from "lucide-react";
 
 const WebDevelopment = () => {
@@ -29,6 +30,7 @@ const WebDevelopment = () => {
       title: "Tworzenie aplikacji internetowych",
       description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
       cta: "Zamów aplikację",
+      comparePerformance: "Zobacz porównanie wydajności",
       marketingSection: {
         title: "Kompleksowe rozwiązania cyfrowe",
         subtitle: "Wszystko szyte na miarę na najwyższym światowym poziomie",
@@ -66,7 +68,9 @@ const WebDevelopment = () => {
         {
           title: "Robię dobrze",
           description: "Dzięki temu, że jestem niezależnym programistą z ogromną łatwością jestem w stanie aktualizować używane technologie do najnowszych trendów na świecie.",
-          icon: <Hammer className="w-12 h-12 text-[#49be25]" />
+          icon: <Hammer className="w-12 h-12 text-[#49be25]" />,
+          link: "/services/performance-comparison",
+          linkText: "Zobacz porównanie wydajności"
         },
         {
           title: "Robię szybko",
@@ -107,6 +111,7 @@ const WebDevelopment = () => {
       title: "Web Application Development",
       description: "I specialize in creating modern web applications tailored to your business needs. I use the latest technologies and best programming practices to deliver solutions of the highest quality.",
       cta: "Order an application",
+      comparePerformance: "See performance comparison",
       marketingSection: {
         title: "Comprehensive Digital Solutions",
         subtitle: "Everything custom-tailored at the highest global standards",
@@ -144,7 +149,9 @@ const WebDevelopment = () => {
         {
           title: "I do it well",
           description: "As an independent programmer, I can easily update the technologies I use to match the latest global trends.",
-          icon: <Hammer className="w-12 h-12 text-[#49be25]" />
+          icon: <Hammer className="w-12 h-12 text-[#49be25]" />,
+          link: "/services/performance-comparison",
+          linkText: "See performance comparison"
         },
         {
           title: "I do it quickly",
@@ -198,11 +205,18 @@ const WebDevelopment = () => {
                 {c.description}
               </p>
               
-              <Link to="/contact">
-                <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
-                  {c.cta}
-                </Button>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link to="/contact">
+                  <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
+                    {c.cta}
+                  </Button>
+                </Link>
+                <Link to="/services/performance-comparison">
+                  <Button variant="outline" className="border-[#49be25] text-[#49be25] hover:bg-[#f0faf0]">
+                    {c.comparePerformance} <ExternalLink className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
             </div>
             
             <div className="space-y-8">
@@ -289,7 +303,12 @@ const WebDevelopment = () => {
                     </div>
                     <div>
                       <h3 className="text-2xl font-display text-estate-800 mb-3">{point.title}</h3>
-                      <p className="text-estate-600">{point.description}</p>
+                      <p className="text-estate-600 mb-3">{point.description}</p>
+                      {point.link && (
+                        <Link to={point.link} className="inline-flex items-center text-[#49be25] hover:text-[#3da51e] font-medium">
+                          {point.linkText} <ExternalLink className="ml-1 w-4 h-4" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

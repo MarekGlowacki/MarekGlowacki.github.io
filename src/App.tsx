@@ -18,6 +18,7 @@ import CRM from "./pages/ProjectDetails/CRM";
 import WebDevelopment from "./pages/ServiceDetails/WebDevelopment";
 import AIBusiness from "./pages/ServiceDetails/AIBusiness";
 import BitcoinService from "./pages/ServiceDetails/BitcoinConsulting";
+import PerformanceComparison from "./pages/ServiceDetails/PerformanceComparison";
 import LegalTerms from "./pages/LegalTerms";
 import VerifyEmail from "./pages/VerifyEmail";
 import EmailComposer from "./pages/EmailComposer";
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/services/web-development" element={<WebDevelopment />} />
             <Route path="/services/ai-business" element={<AIBusiness />} />
             <Route path="/services/bitcoin-consulting" element={<BitcoinService />} />
+            <Route path="/services/performance-comparison" element={<PerformanceComparison />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/project/dca-crypto-monitor" element={<DCACryptoMonitor />} />
             <Route path="/project/ai-for-business" element={<AIForBusiness />} />
