@@ -5,7 +5,21 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
-import { Check, Rocket, Globe, Database, Calendar, CreditCard, Shield, Clock } from "lucide-react";
+import { 
+  Check, 
+  Rocket, 
+  Globe, 
+  Database, 
+  Calendar, 
+  CreditCard, 
+  Shield, 
+  Clock, 
+  Code, 
+  Zap, 
+  DollarSign, 
+  Hammer, 
+  Languages
+} from "lucide-react";
 
 const WebDevelopment = () => {
   const { language } = useLanguage();
@@ -14,26 +28,6 @@ const WebDevelopment = () => {
     pl: {
       title: "Tworzenie aplikacji internetowych",
       description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
-      services: {
-        title: "Oferowane usługi:",
-        items: [
-          "Strony i aplikacje internetowe",
-          "Systemy zarządzania treścią (CMS)",
-          "Aplikacje e-commerce",
-          "Integracje z API",
-          "Progressive Web Apps (PWA)"
-        ]
-      },
-      technologies: {
-        title: "Technologie:",
-        items: [
-          "React i TypeScript",
-          "Node.js i Express",
-          "Next.js",
-          "Tailwind CSS",
-          "MongoDB i PostgreSQL"
-        ]
-      },
       cta: "Zamów aplikację",
       marketingSection: {
         title: "Kompleksowe rozwiązania cyfrowe",
@@ -47,11 +41,49 @@ const WebDevelopment = () => {
           { name: "Systemy rezerwacji", icon: <Calendar className="w-6 h-6 text-[#49be25]" /> },
           { name: "Zintegrowane płatności", icon: <CreditCard className="w-6 h-6 text-[#49be25]" /> }
         ],
-        fastDelivery: {
-          title: "Twoja strona w 1 dzień!",
-          subtitle: "Sprawdź mnie!"
-        }
       },
+      features: {
+        title: "Dlaczego warto wybrać moje usługi?",
+        items: [
+          {
+            title: "Rozwiązania szyte na miarę",
+            description: "Mam 100% kontroli nad kodem, gdyż tworzę rozwiązania w całości od początku. Jestem w stanie dowolnie rozszerzać aplikację według uznania, a nie \"Jeśli wtyczka pozwoli\".",
+            icon: <Code className="w-8 h-8 text-[#49be25]" />
+          },
+          {
+            title: "Najszybsze technologie świata",
+            description: "Masz pewność, że moje rozwiązania będą bezkonkurencyjne pod względem wydajności, bo korzystam z najnowocześniejszych technologii. Sprawdź mnie!",
+            icon: <Zap className="w-8 h-8 text-[#49be25]" />
+          },
+          {
+            title: "Pierwszy szkic za darmo w ciągu 24h!",
+            description: "Od przyjęcia zamówienia deklaruję zrobienie pierwszego szkicu w 24h i potem decydujesz czy to jest kierunek w jakim chcesz iść, czy zmieniamy koncepcję.",
+            icon: <Clock className="w-8 h-8 text-[#49be25]" />
+          }
+        ]
+      },
+      sellingPoints: [
+        {
+          title: "Robię dobrze",
+          description: "Dzięki temu, że jestem niezależnym programistą z ogromną łatwością jestem w stanie aktualizować używane technologie do najnowszych trendów na świecie.",
+          icon: <Hammer className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "Robię szybko",
+          description: "Otrzymujesz pierwszy szkic już następnego dnia od przyjęcia zamówienia! A całość projektu skończę w ciągu kilku tygodni, nie miesięcy.",
+          icon: <Clock className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "Robię tanio",
+          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostsze wizytówki jestem w stanie zrobić już od 997 zł netto!",
+          icon: <DollarSign className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "Strona w każdym języku świata!",
+          description: "Zapewniam możliwość przetłumaczenia strony na dowolną liczbę wszystkich języków na świecie.",
+          icon: <Languages className="w-12 h-12 text-[#49be25]" />
+        }
+      ],
       advantages: [
         {
           title: "Najnowocześniejsze technologie",
@@ -74,26 +106,6 @@ const WebDevelopment = () => {
     en: {
       title: "Web Application Development",
       description: "I specialize in creating modern web applications tailored to your business needs. I use the latest technologies and best programming practices to deliver solutions of the highest quality.",
-      services: {
-        title: "Services offered:",
-        items: [
-          "Websites and web applications",
-          "Content Management Systems (CMS)",
-          "E-commerce applications",
-          "API integrations",
-          "Progressive Web Apps (PWA)"
-        ]
-      },
-      technologies: {
-        title: "Technologies:",
-        items: [
-          "React and TypeScript",
-          "Node.js and Express",
-          "Next.js",
-          "Tailwind CSS",
-          "MongoDB and PostgreSQL"
-        ]
-      },
       cta: "Order an application",
       marketingSection: {
         title: "Comprehensive Digital Solutions",
@@ -107,11 +119,49 @@ const WebDevelopment = () => {
           { name: "Reservation systems", icon: <Calendar className="w-6 h-6 text-[#49be25]" /> },
           { name: "Integrated payments", icon: <CreditCard className="w-6 h-6 text-[#49be25]" /> }
         ],
-        fastDelivery: {
-          title: "Your website in 1 day!",
-          subtitle: "Try me!"
-        }
       },
+      features: {
+        title: "Why choose my services?",
+        items: [
+          {
+            title: "Tailor-made solutions",
+            description: "I have 100% control over the code, as I create solutions entirely from scratch. I can extend the application as needed, not limited by \"if a plugin allows it\".",
+            icon: <Code className="w-8 h-8 text-[#49be25]" />
+          },
+          {
+            title: "Fastest technologies in the world",
+            description: "You can be sure that my solutions will be unrivaled in terms of performance because I use the most modern technologies. Try me!",
+            icon: <Zap className="w-8 h-8 text-[#49be25]" />
+          },
+          {
+            title: "First draft free within 24 hours!",
+            description: "From the moment I accept your order, I commit to creating the first draft within 24 hours, and then you decide if it's the direction you want to go, or if we change the concept.",
+            icon: <Clock className="w-8 h-8 text-[#49be25]" />
+          }
+        ]
+      },
+      sellingPoints: [
+        {
+          title: "I do it well",
+          description: "As an independent programmer, I can easily update the technologies I use to match the latest global trends.",
+          icon: <Hammer className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "I do it quickly",
+          description: "You receive the first draft the very next day after placing an order! And I'll complete the entire project within a few weeks, not months.",
+          icon: <Clock className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "I do it affordably",
+          description: "I execute all solutions personally, I don't need to maintain a team of programmers, so I can offer the most competitive rates on the market. I can create the simplest business cards starting from just 997 PLN net!",
+          icon: <DollarSign className="w-12 h-12 text-[#49be25]" />
+        },
+        {
+          title: "Website in any language in the world!",
+          description: "I provide the ability to translate the site into any number of languages in the world.",
+          icon: <Languages className="w-12 h-12 text-[#49be25]" />
+        }
+      ],
       advantages: [
         {
           title: "Cutting-edge technologies",
@@ -148,26 +198,6 @@ const WebDevelopment = () => {
                 {c.description}
               </p>
               
-              <div className="space-y-6 mb-8">
-                <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.services.title}</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    {c.services.items.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">{c.technologies.title}</h3>
-                  <ul className="list-disc list-inside text-estate-600 space-y-2">
-                    {c.technologies.items.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-
               <Link to="/contact">
                 <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                   {c.cta}
@@ -196,8 +226,31 @@ const WebDevelopment = () => {
             </div>
           </div>
 
+          {/* Sekcja głównych funkcji */}
+          <div className="mt-24 bg-gradient-to-br from-[#f7fbff] to-[#f9fff4] rounded-2xl p-8 lg:p-12 shadow-lg">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-display text-estate-800 mb-4">{c.features.title}</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {c.features.items.map((feature, idx) => (
+                <Card key={idx} className="border-2 border-[#e8f4ff] hover:border-[#49be25] transition-all duration-300 bg-white hover:shadow-lg hover:scale-105">
+                  <CardContent className="p-8">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="mb-6 p-4 bg-[#f0faf0] rounded-full">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-xl font-display text-estate-800 mb-3">{feature.title}</h3>
+                      <p className="text-estate-600">{feature.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
           {/* Nowa sekcja marketingowa */}
-          <div className="mt-24 bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-2xl p-8 shadow-lg">
+          <div className="mt-16 bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-2xl p-8 shadow-lg">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display text-estate-800 mb-4">{c.marketingSection.title}</h2>
               <p className="text-xl text-estate-600 max-w-3xl mx-auto">{c.marketingSection.subtitle}</p>
@@ -216,17 +269,31 @@ const WebDevelopment = () => {
               ))}
             </div>
 
-            <div className="bg-[#49be25] text-white rounded-xl p-8 text-center animate-pulse">
-              <h2 className="text-3xl font-display mb-2">{c.marketingSection.fastDelivery.title}</h2>
-              <p className="text-xl font-medium">{c.marketingSection.fastDelivery.subtitle}</p>
-            </div>
-
             <div className="mt-12 flex justify-center">
               <Link to="/contact">
                 <Button size="lg" className="bg-[#49be25] text-white hover:bg-[#3da51e] text-lg px-8 py-6 h-auto">
                   {c.cta}
                 </Button>
               </Link>
+            </div>
+          </div>
+          
+          {/* Główne zalety - Robię dobrze, szybko, tanio */}
+          <div className="mt-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {c.sellingPoints.map((point, idx) => (
+                <div key={idx} className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-[#49be25] hover:shadow-xl transition-shadow">
+                  <div className="flex items-start gap-6">
+                    <div className="p-4 bg-[#f0faf0] rounded-lg">
+                      {point.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-display text-estate-800 mb-3">{point.title}</h3>
+                      <p className="text-estate-600">{point.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
           
