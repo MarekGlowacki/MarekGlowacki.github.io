@@ -90,27 +90,27 @@ const PerformanceComparison = () => {
           </div>
 
           <div className="bg-gradient-to-br from-[#f7fbff] to-[#f9fff4] rounded-2xl p-8 lg:p-12 shadow-lg mb-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl font-display text-estate-800 mb-6">{c.description}</h2>
-                <p className="text-estate-600 mb-4">{c.explanation}</p>
-                <p className="text-estate-600 mb-4">{c.paragraph1}</p>
-                <p className="text-estate-600">{c.paragraph2}</p>
-              </div>
-              <div className="flex justify-center">
-                <div className="relative rounded-lg overflow-hidden shadow-xl">
-                  <img 
-                    src="/images/performance-comparison.gif" 
-                    alt="Performance comparison"
-                    className="w-full h-auto"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-                    <div className="bg-white bg-opacity-90 px-6 py-3 rounded-lg">
-                      <p className="text-estate-800 font-semibold">GIF ładowania stron</p>
-                    </div>
+            {/* GIF now above the description instead of beside it */}
+            <div className="mb-10">
+              <div className="relative rounded-lg overflow-hidden shadow-xl max-w-4xl mx-auto">
+                <img 
+                  src="/images/performance-comparison.gif" 
+                  alt="Performance comparison"
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                  <div className="bg-white bg-opacity-90 px-6 py-3 rounded-lg">
+                    <p className="text-estate-800 font-semibold">GIF ładowania stron</p>
                   </div>
                 </div>
               </div>
+            </div>
+            
+            <div>
+              <h2 className="text-3xl font-display text-estate-800 mb-6">{c.description}</h2>
+              <p className="text-estate-600 mb-4">{c.explanation}</p>
+              <p className="text-estate-600 mb-4">{c.paragraph1}</p>
+              <p className="text-estate-600">{c.paragraph2}</p>
             </div>
           </div>
 
