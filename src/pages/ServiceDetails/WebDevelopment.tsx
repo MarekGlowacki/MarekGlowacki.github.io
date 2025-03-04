@@ -53,7 +53,7 @@ const WebDevelopment = () => {
         },
         affordable: {
           title: "Robię tanio",
-          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostrze wizytówki jestem w stanie zrobić już od 997 zł netto!"
+          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostrze wizytówki jestem w stanie zrobić już od 1 970 zł netto!"
         },
         multiLanguage: {
           title: "Strona w każdym języku świata!",
