@@ -13,6 +13,27 @@ const WebDevelopment = () => {
   const content = {
     pl: {
       title: "Tworzenie aplikacji internetowych",
+      description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
+      services: {
+        title: "Oferowane usługi:",
+        items: [
+          "Strony i aplikacje internetowe",
+          "Systemy zarządzania treścią (CMS)",
+          "Aplikacje e-commerce",
+          "Integracje z API",
+          "Progressive Web Apps (PWA)"
+        ]
+      },
+      technologies: {
+        title: "Technologie:",
+        items: [
+          "React i TypeScript",
+          "Node.js i Express",
+          "Next.js",
+          "Tailwind CSS",
+          "MongoDB i PostgreSQL"
+        ]
+      },
       cta: "Zamów aplikację",
       marketingSection: {
         title: "Kompleksowe rozwiązania cyfrowe",
@@ -53,7 +74,7 @@ const WebDevelopment = () => {
         },
         affordable: {
           title: "Robię tanio",
-          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostrze wizytówki jestem w stanie zrobić już od 1 970 zł netto!"
+          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostrze wizytówki jestem w stanie zrobić już od 997 zł netto!"
         },
         multiLanguage: {
           title: "Strona w każdym języku świata!",
@@ -63,6 +84,27 @@ const WebDevelopment = () => {
     },
     en: {
       title: "Web Application Development",
+      description: "I specialize in creating modern web applications tailored to your business needs. I use the latest technologies and best programming practices to deliver solutions of the highest quality.",
+      services: {
+        title: "Services offered:",
+        items: [
+          "Websites and web applications",
+          "Content Management Systems (CMS)",
+          "E-commerce applications",
+          "API integrations",
+          "Progressive Web Apps (PWA)"
+        ]
+      },
+      technologies: {
+        title: "Technologies:",
+        items: [
+          "React and TypeScript",
+          "Node.js and Express",
+          "Next.js",
+          "Tailwind CSS",
+          "MongoDB and PostgreSQL"
+        ]
+      },
       cta: "Order an application",
       marketingSection: {
         title: "Comprehensive Digital Solutions",
@@ -113,7 +155,7 @@ const WebDevelopment = () => {
     }
   };
 
-  // Wybierz odpowiednią wersję językową
+  // Choose the appropriate language version
   const c = language === "pl" ? content.pl : content.en;
 
   return (
@@ -125,12 +167,34 @@ const WebDevelopment = () => {
             <div>
               <h1 className="text-5xl font-display text-estate-800 mb-10">{c.title}</h1>
               
-              {/* Headliners - atrakcyjne hasła */}
-              <div className="space-y-6 mb-12">
-                <p className="text-2xl font-display text-estate-800 text-pretty">
+              {/* Original description */}
+              <p className="text-lg text-estate-600 mb-8">
+                {c.description}
+              </p>
+              
+              {/* Services and Technologies */}
+              <div className="mb-8">
+                <h3 className="text-xl font-display text-estate-800 mb-2">{c.services.title}</h3>
+                <ul className="list-disc pl-5 mb-4 text-estate-600">
+                  {c.services.items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+                
+                <h3 className="text-xl font-display text-estate-800 mb-2">{c.technologies.title}</h3>
+                <ul className="list-disc pl-5 mb-8 text-estate-600">
+                  {c.technologies.items.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              
+              {/* Catchy headlines in a highlighted section */}
+              <div className="bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-lg p-4 mb-10 shadow-sm">
+                <p className="text-xl font-display text-estate-800 mb-2">
                   {c.sellingPoints.headline1}
                 </p>
-                <p className="text-xl font-semibold text-[#49be25]">
+                <p className="text-lg font-semibold text-[#49be25] mb-2">
                   {c.sellingPoints.headline2}
                 </p>
                 <p className="text-lg text-estate-600 italic">
@@ -166,7 +230,7 @@ const WebDevelopment = () => {
             </div>
           </div>
 
-          {/* Sekcja marketingowa */}
+          {/* Comprehensive Digital Solutions section */}
           <div className="mt-24 bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-2xl p-8 shadow-lg">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display text-estate-800 mb-4">{c.marketingSection.title}</h2>
@@ -187,7 +251,7 @@ const WebDevelopment = () => {
             </div>
           </div>
           
-          {/* Zalety z ikonami */}
+          {/* Selling points with icons */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
               <div className="flex items-center mb-4">
