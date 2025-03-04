@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -190,7 +189,6 @@ const WebDevelopment = () => {
     }
   };
 
-  // Wybierz odpowiednią wersję językową
   const c = language === "pl" ? content.pl : content.en;
 
   return (
@@ -209,11 +207,6 @@ const WebDevelopment = () => {
                 <Link to="/contact">
                   <Button className="bg-[#49be25] text-white hover:bg-[#3da51e]">
                     {c.cta}
-                  </Button>
-                </Link>
-                <Link to="/services/performance-comparison">
-                  <Button variant="outline" className="border-[#49be25] text-[#49be25] hover:bg-[#f0faf0]">
-                    {c.comparePerformance} <ExternalLink className="ml-2 w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -240,7 +233,6 @@ const WebDevelopment = () => {
             </div>
           </div>
 
-          {/* Sekcja głównych funkcji */}
           <div className="mt-24 bg-gradient-to-br from-[#f7fbff] to-[#f9fff4] rounded-2xl p-8 lg:p-12 shadow-lg">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display text-estate-800 mb-4">{c.features.title}</h2>
@@ -263,7 +255,6 @@ const WebDevelopment = () => {
             </div>
           </div>
 
-          {/* Nowa sekcja marketingowa */}
           <div className="mt-16 bg-gradient-to-r from-[#f4f9ff] to-[#f9fff4] rounded-2xl p-8 shadow-lg">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-display text-estate-800 mb-4">{c.marketingSection.title}</h2>
@@ -292,7 +283,6 @@ const WebDevelopment = () => {
             </div>
           </div>
           
-          {/* Główne zalety - Robię dobrze, szybko, tanio */}
           <div className="mt-24">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               {c.sellingPoints.map((point, idx) => (
@@ -316,7 +306,6 @@ const WebDevelopment = () => {
             </div>
           </div>
           
-          {/* Lista zalet z ikonami */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
             {c.advantages.map((advantage, i) => (
               <div key={i} className="flex items-start space-x-4">
