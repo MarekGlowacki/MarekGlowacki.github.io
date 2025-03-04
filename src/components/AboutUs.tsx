@@ -35,17 +35,6 @@ const AboutUs = () => {
             </p>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <span className="p-2 rounded-lg bg-[#49be25]/10">
-                  <BadgeDollarSign className="w-6 h-6 text-[#49be25]" />
-                </span>
-                <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.finance")}</h3>
-                  <p className="text-estate-600">
-                    {t("about.finance.desc")}
-                  </p>
-                </div>
-              </div>
               
               <div className="flex items-start gap-4">
                 <span className="p-2 rounded-lg bg-[#49be25]/10">
@@ -55,6 +44,30 @@ const AboutUs = () => {
                   <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.corporate")}</h3>
                   <p className="text-estate-600">
                     {t("about.corporate.desc")}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <Bot className="w-6 h-6 text-[#49be25]" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.bots")}</h3>
+                  <p className="text-estate-600">
+                    {t("about.bots.desc")}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <span className="p-2 rounded-lg bg-[#49be25]/10">
+                  <BadgeDollarSign className="w-6 h-6 text-[#49be25]" />
+                </span>
+                <div>
+                  <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.finance")}</h3>
+                  <p className="text-estate-600">
+                    {t("about.finance.desc")}
                   </p>
                 </div>
               </div>
@@ -91,18 +104,6 @@ const AboutUs = () => {
                   <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.btcexpert")}</h3>
                   <p className="text-estate-600">
                     {t("about.btcexpert.desc")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <span className="p-2 rounded-lg bg-[#49be25]/10">
-                  <Bot className="w-6 h-6 text-[#49be25]" />
-                </span>
-                <div>
-                  <h3 className="text-xl font-display text-estate-800 mb-2">{t("about.bots")}</h3>
-                  <p className="text-estate-600">
-                    {t("about.bots.desc")}
                   </p>
                 </div>
               </div>
