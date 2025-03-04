@@ -15,7 +15,7 @@ const PerformanceComparison = () => {
       title: "Porównanie wydajności",
       subtitle: "Dlaczego szybkość ma znaczenie?",
       description: "Poniżej przedstawiam porównanie czasu ładowania mojej strony z konkurencyjną stroną wykonaną za 13 tysięcy złotych kilka lat temu. Różnica jest zauważalna gołym okiem!",
-      explanation: "Na powyższym filmiku jest nagrany czas wczytywania strony, która została zakupiona kilka lat temu za 13 tyś zł (zrobiona w starych technologiach) oraz mojej strony (zrobiona w najnowszych technologiach) w porównywalnych sekcjach -> strona główna i kontakt.",
+      explanation: "Na przedstawionym filmiku jest nagrany czas wczytywania strony, która została zakupiona kilka lat temu za 13 tyś zł (zrobiona w starych technologiach) oraz mojej strony (zrobiona w najnowszych technologiach) w porównywalnych sekcjach -> strona główna i kontakt.",
       paragraph1: "Na stronie 13k za każdym przełączaniem się między sekcją kontakt czas wczytywania oscyluje w okolicach ponad 2 sekund. Czyli za każdym kliknięciem w oddzielną sekcję, klient musi czekać minimum 2 sekundy, by zobaczyć daną treść, co wpływa na doświadczenie klienta z marką.",
       paragraph2: "Natomiast na mojej stronie podczas pierwszego wczytywania klient podobnie czeka w okolicach nieco ponad 2 sekund, jednakże od tej pory przełączanie między sekcją kontakt odbywa się natychmiast (kilka milisekund). Dzięki takiej szybkości ładowania klient doświadcza, że ma do czynienia z prawdziwymi profesjonalistami, nie jest znudzony czekaniem, więc przyjemniej kojarzy markę i ma więcej motywacji do zaangażowania się.",
       benefits: {
