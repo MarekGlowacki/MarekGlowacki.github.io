@@ -26,9 +26,6 @@ const Services = () => {
             </div>
             <div className="order-1 lg:order-2 flex flex-col justify-center">
               <h2 className="text-3xl font-display text-estate-800 mb-6">{t("services.web.title")}</h2>
-              <p className="text-xl font-display text-estate-800 mb-4">{t("services.web.subtitle1")}</p>
-              <p className="text-xl font-display text-estate-800 mb-4">{t("services.web.subtitle2")}</p>
-              <p className="text-xl font-display text-estate-800 mb-6">{t("services.web.subtitle3")}</p>
               <p className="text-estate-600 mb-6">
                 {t("services.web.desc")}
               </p>
