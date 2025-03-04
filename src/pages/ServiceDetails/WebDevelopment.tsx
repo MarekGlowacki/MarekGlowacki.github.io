@@ -30,7 +30,6 @@ const WebDevelopment = () => {
       title: "Tworzenie aplikacji internetowych",
       description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
       cta: "Zamów aplikację",
-      comparePerformance: "Zobacz porównanie wydajności",
       marketingSection: {
         title: "Kompleksowe rozwiązania cyfrowe",
         subtitle: "Wszystko szyte na miarę na najwyższym światowym poziomie",
