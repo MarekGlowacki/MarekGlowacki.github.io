@@ -20,6 +20,13 @@ import {
   Languages,
   ExternalLink
 } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const WebDevelopment = () => {
   const { language } = useLanguage();
@@ -29,7 +36,56 @@ const WebDevelopment = () => {
       title: "Tworzenie aplikacji internetowych",
       description: "Specjalizuję się w tworzeniu nowoczesnych aplikacji internetowych dostosowanych do potrzeb Twojego biznesu. Wykorzystuję najnowsze technologie i najlepsze praktyki programistyczne, aby dostarczyć rozwiązania najwyższej jakości.",
       cta: "Zamów aplikację",
-      comparePerformance: "Zobacz porównanie wydajności",
+      portfolio: {
+        title: "Przykłady moich produkcji:",
+        projects: [
+          { 
+            name: "Karolina Siemion", 
+            url: "https://delicate-empanada-d272d8.netlify.app",
+            type: "Strona personalna"
+          },
+          { 
+            name: "Arkadiusz Sikorski", 
+            url: "https://ephemeral-brigadeiros-7225df.netlify.app",
+            type: "Portfolio"
+          },
+          { 
+            name: "Jacek Pęczak", 
+            url: "https://animated-style-fusion.vercel.app",
+            type: "Strona profesjonalna"
+          },
+          { 
+            name: "Daniel Sciborek", 
+            url: "https://peaceful-gingersnap-e1d5f8.netlify.app",
+            type: "Strona personalna"
+          },
+          { 
+            name: "Asia Kuźma", 
+            url: "https://deft-starlight-518597.netlify.app",
+            type: "Portfolio"
+          },
+          { 
+            name: "DCA Crypto Monitor", 
+            url: "https://gentle-klepon-d28eaf.netlify.app/",
+            type: "Aplikacja webowa"
+          },
+          { 
+            name: "CRM Zarządzanie szkołą", 
+            url: "https://candid-lamington-83dcb0.netlify.app/",
+            type: "System CRM"
+          },
+          { 
+            name: "Magda Hawryluk", 
+            url: "https://verdant-kashata-8db74f.netlify.app/",
+            type: "Portfolio"
+          },
+          { 
+            name: "OKEiWR", 
+            url: "https://nimble-florentine-02af1e.netlify.app/",
+            type: "Strona organizacji"
+          }
+        ]
+      },
       marketingSection: {
         title: "Kompleksowe rozwiązania cyfrowe",
         subtitle: "Wszystko szyte na miarę na najwyższym światowym poziomie",
@@ -78,7 +134,7 @@ const WebDevelopment = () => {
         },
         {
           title: "Robię tanio",
-          description: "Wszystkie rozwiązania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostsze wizytówki jestem w stanie zrobić już od 1 970 zł netto!",
+          description: "Wszystkie rozwi��zania wykonuję osobiście, nie mam konieczności utrzymywania zespołu programistów, więc mogę zaproponować najbardziej konkurencyjne stawki na rynku. Najprostsze wizytówki jestem w stanie zrobić już od 1 970 zł netto!",
           icon: <DollarSign className="w-12 h-12 text-[#49be25]" />
         },
         {
@@ -110,7 +166,56 @@ const WebDevelopment = () => {
       title: "Web Application Development",
       description: "I specialize in creating modern web applications tailored to your business needs. I use the latest technologies and best programming practices to deliver solutions of the highest quality.",
       cta: "Order an application",
-      comparePerformance: "See performance comparison",
+      portfolio: {
+        title: "Examples of my work:",
+        projects: [
+          { 
+            name: "Karolina Siemion", 
+            url: "https://delicate-empanada-d272d8.netlify.app",
+            type: "Personal website"
+          },
+          { 
+            name: "Arkadiusz Sikorski", 
+            url: "https://ephemeral-brigadeiros-7225df.netlify.app",
+            type: "Portfolio"
+          },
+          { 
+            name: "Jacek Pęczak", 
+            url: "https://animated-style-fusion.vercel.app",
+            type: "Professional site"
+          },
+          { 
+            name: "Daniel Sciborek", 
+            url: "https://peaceful-gingersnap-e1d5f8.netlify.app",
+            type: "Personal website"
+          },
+          { 
+            name: "Asia Kuźma", 
+            url: "https://deft-starlight-518597.netlify.app",
+            type: "Portfolio"
+          },
+          { 
+            name: "DCA Crypto Monitor", 
+            url: "https://gentle-klepon-d28eaf.netlify.app/",
+            type: "Web application"
+          },
+          { 
+            name: "CRM School Management", 
+            url: "https://candid-lamington-83dcb0.netlify.app/",
+            type: "CRM System"
+          },
+          { 
+            name: "Magda Hawryluk", 
+            url: "https://verdant-kashata-8db74f.netlify.app/",
+            type: "Portfolio"
+          },
+          { 
+            name: "OKEiWR", 
+            url: "https://nimble-florentine-02af1e.netlify.app/",
+            type: "Organization website"
+          }
+        ]
+      },
       marketingSection: {
         title: "Comprehensive Digital Solutions",
         subtitle: "Everything custom-tailored at the highest global standards",
@@ -322,6 +427,60 @@ const WebDevelopment = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-24 mb-16">
+            <h2 className="text-4xl font-display text-estate-800 mb-8 text-center">{c.portfolio.title}</h2>
+            
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {c.portfolio.projects.map((project, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                    <div className="group relative overflow-hidden rounded-xl">
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="block h-full"
+                      >
+                        <Card className="h-full border-2 border-[#e8f4ff] hover:border-[#49be25] transition-all duration-300 bg-white hover:shadow-xl">
+                          <CardContent className="p-0">
+                            <div className="aspect-video w-full overflow-hidden">
+                              <img 
+                                src={`https://image.thum.io/get/width/600/crop/800/${project.url}`} 
+                                alt={project.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="p-4">
+                              <h3 className="font-display text-lg text-estate-800 mb-1 group-hover:text-[#49be25] transition-colors">
+                                {project.name}
+                              </h3>
+                              <p className="text-sm text-estate-600">{project.type}</p>
+                              <div className="mt-2 flex items-center text-[#49be25] text-sm font-medium">
+                                <span>Odwiedź stronę</span>
+                                <ExternalLink className="ml-1 w-3 h-3" />
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </a>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-8">
+                <CarouselPrevious className="static mx-2 translate-y-0" />
+                <CarouselNext className="static mx-2 translate-y-0" />
+              </div>
+            </Carousel>
           </div>
         </div>
       </main>
