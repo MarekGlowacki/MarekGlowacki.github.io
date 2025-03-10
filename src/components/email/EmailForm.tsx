@@ -20,8 +20,6 @@ interface EmailFormProps {
   setAttachments: (files: File[]) => void;
   showAdvanced: boolean;
   setShowAdvanced: (value: boolean) => void;
-  htmlMode: boolean;
-  setHtmlMode: (value: boolean) => void;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
   isSending: boolean;
 }
@@ -33,7 +31,6 @@ export const EmailForm = ({
   replyTo, setReplyTo,
   attachments, setAttachments,
   showAdvanced, setShowAdvanced,
-  htmlMode, setHtmlMode,
   handleSubmit,
   isSending
 }: EmailFormProps) => {
@@ -116,8 +113,6 @@ export const EmailForm = ({
       <EditorSection
         content={content}
         setContent={setContent}
-        htmlMode={htmlMode}
-        setHtmlMode={setHtmlMode}
       />
 
       <AttachmentsSection 

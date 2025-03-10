@@ -25,7 +25,6 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const [preview, setPreview] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
-  const [htmlMode, setHtmlMode] = useState(false);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,8 +73,6 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
             setAttachments={setAttachments}
             showAdvanced={showAdvanced}
             setShowAdvanced={setShowAdvanced}
-            htmlMode={htmlMode}
-            setHtmlMode={setHtmlMode}
             handleSubmit={handleSubmit}
             isSending={isSending}
           />
