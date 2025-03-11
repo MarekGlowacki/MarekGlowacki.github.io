@@ -1,10 +1,11 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EmailForm } from "./EmailForm";
 import { EmailPreview } from "./EmailPreview";
 import { EmailTemplateType } from "./utils/EmailTemplates";
+import { supabase } from "@/integrations/supabase/client";
 
 interface EmailEditorProps {
   onSendEmail: (data: { 
@@ -30,6 +31,32 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const [templateType, setTemplateType] = useState<EmailTemplateType>("website");
   const [correspondenceHistory, setCorrespondenceHistory] = useState("");
   
+  const saveEmailContacts = async (emailString: string) => {
+    if (!emailString) return;
+    
+    // Parse emails (split by semicolon and remove spaces)
+    const emails = emailString.split(';')
+      .map(email => email.trim())
+      .filter(email => email && email.includes('@'));
+    
+    if (emails.length === 0) return;
+    
+    try {
+      console.log("Saving email contacts:", emails);
+      
+      await supabase.functions.invoke("manage-email-contacts", {
+        body: { 
+          action: "save", 
+          data: { emails } 
+        }
+      });
+      
+      console.log("Email contacts saved successfully");
+    } catch (error) {
+      console.error("Error saving email contacts:", error);
+    }
+  };
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -47,6 +74,9 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
     });
     
     if (success) {
+      // Save email contacts
+      await saveEmailContacts(to);
+      
       // Clear form on success
       setTo("");
       setSubject("");
