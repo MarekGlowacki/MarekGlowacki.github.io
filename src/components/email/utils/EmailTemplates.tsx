@@ -12,16 +12,16 @@ interface EmailTemplateProps {
 // Function to wrap content in a beautiful template
 export const wrapContentInTemplate = (
   content: string, 
-  templateType: EmailTemplateType = "default", 
+  templateType: EmailTemplateType = "green",
   correspondenceHistory?: string
 ): string => {
   // Replace signature color to blue if it's not already styled
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
-    signatureRegex, 
+    signatureRegex,
     '<span style="color: #0874d4; font-family: Playfair Display">$1</span></p>'
   );
-  
+
   switch (templateType) {
     case "professional":
       return professionalTemplate(blueSignature, correspondenceHistory);
