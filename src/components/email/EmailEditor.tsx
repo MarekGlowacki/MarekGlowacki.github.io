@@ -22,12 +22,12 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const { t } = useLanguage();
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
-  const [content, setContent] = useState("<p>Sznowni Państwo,</p><p><br></p><p style="margin: 10px 0; font-style: italic; color: blue; font-family: 'Merriweather', serif;">Z poważaniem,<br>Marek Głowacki</p>");
+  const [content, setContent] = useState("<p>Szanowni Państwo,</p><p><br></p><p style=\"margin: 10px 0; font-style: italic; color: #404040; font-family: 'Inter', sans-serif;\">Z poważaniem,<br>Marek Głowacki</p>");
   const [replyTo, setReplyTo] = useState("");
   const [preview, setPreview] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
-  const [templateType, setTemplateType] = useState<EmailTemplateType>("professional");
+  const [templateType, setTemplateType] = useState<EmailTemplateType>("website");
   const [correspondenceHistory, setCorrespondenceHistory] = useState("");
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +50,7 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       // Clear form on success
       setTo("");
       setSubject("");
-      setContent("<p>Witam,</p><p><br></p><p>Z poważaniem,</p><p>Marek Głowacki</p>");
+      setContent("<p>Szanowni Państwo,</p><p><br></p><p style=\"margin: 10px 0; font-style: italic; color: #404040; font-family: 'Inter', sans-serif;\">Z poważaniem,<br>Marek Głowacki</p>");
       setReplyTo("");
       setAttachments([]);
       setCorrespondenceHistory("");
