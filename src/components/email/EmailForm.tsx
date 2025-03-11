@@ -1,11 +1,13 @@
 
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RecipientFields } from "./form/RecipientFields";
 import { EditorSection } from "./form/EditorSection";
 import { AttachmentsSection } from "./form/AttachmentsSection";
 import { AdvancedOptions } from "./form/AdvancedOptions";
 import { SubmitButton } from "./form/SubmitButton";
+import { EmailTemplateType } from "./utils/EmailTemplates";
 
 interface EmailFormProps {
   to: string;
@@ -22,6 +24,8 @@ interface EmailFormProps {
   setShowAdvanced: (value: boolean) => void;
   handleSubmit: (e: React.FormEvent) => Promise<void>;
   isSending: boolean;
+  templateType: EmailTemplateType;
+  setTemplateType: (value: EmailTemplateType) => void;
 }
 
 export const EmailForm = ({ 
@@ -32,7 +36,8 @@ export const EmailForm = ({
   attachments, setAttachments,
   showAdvanced, setShowAdvanced,
   handleSubmit,
-  isSending
+  isSending,
+  templateType, setTemplateType
 }: EmailFormProps) => {
   const { toast } = useToast();
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -109,6 +114,22 @@ export const EmailForm = ({
       {errors.to && (
         <p className="text-red-500 text-sm mt-1">{errors.to}</p>
       )}
+      
+      <div className="mb-4">
+        <label htmlFor="template" className="block text-sm font-medium text-gray-700 mb-1">
+          Szablon wiadomości:
+        </label>
+        <Select value={templateType} onValueChange={(value) => setTemplateType(value as EmailTemplateType)}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Wybierz szablon" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="default">Standardowy</SelectItem>
+            <SelectItem value="professional">Profesjonalny</SelectItem>
+            <SelectItem value="minimal">Minimalistyczny</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
       
       <EditorSection
         content={content}

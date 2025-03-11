@@ -10,6 +10,22 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
+// Function to wrap content in a beautiful template
+const wrapContentInTemplate = (content: string): string => {
+  return `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+      <div style="background-color: #f8f9fa; padding: 20px;">
+        <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
+          ${content}
+        </div>
+        <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eaeaea; font-size: 12px; color: #666;">
+          <p>Wiadomość wysłana przez Kompozytor Email Marka Głowackiego</p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
 const handler = async (req: Request): Promise<Response> => {
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -99,11 +115,14 @@ const handler = async (req: Request): Promise<Response> => {
       console.log(`Szczegóły załączników:`, attachments.map(a => ({ filename: a.filename, contentType: a.contentType, size: a.content.length })));
     }
     
+    // Wrap content in a beautiful template
+    const wrappedContent = wrapContentInTemplate(content);
+    
     const emailOptions: any = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",
       to: recipients,
       subject: subject,
-      html: content,
+      html: wrappedContent,
       reply_to: replyTo,
     };
 

@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { EmailForm } from "./EmailForm";
 import { EmailPreview } from "./EmailPreview";
+import { EmailTemplateType } from "./utils/EmailTemplates";
 
 interface EmailEditorProps {
   onSendEmail: (data: { 
@@ -25,6 +26,7 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const [preview, setPreview] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
+  const [templateType, setTemplateType] = useState<EmailTemplateType>("professional");
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,6 +77,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
             setShowAdvanced={setShowAdvanced}
             handleSubmit={handleSubmit}
             isSending={isSending}
+            templateType={templateType}
+            setTemplateType={setTemplateType}
           />
         </TabsContent>
         

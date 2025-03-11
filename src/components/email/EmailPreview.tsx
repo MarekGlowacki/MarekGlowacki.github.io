@@ -1,5 +1,6 @@
 
 import { Paperclip } from "lucide-react";
+import { EmailTemplate } from "./utils/EmailTemplates";
 
 interface EmailPreviewProps {
   to: string;
@@ -54,10 +55,9 @@ export const EmailPreview = ({
           </div>
         )}
       </div>
-      <div 
-        className="prose prose-sm max-w-none border border-gray-200 p-4 rounded-md bg-white" 
-        dangerouslySetInnerHTML={{ __html: content }} 
-      />
+      <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
+        <EmailTemplate content={content} templateType="professional" />
+      </div>
     </div>
   );
 };
