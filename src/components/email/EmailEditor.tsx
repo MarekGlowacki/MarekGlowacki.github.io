@@ -22,7 +22,7 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const { t } = useLanguage();
   const [to, setTo] = useState("");
   const [subject, setSubject] = useState("");
-  const [content, setContent] = useState("<p>Witam,</p><p><br></p><p>Z poważaniem,</p><p>Marek Głowacki</p>");
+  const [content, setContent] = useState("<p>Sznowni Państwo,</p><p><br></p><p style="margin: 10px 0; font-style: italic; color: blue; font-family: 'Merriweather', serif;">Z poważaniem,<br>Marek Głowacki</p>");
   const [replyTo, setReplyTo] = useState("");
   const [preview, setPreview] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
