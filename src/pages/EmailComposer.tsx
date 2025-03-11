@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
@@ -22,6 +21,7 @@ const EmailComposer = () => {
     replyTo?: string;
     attachments?: File[];
     correspondenceHistory?: string;
+    templateType?: string;
   }) => {
     setIsSending(true);
     
@@ -40,6 +40,11 @@ const EmailComposer = () => {
         formData.append('correspondenceHistory', data.correspondenceHistory);
       }
       
+      // Add the template type to the form data
+      if (data.templateType) {
+        formData.append('templateType', data.templateType);
+      }
+      
       // Dodaj załączniki, jeśli istnieją
       if (data.attachments && data.attachments.length > 0) {
         data.attachments.forEach((file, index) => {
@@ -52,6 +57,7 @@ const EmailComposer = () => {
       console.log("Wysyłanie żądania do edge function", {
         to: data.to,
         subject: data.subject,
+        templateType: data.templateType,
         hasAttachments: data.attachments ? data.attachments.length > 0 : false,
         attachmentsCount: data.attachments ? data.attachments.length : 0,
         hasCorrespondenceHistory: !!data.correspondenceHistory

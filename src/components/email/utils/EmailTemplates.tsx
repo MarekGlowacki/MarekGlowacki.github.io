@@ -1,7 +1,8 @@
+
 import React from "react";
 
 // Email template types
-export type EmailTemplateType = "default" | "professional" | "minimal" | "website";
+export type EmailTemplateType = "default" | "professional" | "minimal" | "website" | "green";
 
 interface EmailTemplateProps {
   content: string;
@@ -15,16 +16,25 @@ export const wrapContentInTemplate = (
   templateType: EmailTemplateType = "default", 
   correspondenceHistory?: string
 ): string => {
+  // Replace signature color to blue if it's not already styled
+  const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
+  const blueSignature = content.replace(
+    signatureRegex, 
+    '<span style="color: #0EA5E9;">$1</span></p>'
+  );
+  
   switch (templateType) {
     case "professional":
-      return professionalTemplate(content, correspondenceHistory);
+      return professionalTemplate(blueSignature, correspondenceHistory);
     case "minimal":
-      return minimalTemplate(content, correspondenceHistory);
+      return minimalTemplate(blueSignature, correspondenceHistory);
     case "website":
-      return websiteTemplate(content, correspondenceHistory);
+      return websiteTemplate(blueSignature, correspondenceHistory);
+    case "green":
+      return greenTemplate(blueSignature, correspondenceHistory);
     case "default":
     default:
-      return defaultTemplate(content, correspondenceHistory);
+      return defaultTemplate(blueSignature, correspondenceHistory);
   }
 };
 
@@ -99,6 +109,26 @@ const websiteTemplate = (content: string, correspondenceHistory?: string): strin
         </div>
         <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid #D4D4D4; font-size: 12px; color: #737373;">
           <p style="font-family: 'Playfair Display', serif; font-size: 14px;">Marek Głowacki</p>
+          <p>Wiadomość wysłana przez Kompozytor Email</p>
+        </div>
+      </div>
+    </div>
+  `;
+};
+
+// Green template (site-style with green accents)
+const greenTemplate = (content: string, correspondenceHistory?: string): string => {
+  return `
+    <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
+      <div style="background-color: #F2FCE2; padding: 24px;">
+        <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #4CAF50;">
+          <div style="margin-bottom: 20px;">
+            ${content}
+          </div>
+          ${addCorrespondenceHistory(correspondenceHistory)}
+        </div>
+        <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid #E5F5DC; font-size: 12px; color: #737373;">
+          <p style="font-family: 'Playfair Display', serif; font-size: 14px; color: #0EA5E9;">Marek Głowacki</p>
           <p>Wiadomość wysłana przez Kompozytor Email</p>
         </div>
       </div>

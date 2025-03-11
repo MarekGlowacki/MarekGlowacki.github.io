@@ -131,6 +131,7 @@ export const EmailForm = ({
             <SelectItem value="professional">Profesjonalny</SelectItem>
             <SelectItem value="minimal">Minimalistyczny</SelectItem>
             <SelectItem value="website">Dopasowany do strony</SelectItem>
+            <SelectItem value="green">Zielony</SelectItem>
           </SelectContent>
         </Select>
       </div>

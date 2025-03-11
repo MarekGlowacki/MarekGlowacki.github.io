@@ -15,6 +15,7 @@ interface EmailEditorProps {
     replyTo?: string;
     attachments?: File[];
     correspondenceHistory?: string;
+    templateType?: string;
   }) => Promise<boolean>;
   isSending: boolean;
 }
@@ -70,7 +71,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       content,
       replyTo: replyTo || undefined,
       attachments: attachments.length > 0 ? attachments : undefined,
-      correspondenceHistory: correspondenceHistory || undefined
+      correspondenceHistory: correspondenceHistory || undefined,
+      templateType // Pass the selected template type
     });
     
     if (success) {
