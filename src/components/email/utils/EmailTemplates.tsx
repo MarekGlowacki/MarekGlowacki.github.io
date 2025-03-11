@@ -12,7 +12,7 @@ interface EmailTemplateProps {
 // Function to wrap content in a beautiful template
 export const wrapContentInTemplate = (
   content: string, 
-  templateType: EmailTemplateType = "green",
+  templateType: EmailTemplateType = "default",
   correspondenceHistory?: string
 ): string => {
   // Replace signature color to blue if it's not already styled

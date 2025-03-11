@@ -79,7 +79,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
       `;
     case 'green':
       return `
-        <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
+        <div style="font-family: 'Playfair Display', serif; max-width: 600px; margin: 0 auto; color: #171717;">
           <div style="background-color: #F2FCE2; padding: 24px;">
             <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #4CAF50;">
               <div style="margin-bottom: 20px;">
