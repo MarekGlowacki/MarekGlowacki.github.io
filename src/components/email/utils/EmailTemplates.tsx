@@ -20,7 +20,7 @@ export const wrapContentInTemplate = (
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
     signatureRegex, 
-    '<span style="color: #0EA5E9;">$1</span></p>'
+    '<span style="color: #0874d4;">$1</span></p>'
   );
   
   switch (templateType) {
@@ -121,7 +121,7 @@ const greenTemplate = (content: string, correspondenceHistory?: string): string 
   return `
     <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
       <div style="background-color: #F2FCE2; padding: 24px;">
-        <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #4CAF50;">
+        <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #50bc24;">
           <div style="margin-bottom: 20px;">
             ${content}
           </div>
