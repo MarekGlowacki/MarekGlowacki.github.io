@@ -26,6 +26,8 @@ interface EmailFormProps {
   isSending: boolean;
   templateType: EmailTemplateType;
   setTemplateType: (value: EmailTemplateType) => void;
+  correspondenceHistory: string;
+  setCorrespondenceHistory: (value: string) => void;
 }
 
 export const EmailForm = ({ 
@@ -37,7 +39,8 @@ export const EmailForm = ({
   showAdvanced, setShowAdvanced,
   handleSubmit,
   isSending,
-  templateType, setTemplateType
+  templateType, setTemplateType,
+  correspondenceHistory, setCorrespondenceHistory
 }: EmailFormProps) => {
   const { toast } = useToast();
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -134,6 +137,8 @@ export const EmailForm = ({
       <EditorSection
         content={content}
         setContent={setContent}
+        correspondenceHistory={correspondenceHistory}
+        setCorrespondenceHistory={setCorrespondenceHistory}
       />
 
       <AttachmentsSection 

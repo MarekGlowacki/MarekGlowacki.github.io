@@ -21,6 +21,7 @@ const EmailComposer = () => {
     content: string;
     replyTo?: string;
     attachments?: File[];
+    correspondenceHistory?: string;
   }) => {
     setIsSending(true);
     
@@ -33,6 +34,10 @@ const EmailComposer = () => {
       
       if (data.replyTo) {
         formData.append('replyTo', data.replyTo);
+      }
+      
+      if (data.correspondenceHistory) {
+        formData.append('correspondenceHistory', data.correspondenceHistory);
       }
       
       // Dodaj załączniki, jeśli istnieją
@@ -48,7 +53,8 @@ const EmailComposer = () => {
         to: data.to,
         subject: data.subject,
         hasAttachments: data.attachments ? data.attachments.length > 0 : false,
-        attachmentsCount: data.attachments ? data.attachments.length : 0
+        attachmentsCount: data.attachments ? data.attachments.length : 0,
+        hasCorrespondenceHistory: !!data.correspondenceHistory
       });
 
       // Use a hardcoded Supabase URL since we can't access the protected properties

@@ -8,6 +8,8 @@ interface EmailPreviewProps {
   content: string;
   replyTo?: string;
   attachments: File[];
+  correspondenceHistory?: string;
+  templateType: string;
 }
 
 export const EmailPreview = ({ 
@@ -15,7 +17,9 @@ export const EmailPreview = ({
   subject, 
   content, 
   replyTo, 
-  attachments 
+  attachments,
+  correspondenceHistory,
+  templateType
 }: EmailPreviewProps) => {
   // Split recipients by semicolon and remove any extra whitespace
   const recipients = to ? to.split(';').map(email => email.trim()).filter(email => email) : [];
@@ -56,7 +60,11 @@ export const EmailPreview = ({
         )}
       </div>
       <div className="border border-gray-200 rounded-md overflow-hidden bg-white">
-        <EmailTemplate content={content} templateType="professional" />
+        <EmailTemplate 
+          content={content} 
+          templateType={templateType as any} 
+          correspondenceHistory={correspondenceHistory}
+        />
       </div>
     </div>
   );

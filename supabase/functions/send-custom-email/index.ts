@@ -11,12 +11,23 @@ const corsHeaders = {
 };
 
 // Function to wrap content in a beautiful template
-const wrapContentInTemplate = (content: string): string => {
+const wrapContentInTemplate = (content: string, correspondenceHistory?: string): string => {
+  // Add correspondence history if it exists
+  const historySection = correspondenceHistory ? `
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eaeaea;">
+      <div style="color: #666; font-size: 14px; margin-bottom: 10px;">Historia korespondencji:</div>
+      <div style="color: #444; background-color: #f9f9f9; padding: 15px; border-left: 3px solid #ddd; font-size: 14px;">
+        ${correspondenceHistory}
+      </div>
+    </div>
+  ` : '';
+
   return `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <div style="background-color: #f8f9fa; padding: 20px;">
         <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
           ${content}
+          ${historySection}
         </div>
         <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eaeaea; font-size: 12px; color: #666;">
           <p>Wiadomość wysłana przez Kompozytor Email Marka Głowackiego</p>
@@ -42,6 +53,7 @@ const handler = async (req: Request): Promise<Response> => {
     let subject: string;
     let content: string;
     let replyTo: string | undefined;
+    let correspondenceHistory: string | undefined;
     let attachments: any[] = [];
     
     if (contentType.includes("multipart/form-data")) {
@@ -52,8 +64,9 @@ const handler = async (req: Request): Promise<Response> => {
         subject = formData.get("subject") as string;
         content = formData.get("content") as string;
         replyTo = formData.get("replyTo") as string || undefined;
+        correspondenceHistory = formData.get("correspondenceHistory") as string || undefined;
         
-        console.log("Dane z formularza:", { to, subject, replyTo });
+        console.log("Dane z formularza:", { to, subject, replyTo, hasCorrespondenceHistory: !!correspondenceHistory });
         
         // Zbierz wszystkie załączniki
         for (const [key, value] of formData.entries()) {
@@ -81,13 +94,14 @@ const handler = async (req: Request): Promise<Response> => {
     } else {
       // Przetwarzanie JSON (bez załączników)
       try {
-        const { to: jsonTo, subject: jsonSubject, content: jsonContent, replyTo: jsonReplyTo } = await req.json();
+        const { to: jsonTo, subject: jsonSubject, content: jsonContent, replyTo: jsonReplyTo, correspondenceHistory: jsonCorrespondenceHistory } = await req.json();
         to = jsonTo;
         subject = jsonSubject;
         content = jsonContent;
         replyTo = jsonReplyTo;
+        correspondenceHistory = jsonCorrespondenceHistory;
         
-        console.log("Dane z JSON:", { to, subject, replyTo });
+        console.log("Dane z JSON:", { to, subject, replyTo, hasCorrespondenceHistory: !!correspondenceHistory });
       } catch (jsonError) {
         console.error("Błąd parsowania JSON:", jsonError);
         throw new Error(`Błąd parsowania JSON: ${jsonError.message}`);
@@ -109,14 +123,15 @@ const handler = async (req: Request): Promise<Response> => {
     console.log(`Wysyłanie email do ${recipients.length} odbiorców:`, recipients);
     console.log(`Temat: ${subject}`);
     console.log(`ReplyTo: ${replyTo || 'Not specified'}`);
+    console.log(`Historia korespondencji: ${correspondenceHistory ? 'Załączona' : 'Brak'}`);
     console.log(`Załączniki: ${attachments.length}`);
     
     if (attachments.length > 0) {
       console.log(`Szczegóły załączników:`, attachments.map(a => ({ filename: a.filename, contentType: a.contentType, size: a.content.length })));
     }
     
-    // Wrap content in a beautiful template
-    const wrappedContent = wrapContentInTemplate(content);
+    // Wrap content in a template with correspondence history
+    const wrappedContent = wrapContentInTemplate(content, correspondenceHistory);
     
     const emailOptions: any = {
       from: "Marek Głowacki <kontakt@marekglowacki.pl>",

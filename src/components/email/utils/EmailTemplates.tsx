@@ -7,27 +7,47 @@ export type EmailTemplateType = "default" | "professional" | "minimal";
 interface EmailTemplateProps {
   content: string;
   templateType?: EmailTemplateType;
+  correspondenceHistory?: string;
 }
 
 // Function to wrap content in a beautiful template
-export const wrapContentInTemplate = (content: string, templateType: EmailTemplateType = "default"): string => {
+export const wrapContentInTemplate = (
+  content: string, 
+  templateType: EmailTemplateType = "default", 
+  correspondenceHistory?: string
+): string => {
   switch (templateType) {
     case "professional":
-      return professionalTemplate(content);
+      return professionalTemplate(content, correspondenceHistory);
     case "minimal":
-      return minimalTemplate(content);
+      return minimalTemplate(content, correspondenceHistory);
     case "default":
     default:
-      return defaultTemplate(content);
+      return defaultTemplate(content, correspondenceHistory);
   }
 };
 
+// Function to add correspondence history if it exists
+const addCorrespondenceHistory = (correspondenceHistory?: string): string => {
+  if (!correspondenceHistory) return '';
+  
+  return `
+    <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eaeaea;">
+      <div style="color: #666; font-size: 14px; margin-bottom: 10px;">Historia korespondencji:</div>
+      <div style="color: #444; background-color: #f9f9f9; padding: 15px; border-left: 3px solid #ddd; font-size: 14px;">
+        ${correspondenceHistory}
+      </div>
+    </div>
+  `;
+};
+
 // Default template with clean design
-const defaultTemplate = (content: string): string => {
+const defaultTemplate = (content: string, correspondenceHistory?: string): string => {
   return `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
       <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         ${content}
+        ${addCorrespondenceHistory(correspondenceHistory)}
       </div>
       <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
         <p>Ten email został wysłany za pomocą kompozytora email Marka Głowackiego.</p>
@@ -37,12 +57,13 @@ const defaultTemplate = (content: string): string => {
 };
 
 // Professional template with branding
-const professionalTemplate = (content: string): string => {
+const professionalTemplate = (content: string, correspondenceHistory?: string): string => {
   return `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <div style="background-color: #f8f9fa; padding: 20px;">
         <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
           ${content}
+          ${addCorrespondenceHistory(correspondenceHistory)}
         </div>
         <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eaeaea; font-size: 12px; color: #666;">
           <p>Wiadomość wysłana przez Kompozytor Email Marka Głowackiego</p>
@@ -53,22 +74,27 @@ const professionalTemplate = (content: string): string => {
 };
 
 // Minimal template
-const minimalTemplate = (content: string): string => {
+const minimalTemplate = (content: string, correspondenceHistory?: string): string => {
   return `
     <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
       <div style="padding: 15px; background-color: #ffffff; border-left: 3px solid #ddd;">
         ${content}
+        ${addCorrespondenceHistory(correspondenceHistory)}
       </div>
     </div>
   `;
 };
 
 // React component for rendering the email preview
-export const EmailTemplate: React.FC<EmailTemplateProps> = ({ content, templateType = "default" }) => {
+export const EmailTemplate: React.FC<EmailTemplateProps> = ({ 
+  content, 
+  templateType = "default",
+  correspondenceHistory 
+}) => {
   return (
     <div 
       dangerouslySetInnerHTML={{ 
-        __html: wrapContentInTemplate(content, templateType) 
+        __html: wrapContentInTemplate(content, templateType, correspondenceHistory) 
       }} 
     />
   );

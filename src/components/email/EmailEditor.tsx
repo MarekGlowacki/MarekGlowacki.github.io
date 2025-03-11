@@ -13,6 +13,7 @@ interface EmailEditorProps {
     content: string;
     replyTo?: string;
     attachments?: File[];
+    correspondenceHistory?: string;
   }) => Promise<boolean>;
   isSending: boolean;
 }
@@ -27,6 +28,7 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
   const [templateType, setTemplateType] = useState<EmailTemplateType>("professional");
+  const [correspondenceHistory, setCorrespondenceHistory] = useState("");
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +42,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       subject,
       content,
       replyTo: replyTo || undefined,
-      attachments: attachments.length > 0 ? attachments : undefined
+      attachments: attachments.length > 0 ? attachments : undefined,
+      correspondenceHistory: correspondenceHistory || undefined
     });
     
     if (success) {
@@ -50,6 +53,7 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
       setContent("<p>Witam,</p><p><br></p><p>Z poważaniem,</p><p>Marek Głowacki</p>");
       setReplyTo("");
       setAttachments([]);
+      setCorrespondenceHistory("");
     }
   };
   
@@ -79,6 +83,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
             isSending={isSending}
             templateType={templateType}
             setTemplateType={setTemplateType}
+            correspondenceHistory={correspondenceHistory}
+            setCorrespondenceHistory={setCorrespondenceHistory}
           />
         </TabsContent>
         
@@ -89,6 +95,8 @@ export const EmailEditor = ({ onSendEmail, isSending }: EmailEditorProps) => {
             content={content}
             replyTo={replyTo}
             attachments={attachments}
+            correspondenceHistory={correspondenceHistory}
+            templateType={templateType}
           />
         </TabsContent>
       </Tabs>
