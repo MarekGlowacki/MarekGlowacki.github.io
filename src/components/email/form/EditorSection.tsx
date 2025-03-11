@@ -46,7 +46,7 @@ export const EditorSection = ({
             value={correspondenceHistory}
             onChange={(e) => setCorrespondenceHistory(e.target.value)}
             placeholder="Wklej tutaj wcześniejszą korespondencję..."
-            className="min-h-[150px]"
+            className="min-h-[150px] whitespace-pre-wrap"
           />
         </div>
       )}

@@ -18,12 +18,19 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
     '<span style="color: #0EA5E9;">$1</span></p>'
   );
   
+  // Format correspondence history to preserve line breaks and spaces
+  const formattedHistory = correspondenceHistory ? 
+    correspondenceHistory
+      .replace(/\n/g, '<br>')  // Convert line breaks to <br> tags
+      .replace(/\s{2,}/g, match => '&nbsp;'.repeat(match.length)) // Convert multiple spaces to &nbsp;
+    : '';
+  
   // Add correspondence history if it exists
   const historySection = correspondenceHistory ? `
     <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eaeaea;">
       <div style="color: #666; font-size: 14px; margin-bottom: 10px;">Historia korespondencji:</div>
-      <div style="color: #444; background-color: #f9f9f9; padding: 15px; border-left: 3px solid #ddd; font-size: 14px;">
-        ${correspondenceHistory}
+      <div style="color: #444; background-color: #f9f9f9; padding: 15px; border-left: 3px solid #ddd; font-size: 14px; white-space: pre-wrap;">
+        ${formattedHistory}
       </div>
     </div>
   ` : '';
