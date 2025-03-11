@@ -122,14 +122,14 @@ const greenTemplate = (content: string, correspondenceHistory?: string): string 
     <div style="font-family: 'Playfair Display', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
       <div style="background-color: #F2FCE2; padding: 24px;">
         <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #50bc24;">
-          <div style="margin-bottom: 20px;">
+          <div style="margin-bottom: 20px; font-family: 'Playfair Display', serif;">
             ${content}
           </div>
           ${addCorrespondenceHistory(correspondenceHistory)}
         </div>
         <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid #E5F5DC; font-size: 12px; color: #737373;">
           <p style="font-family: 'Playfair Display', serif; font-size: 14px; color: #0EA5E9;">Marek Głowacki</p>
-          <p>Wiadomość wysłana przez Kompozytor Email</p>
+          <p style="font-family: 'Playfair Display', serif;">Wiadomość wysłana przez Kompozytor Email</p>
         </div>
       </div>
     </div>
