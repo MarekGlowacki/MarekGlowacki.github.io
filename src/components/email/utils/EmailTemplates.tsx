@@ -19,7 +19,7 @@ export const wrapContentInTemplate = (
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
     signatureRegex,
-    '<span style="color: #0874d4; font-family: Playfair Display">$1</span></p>'
+    '<span style="color: #0874d4; font-family: \'Playfair Display\';">$1</span></p>'
   );
 
   switch (templateType) {

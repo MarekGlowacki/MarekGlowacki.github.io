@@ -15,7 +15,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
     signatureRegex, 
-    '<span style="color: #0EA5E9;">$1</span></p>'
+    '<span style="color: #0EA5E9; font-family: \'Playfair Display\', serif;">$1</span></p>'
   );
   
   // Format correspondence history to preserve line breaks and spaces
@@ -39,7 +39,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
   switch (templateType) {
     case 'minimal':
       return `
-        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="padding: 15px; background-color: #ffffff; border-left: 3px solid #ddd;">
             ${blueSignature}
             ${historySection}
@@ -48,7 +48,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
       `;
     case 'website':
       return `
-        <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
+        <div style="font-family: 'Playfair Display', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
           <div style="background-color: #F7F7F7; padding: 24px;">
             <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #404040;">
               <div style="margin-bottom: 20px;">
@@ -65,7 +65,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
       `;
     case 'professional':
       return `
-        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
           <div style="background-color: #f8f9fa; padding: 20px;">
             <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
               ${blueSignature}
@@ -96,7 +96,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
       `;
     default:
       return `
-        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
             ${blueSignature}
             ${historySection}
