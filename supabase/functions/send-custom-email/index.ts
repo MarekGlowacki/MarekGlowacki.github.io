@@ -11,11 +11,11 @@ const corsHeaders = {
 
 // Function to wrap content in a beautiful template
 const wrapContentInTemplate = (content: string, templateType?: string, correspondenceHistory?: string): string => {
-  // Replace signature color to blue if it's not already styled
+  // Replace signature color to blue with Playfair Display font
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
     signatureRegex, 
-    '<span style="color: #0ea5e9; font-family: \'Playfair Display\', serif;">$1</span></p>'
+    '<span style="color: #0ee952; font-family: \'Playfair Display\', serif; font-weight: 400;">$1</span></p>'
   );
   
   // Format correspondence history to preserve line breaks and spaces
@@ -35,20 +35,31 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
     </div>
   ` : '';
 
+  // Google Fonts import for Playfair Display
+  const fontImport = `
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+    </style>
+  `;
+
   // Choose template based on type
+  let emailTemplate = '';
+
   switch (templateType) {
     case 'minimal':
-      return `
-        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+      emailTemplate = `
+        <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="padding: 15px; background-color: #ffffff; border-left: 3px solid #ddd;">
             ${blueSignature}
             ${historySection}
           </div>
         </div>
       `;
+      break;
     case 'website':
-      return `
-        <div style="font-family: 'Playfair Display', sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
+      emailTemplate = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
           <div style="background-color: #F7F7F7; padding: 24px;">
             <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #404040;">
               <div style="margin-bottom: 20px;">
@@ -63,9 +74,10 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
           </div>
         </div>
       `;
+      break;
     case 'professional':
-      return `
-        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+      emailTemplate = `
+        <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
           <div style="background-color: #f8f9fa; padding: 20px;">
             <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
               ${blueSignature}
@@ -77,9 +89,10 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
           </div>
         </div>
       `;
+      break;
     case 'green':
-      return `
-        <div style="font-family: 'Playfair Display', serif; max-width: 600px; margin: 0 auto; color: #171717;">
+      emailTemplate = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
           <div style="background-color: #F2FCE2; padding: 24px;">
             <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #4CAF50;">
               <div style="margin-bottom: 20px;">
@@ -94,9 +107,10 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
           </div>
         </div>
       `;
+      break;
     default:
-      return `
-        <div style="font-family: 'Playfair Display', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
+      emailTemplate = `
+        <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
           <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
             ${blueSignature}
             ${historySection}
@@ -107,6 +121,21 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
         </div>
       `;
   }
+
+  // Combine font import with email template
+  return `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ${fontImport}
+      </head>
+      <body>
+        ${emailTemplate}
+      </body>
+    </html>
+  `;
 };
 
 const handler = async (req: Request): Promise<Response> => {
