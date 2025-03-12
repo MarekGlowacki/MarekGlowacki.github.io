@@ -15,7 +15,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
     signatureRegex, 
-    '<span style="color: #0ee952; font-family: \'Playfair Display\', serif; font-weight: 400;">$1</span></p>'
+    '<span style="color: #0ea5e9; font-family: \'Playfair Display\', serif; font-weight: 400;">$1</span></p>'
   );
   
   // Format correspondence history to preserve line breaks and spaces
