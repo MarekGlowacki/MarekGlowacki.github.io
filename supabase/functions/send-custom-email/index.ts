@@ -68,8 +68,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
               ${historySection}
             </div>
             <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid #D4D4D4; font-size: 12px; color: #737373;">
-              <p style="font-family: 'Playfair Display', serif; font-size: 14px;">Marek Głowacki</p>
-              <p>Wiadomość wysłana przez Kompozytor Email</p>
+              <p>Ten email został wysłany za pomocą kompozytora email Marka Głowackiego.</p>
             </div>
           </div>
         </div>
@@ -101,8 +100,7 @@ const wrapContentInTemplate = (content: string, templateType?: string, correspon
               ${historySection}
             </div>
             <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid #E5F5DC; font-size: 12px; color: #737373;">
-              <p style="font-family: 'Playfair Display', serif; font-size: 14px; color: #0EA5E9;">Marek Głowacki</p>
-              <p>Wiadomość wysłana przez Kompozytor Email</p>
+              <p>Ten email został wysłany za pomocą kompozytora email Marka Głowackiego.</p>
             </div>
           </div>
         </div>
