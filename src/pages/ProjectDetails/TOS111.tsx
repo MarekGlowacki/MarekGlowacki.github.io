@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ChartContainer } from "@/components/ui/chart";
-import { ExternalLink, Container, TruckIcon, TrainFront, Database, LayoutDashboard, ChartBar } from "lucide-react";
+import { ExternalLink, Container, TruckIcon, TrainFront, Database, LayoutDashboard, ChartBar, Activity, Clock } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 const TOS111 = () => {
@@ -34,6 +34,16 @@ const TOS111 = () => {
       title: "Panel Zarządzania",
       icon: <LayoutDashboard className="w-12 h-12 text-indigo-500 mb-4" />,
       description: "Intuicyjny interfejs do monitorowania wszystkich operacji w czasie rzeczywistym"
+    },
+    {
+      title: "Optymalizacja Czasu",
+      icon: <Clock className="w-12 h-12 text-rose-500 mb-4" />,
+      description: "Skrócenie czasu operacji dzięki inteligentnym rozwiązaniom i automatyzacji"
+    },
+    {
+      title: "Monitoring Wydajności",
+      icon: <Activity className="w-12 h-12 text-cyan-500 mb-4" />,
+      description: "Zaawansowane narzędzia do śledzenia i optymalizowania sprawności operacji"
     }
   ];
 
@@ -162,22 +172,55 @@ const TOS111 = () => {
             </div>
           </div>
           
-          {/* System Description */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="prose max-w-none text-estate-600">
-              <p className="text-lg leading-relaxed">
-                Z przyjemnością przedstawiam mój zaawansowany Terminal Operation System (TOS), który zrewolucjonizował sposób zarządzania operacjami transportowymi w terminalach. Stworzyłem ten system z myślą o efektywnej obsłudze pociągów i samochodów transportujących kontenery, oferując szereg innowacyjnych funkcji, które znacząco zwiększają wydajność i precyzję operacji.
+          {/* System Description - Redesigned */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+              <div className="flex justify-center mb-4">
+                <TrainFront className="w-12 h-12 text-[#8B5CF6]" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Innowacyjne zarządzanie</h3>
+              <p className="text-estate-600 text-center">
+                Z przyjemnością przedstawiam mój zaawansowany Terminal Operation System (TOS), który zrewolucjonizował sposób zarządzania operacjami transportowymi w terminalach.
               </p>
-              <p className="text-lg leading-relaxed">
-                Mój TOS umożliwia płynne przyjmowanie i wydawanie pociągów, co jest kluczowe dla sprawnego zarządzania ruchem w terminalu. Dzięki zaawansowanej funkcjonalności, system przy wydaniach zapewnia obsługę załadunków, podwójnie sprawdzając przypisanie platform do odpowiednich kontenerów.
+            </Card>
+            
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+              <div className="flex justify-center mb-4">
+                <TruckIcon className="w-12 h-12 text-[#7E69AB]" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Płynne operacje</h3>
+              <p className="text-estate-600 text-center">
+                Mój TOS umożliwia płynne przyjmowanie i wydawanie pociągów oraz efektywną obsługę kontenerów, co jest kluczowe dla sprawnego zarządzania ruchem w terminalu.
+              </p>
+            </Card>
+            
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+              <div className="flex justify-center mb-4">
+                <Database className="w-12 h-12 text-[#6E59A5]" />
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Technologia wektorowa</h3>
+              <p className="text-estate-600 text-center">
+                System bazuje na nowoczesnych bazach danych w chmurze, które obsługują zamianę danych na wektory, zapewniając szybki i efektywny dostęp do informacji.
+              </p>
+            </Card>
+          </div>
+          
+          {/* Additional Description Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-[#8B5CF6]">
+              <h3 className="text-2xl font-semibold mb-4 text-estate-800">Kompleksowe zarządzanie</h3>
+              <p className="text-estate-600 leading-relaxed">
+                System wspiera zarządzanie przestrzenią magazynową, umożliwiając śledzenie stanów magazynowych. 
+                Dzięki temu operacje przyjęć i wydań towarów są nie tylko szybsze, ale także bardziej precyzyjne.
               </p>
             </div>
-            <div className="prose max-w-none text-estate-600">
-              <p className="text-lg leading-relaxed">
-                System wspiera również zarządzanie przestrzenią magazynową, umożliwiając śledzenie stanów magazynowych. Dzięki temu operacje przyjęć i wydań towarów są nie tylko szybsze, ale także bardziej precyzyjne.
-              </p>
-              <p className="text-lg leading-relaxed">
-                Mój Terminal Operation System (TOS) 111 wykorzystuje najnowocześniejsze technologie, bazując na nowoczesnych bazach danych w chmurze, które obsługują zamianę danych na wektory. Dzięki temu mogę zapewnić szybki i efektywny dostęp do informacji, co znacząco zwiększa wydajność operacyjną.
+            
+            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-[#7E69AB]">
+              <h3 className="text-2xl font-semibold mb-4 text-estate-800">Zaawansowana technologia</h3>
+              <p className="text-estate-600 leading-relaxed">
+                Terminal Operation System (TOS) 111 wykorzystuje najnowocześniejsze technologie, 
+                bazując na nowoczesnych bazach danych w chmurze, które obsługują zamianę danych na wektory 
+                dla zwiększenia wydajności operacyjnej.
               </p>
             </div>
           </div>
