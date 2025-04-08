@@ -16,6 +16,9 @@ export const wrapContentInTemplate = (
   templateType: EmailTemplateType = "default",
   correspondenceHistory?: string
 ): string => {
+  // Font import for all templates
+  const fontImport = `<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">`;
+  
   // Replace signature color to blue using Playfair Display font
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
   const blueSignature = content.replace(
@@ -25,16 +28,16 @@ export const wrapContentInTemplate = (
 
   switch (templateType) {
     case "professional":
-      return professionalTemplate(blueSignature, correspondenceHistory);
+      return professionalTemplate(blueSignature, correspondenceHistory, fontImport);
     case "minimal":
-      return minimalTemplate(blueSignature, correspondenceHistory);
+      return minimalTemplate(blueSignature, correspondenceHistory, fontImport);
     case "website":
-      return websiteTemplate(blueSignature, correspondenceHistory);
+      return websiteTemplate(blueSignature, correspondenceHistory, fontImport);
     case "green":
-      return greenTemplate(blueSignature, correspondenceHistory);
+      return greenTemplate(blueSignature, correspondenceHistory, fontImport);
     case "default":
     default:
-      return defaultTemplate(blueSignature, correspondenceHistory);
+      return defaultTemplate(blueSignature, correspondenceHistory, fontImport);
   }
 };
 
@@ -58,8 +61,9 @@ const addCorrespondenceHistory = (correspondenceHistory?: string): string => {
 };
 
 // Default template with clean design
-const defaultTemplate = (content: string, correspondenceHistory?: string): string => {
+const defaultTemplate = (content: string, correspondenceHistory?: string, fontImport?: string): string => {
   return `
+    ${fontImport || ''}
     <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
       <div style="background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
         ${content}
@@ -73,8 +77,9 @@ const defaultTemplate = (content: string, correspondenceHistory?: string): strin
 };
 
 // Professional template with branding
-const professionalTemplate = (content: string, correspondenceHistory?: string): string => {
+const professionalTemplate = (content: string, correspondenceHistory?: string, fontImport?: string): string => {
   return `
+    ${fontImport || ''}
     <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
       <div style="background-color: #f8f9fa; padding: 20px;">
         <div style="background-color: #ffffff; border-radius: 4px; padding: 30px; border-top: 4px solid #4a6cf7;">
@@ -90,8 +95,9 @@ const professionalTemplate = (content: string, correspondenceHistory?: string): 
 };
 
 // Minimal template
-const minimalTemplate = (content: string, correspondenceHistory?: string): string => {
+const minimalTemplate = (content: string, correspondenceHistory?: string, fontImport?: string): string => {
   return `
+    ${fontImport || ''}
     <div style="font-family: Arial, Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333;">
       <div style="padding: 15px; background-color: #ffffff; border-left: 3px solid #ddd;">
         ${content}
@@ -102,8 +108,9 @@ const minimalTemplate = (content: string, correspondenceHistory?: string): strin
 };
 
 // Website-style template that matches the site's design
-const websiteTemplate = (content: string, correspondenceHistory?: string): string => {
+const websiteTemplate = (content: string, correspondenceHistory?: string, fontImport?: string): string => {
   return `
+    ${fontImport || ''}
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
       <div style="background-color: #F7F7F7; padding: 24px;">
         <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #404040;">
@@ -121,8 +128,9 @@ const websiteTemplate = (content: string, correspondenceHistory?: string): strin
 };
 
 // Green template (site-style with green accents)
-const greenTemplate = (content: string, correspondenceHistory?: string): string => {
+const greenTemplate = (content: string, correspondenceHistory?: string, fontImport?: string): string => {
   return `
+    ${fontImport || ''}
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #171717;">
       <div style="background-color: #F2FCE2; padding: 24px;">
         <div style="background-color: #ffffff; border-radius: 8px; padding: 32px; border-left: 4px solid #50bc24;">
