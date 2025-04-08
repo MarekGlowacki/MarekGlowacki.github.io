@@ -3,7 +3,7 @@ import PropertyCard from "./PropertyCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const PropertyGrid = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   
   const properties = [
     {
@@ -14,7 +14,7 @@ const PropertyGrid = () => {
     },
     {
       image: "/images/projekt-btc.jpg",
-      title: "Terminal Operation System (TOS) 111",
+      title: language === "pl" ? "Terminal Operation System (TOS) 111" : "Terminal Operation System (TOS) 111",
       location: t("projects.location.world"),
       slug: "tos111",
     },
