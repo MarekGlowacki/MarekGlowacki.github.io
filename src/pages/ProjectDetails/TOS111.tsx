@@ -2,63 +2,203 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { ChartContainer } from "@/components/ui/chart";
+import { ExternalLink, Container, TruckIcon, TrainFront, Database, LayoutDashboard, ChartBar } from "lucide-react";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
 const TOS111 = () => {
-  return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <div className="py-32">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h1 className="text-4xl sm:text-5xl font-display text-estate-800 mb-8">Terminal Operation System (TOS) 111</h1>
-          
-          <div className="mb-12">
-            <img 
-              src="/images/projekt-btc.jpg" 
-              alt="Terminal Operation System" 
-              className="w-full h-[60vh] object-cover rounded-lg shadow-lg"
-            />
-          </div>
-          
-          <div className="prose max-w-none text-estate-600 mb-8">
-            <p>
-              Z przyjemnością przedstawiam mój zaawansowany Terminal Operation System (TOS), który zrewolucjonizował sposób zarządzania operacjami transportowymi w terminalach. Stworzyłem ten system z myślą o efektywnej obsłudze pociągów i samochodów transportujących kontenery, oferując szereg innowacyjnych funkcji, które znacząco zwiększają wydajność i precyzję operacji.
-            </p>
+  const featureData = [
+    {
+      title: "Obsługa Pociągów",
+      icon: <TrainFront className="w-12 h-12 text-purple-500 mb-4" />,
+      description: "Płynne przyjmowanie i wydawanie pociągów transportowych z zaawansowanym zarządzaniem ładunkami"
+    },
+    {
+      title: "Transport Samochodowy",
+      icon: <TruckIcon className="w-12 h-12 text-blue-500 mb-4" />,
+      description: "Kompleksowa obsługa floty samochodów transportowych z optymalizacją tras i ładunku"
+    },
+    {
+      title: "Zarządzanie Kontenerami",
+      icon: <Container className="w-12 h-12 text-emerald-500 mb-4" />,
+      description: "Precyzyjne śledzenie i organizacja kontenerów z mapowaniem w czasie rzeczywistym"
+    },
+    {
+      title: "Analiza Danych",
+      icon: <Database className="w-12 h-12 text-amber-500 mb-4" />,
+      description: "Zaawansowane raportowanie i analityka bazująca na technologii wektorowej"
+    },
+    {
+      title: "Panel Zarządzania",
+      icon: <LayoutDashboard className="w-12 h-12 text-indigo-500 mb-4" />,
+      description: "Intuicyjny interfejs do monitorowania wszystkich operacji w czasie rzeczywistym"
+    }
+  ];
 
-            <p>
-              Mój TOS umożliwia płynne przyjmowanie i wydawanie pociągów, co jest kluczowe dla sprawnego zarządzania ruchem w terminalu. Dzięki zaawansowanej funkcjonalności, system przy wydaniach zapewnia obsługę załadunków, podwójnie sprawdzając przypisanie platform do odpowiednich kontenerów. To innowacyjne podejście minimalizuje ryzyko błędów przy współpracy spedytora z operatorem i zwiększa efektywność operacyjną, co przekłada się na szybsze i bardziej niezawodne procesy załadunkowe.
-            </p>
+  const benefitsData = [
+    { name: 'Wydajność', value: 90, color: '#9b87f5' },
+    { name: 'Dokładność', value: 95, color: '#7E69AB' },
+    { name: 'Oszczędność', value: 85, color: '#6E59A5' },
+    { name: 'Skalowalność', value: 88, color: '#8B5CF6' },
+    { name: 'Elastyczność', value: 92, color: '#1EAEDB' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-white to-purple-50">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <div className="py-24 md:py-32 overflow-hidden">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-full md:w-1/2">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display text-estate-800 mb-6 leading-tight">
+                Terminal <span className="text-[#9b87f5]">Operation</span> System
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#1EAEDB]"> 111</span>
+              </h1>
+              
+              <p className="text-lg text-estate-600 mb-8">
+                Rewolucyjny system zarządzania operacjami transportowymi, który łączy zaawansowaną technologię z prostotą użytkowania.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <a href="https://tos111.netlify.app" target="_blank" rel="noopener noreferrer">
+                  <Button className="bg-[#8B5CF6] hover:bg-[#7c4ff1] text-white flex items-center gap-2 px-6 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all">
+                    Wypróbuj demo <ExternalLink className="w-5 h-5" />
+                  </Button>
+                </a>
+                <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow mt-4 md:mt-0">
+                  <p className="text-estate-800 font-medium">Login: admin@tos111.pl</p>
+                  <p className="text-estate-800 font-medium">Hasło: 123123</p>
+                </div>
+              </div>
+            </div>
             
-            <p>
-              System wspiera również zarządzanie przestrzenią magazynową, umożliwiając śledzenie stanów magazynowych. Dzięki temu operacje przyjęć i wydań towarów są nie tylko szybsze, ale także bardziej precyzyjne.
-            </p>
-            
-            <p>
-              Moje rozwiązanie nie tylko ułatwia codzienne operacje, ale także zapewnia pełną dokumentację i raportowanie, co jest niezbędne do analizy wydajności i podejmowania strategicznych decyzji. TOS 111 integruje wszystkie aspekty działalności terminalu, co pozwala na lepsze zarządzanie zasobami i poprawę jakości obsługi klienta.
-            </p>
-            
-            <p>
-              Mój Terminal Operation System (TOS) 111 wykorzystuje najnowocześniejsze technologie, bazując na nowoczesnych bazach danych w chmurze, które obsługują zamianę danych na wektory. Dzięki temu mogę zapewnić szybki i efektywny dostęp do informacji, co znacząco zwiększa wydajność operacyjną. Wykorzystanie technologii wektorowych pozwala na zaawansowaną analizę danych oraz lepsze zarządzanie zasobami, co przekłada się na jeszcze bardziej precyzyjne podejmowanie decyzji w zakresie operacji transportowych. Taki innowacyjny system umożliwia mi dostosowanie się do dynamicznych potrzeb rynku i zapewnia elastyczność w zarządzaniu operacjami w terminalu.
-            </p>
-            
-            <p>
-              Dzięki mojemu Terminal Operation System 111, terminale mogą osiągnąć nowy poziom efektywności i niezawodności, co jest kluczowe w dynamicznie zmieniającym się środowisku transportowym. Zachęcam do zapoznania się z moim TOS i odkrycia, jak może on wspierać rozwój Twojego terminalu!
-            </p>
-          </div>
-          
-          <div className="mb-12">
-            <a href="https://tos111.netlify.app" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-[#49be25] text-white hover:bg-[#3da51e] flex items-center gap-2">
-                Wypróbuj demo <ExternalLink className="w-4 h-4" />
-              </Button>
-            </a>
-            <div className="mt-4 text-sm text-estate-500">
-              <p>Login: admin@tos111.pl</p>
-              <p>Hasło: 123123</p>
+            <div className="w-full md:w-1/2 relative">
+              <div className="relative overflow-hidden rounded-xl shadow-2xl border-8 border-white">
+                <img 
+                  src="/images/projekt-btc.jpg" 
+                  alt="Terminal Operation System Dashboard" 
+                  className="w-full h-[50vh] md:h-[60vh] object-cover rounded-lg transform hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+                  <div className="p-6 text-white">
+                    <h3 className="text-2xl font-semibold mb-2">Nowoczesny dashboard</h3>
+                    <p>Intuicyjny interfejs dla wszystkich operacji transportowych</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      
+      {/* Features Carousel */}
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl font-display text-center text-estate-800 mb-12">Kluczowe funkcjonalności</h2>
+          
+          <Carousel
+            opts={{ loop: true }}
+            className="mx-auto max-w-5xl"
+          >
+            <CarouselContent>
+              {featureData.map((feature, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
+                  <Card className="border-none shadow-lg hover:shadow-xl transition-all h-full bg-gradient-to-br from-white to-purple-50">
+                    <CardContent className="p-6 flex flex-col items-center text-center h-full">
+                      {feature.icon}
+                      <h3 className="text-xl font-semibold mb-2 text-estate-800">{feature.title}</h3>
+                      <p className="text-estate-600">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8 gap-4">
+              <CarouselPrevious className="static" />
+              <CarouselNext className="static" />
+            </div>
+          </Carousel>
+        </div>
+      </div>
+      
+      {/* Benefits Section with Chart */}
+      <div className="py-16 bg-gradient-to-b from-purple-50 to-white">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-3xl font-display text-center text-estate-800 mb-12">Korzyści z systemu TOS 111</h2>
+          
+          <div className="bg-white rounded-xl shadow-xl p-6 md:p-10 mb-12">
+            <div className="h-[400px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={benefitsData}
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 30,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="name" tick={{ fill: '#525252' }} />
+                  <YAxis domain={[0, 100]} tick={{ fill: '#525252' }} />
+                  <Tooltip 
+                    formatter={(value) => [`${value}%`, 'Wartość']}
+                    contentStyle={{ borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                  />
+                  <Bar dataKey="value" radius={[8, 8, 0, 0]}>
+                    {benefitsData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="mt-8 text-center text-estate-600 text-lg">
+              TOS 111 znacząco podnosi kluczowe wskaźniki efektywności operacji terminalowych
+            </div>
+          </div>
+          
+          {/* System Description */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="prose max-w-none text-estate-600">
+              <p className="text-lg leading-relaxed">
+                Z przyjemnością przedstawiam mój zaawansowany Terminal Operation System (TOS), który zrewolucjonizował sposób zarządzania operacjami transportowymi w terminalach. Stworzyłem ten system z myślą o efektywnej obsłudze pociągów i samochodów transportujących kontenery, oferując szereg innowacyjnych funkcji, które znacząco zwiększają wydajność i precyzję operacji.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Mój TOS umożliwia płynne przyjmowanie i wydawanie pociągów, co jest kluczowe dla sprawnego zarządzania ruchem w terminalu. Dzięki zaawansowanej funkcjonalności, system przy wydaniach zapewnia obsługę załadunków, podwójnie sprawdzając przypisanie platform do odpowiednich kontenerów.
+              </p>
+            </div>
+            <div className="prose max-w-none text-estate-600">
+              <p className="text-lg leading-relaxed">
+                System wspiera również zarządzanie przestrzenią magazynową, umożliwiając śledzenie stanów magazynowych. Dzięki temu operacje przyjęć i wydań towarów są nie tylko szybsze, ale także bardziej precyzyjne.
+              </p>
+              <p className="text-lg leading-relaxed">
+                Mój Terminal Operation System (TOS) 111 wykorzystuje najnowocześniejsze technologie, bazując na nowoczesnych bazach danych w chmurze, które obsługują zamianę danych na wektory. Dzięki temu mogę zapewnić szybki i efektywny dostęp do informacji, co znacząco zwiększa wydajność operacyjną.
+              </p>
+            </div>
+          </div>
+          
+          {/* CTA Section */}
+          <div className="bg-gradient-to-r from-[#6E59A5] to-[#8B5CF6] rounded-xl overflow-hidden shadow-xl">
+            <div className="p-8 md:p-12 text-white text-center">
+              <h3 className="text-2xl md:text-3xl font-semibold mb-4">Gotowy na rewolucję w zarządzaniu terminalem?</h3>
+              <p className="text-white/90 mb-8 max-w-2xl mx-auto">
+                Dzięki mojemu Terminal Operation System 111, terminale mogą osiągnąć nowy poziom efektywności i niezawodności, co jest kluczowe w dynamicznie zmieniającym się środowisku transportowym.
+              </p>
+              <a href="https://tos111.netlify.app" target="_blank" rel="noopener noreferrer">
+                <Button className="bg-white text-[#8B5CF6] hover:bg-gray-100 flex items-center gap-2 px-8 py-6 text-lg font-medium rounded-full">
+                  Przetestuj TOS 111 <ExternalLink className="w-5 h-5" />
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );
