@@ -16,8 +16,12 @@ export const wrapContentInTemplate = (
   templateType: EmailTemplateType = "default",
   correspondenceHistory?: string
 ): string => {
-  // Font import for all templates
-  const fontImport = `<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">`;
+  // Font import for all templates - using Google Fonts with preconnect for better performance
+  const fontImport = `
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  `;
   
   // Replace signature color to blue using Playfair Display font
   const signatureRegex = /(Z poważaniem,\s*<br>Marek Głowacki)<\/p>/i;
