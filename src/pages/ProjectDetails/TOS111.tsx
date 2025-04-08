@@ -4,7 +4,6 @@ import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ChartContainer } from "@/components/ui/chart";
 import { ExternalLink, Container, TruckIcon, TrainFront, Database, LayoutDashboard, ChartBar, Activity, Clock } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
 
@@ -12,51 +11,51 @@ const TOS111 = () => {
   const featureData = [
     {
       title: "Obsługa Pociągów",
-      icon: <TrainFront className="w-12 h-12 text-purple-500 mb-4" />,
+      icon: <TrainFront className="w-12 h-12 text-green-600 mb-4" />,
       description: "Płynne przyjmowanie i wydawanie pociągów transportowych z zaawansowanym zarządzaniem ładunkami"
     },
     {
       title: "Transport Samochodowy",
-      icon: <TruckIcon className="w-12 h-12 text-blue-500 mb-4" />,
+      icon: <TruckIcon className="w-12 h-12 text-green-700 mb-4" />,
       description: "Kompleksowa obsługa floty samochodów transportowych z optymalizacją tras i ładunku"
     },
     {
       title: "Zarządzanie Kontenerami",
-      icon: <Container className="w-12 h-12 text-emerald-500 mb-4" />,
+      icon: <Container className="w-12 h-12 text-green-800 mb-4" />,
       description: "Precyzyjne śledzenie i organizacja kontenerów z mapowaniem w czasie rzeczywistym"
     },
     {
       title: "Analiza Danych",
-      icon: <Database className="w-12 h-12 text-amber-500 mb-4" />,
+      icon: <Database className="w-12 h-12 text-green-600 mb-4" />,
       description: "Zaawansowane raportowanie i analityka bazująca na technologii wektorowej"
     },
     {
       title: "Panel Zarządzania",
-      icon: <LayoutDashboard className="w-12 h-12 text-indigo-500 mb-4" />,
+      icon: <LayoutDashboard className="w-12 h-12 text-green-700 mb-4" />,
       description: "Intuicyjny interfejs do monitorowania wszystkich operacji w czasie rzeczywistym"
     },
     {
       title: "Optymalizacja Czasu",
-      icon: <Clock className="w-12 h-12 text-rose-500 mb-4" />,
+      icon: <Clock className="w-12 h-12 text-green-800 mb-4" />,
       description: "Skrócenie czasu operacji dzięki inteligentnym rozwiązaniom i automatyzacji"
     },
     {
       title: "Monitoring Wydajności",
-      icon: <Activity className="w-12 h-12 text-cyan-500 mb-4" />,
+      icon: <Activity className="w-12 h-12 text-green-600 mb-4" />,
       description: "Zaawansowane narzędzia do śledzenia i optymalizowania sprawności operacji"
     }
   ];
 
   const benefitsData = [
-    { name: 'Wydajność', value: 90, color: '#9b87f5' },
-    { name: 'Dokładność', value: 95, color: '#7E69AB' },
-    { name: 'Oszczędność', value: 85, color: '#6E59A5' },
-    { name: 'Skalowalność', value: 88, color: '#8B5CF6' },
-    { name: 'Elastyczność', value: 92, color: '#1EAEDB' },
+    { name: 'Wydajność', value: 90, color: '#10b981' }, // Green colors
+    { name: 'Dokładność', value: 95, color: '#059669' },
+    { name: 'Oszczędność', value: 85, color: '#047857' },
+    { name: 'Skalowalność', value: 88, color: '#065f46' },
+    { name: 'Elastyczność', value: 92, color: '#064e3b' },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-b from-white to-green-50">
       <Navbar />
       
       {/* Hero Section */}
@@ -65,8 +64,8 @@ const TOS111 = () => {
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="w-full md:w-1/2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display text-estate-800 mb-6 leading-tight">
-                Terminal <span className="text-[#9b87f5]">Operation</span> System
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#1EAEDB]"> 111</span>
+                Terminal <span className="text-green-600">Operation</span> System
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-700 to-green-500"> 111</span>
               </h1>
               
               <p className="text-lg text-estate-600 mb-8">
@@ -75,7 +74,7 @@ const TOS111 = () => {
               
               <div className="flex flex-wrap gap-4">
                 <a href="https://tos111.netlify.app" target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-[#8B5CF6] hover:bg-[#7c4ff1] text-white flex items-center gap-2 px-6 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all">
+                  <Button className="bg-green-600 hover:bg-green-700 text-white flex items-center gap-2 px-6 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all">
                     Wypróbuj demo <ExternalLink className="w-5 h-5" />
                   </Button>
                 </a>
@@ -117,7 +116,7 @@ const TOS111 = () => {
             <CarouselContent>
               {featureData.map((feature, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
-                  <Card className="border-none shadow-lg hover:shadow-xl transition-all h-full bg-gradient-to-br from-white to-purple-50">
+                  <Card className="border-none shadow-lg hover:shadow-xl transition-all h-full bg-gradient-to-br from-white to-green-50">
                     <CardContent className="p-6 flex flex-col items-center text-center h-full">
                       {feature.icon}
                       <h3 className="text-xl font-semibold mb-2 text-estate-800">{feature.title}</h3>
@@ -136,7 +135,7 @@ const TOS111 = () => {
       </div>
       
       {/* Benefits Section with Chart */}
-      <div className="py-16 bg-gradient-to-b from-purple-50 to-white">
+      <div className="py-16 bg-gradient-to-b from-green-50 to-white">
         <div className="container mx-auto px-4 max-w-6xl">
           <h2 className="text-3xl font-display text-center text-estate-800 mb-12">Korzyści z systemu TOS 111</h2>
           
@@ -172,11 +171,11 @@ const TOS111 = () => {
             </div>
           </div>
           
-          {/* System Description - Redesigned */}
+          {/* System Description - Redesigned into 3 cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-green-50 to-white animate-fade-in">
               <div className="flex justify-center mb-4">
-                <TrainFront className="w-12 h-12 text-[#8B5CF6]" />
+                <TrainFront className="w-12 h-12 text-green-600" />
               </div>
               <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Innowacyjne zarządzanie</h3>
               <p className="text-estate-600 text-center">
@@ -184,9 +183,9 @@ const TOS111 = () => {
               </p>
             </Card>
             
-            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-green-50 to-white animate-fade-in">
               <div className="flex justify-center mb-4">
-                <TruckIcon className="w-12 h-12 text-[#7E69AB]" />
+                <TruckIcon className="w-12 h-12 text-green-700" />
               </div>
               <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Płynne operacje</h3>
               <p className="text-estate-600 text-center">
@@ -194,9 +193,9 @@ const TOS111 = () => {
               </p>
             </Card>
             
-            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-purple-50 to-white animate-fade-in">
+            <Card className="p-6 shadow-lg border-none bg-gradient-to-br from-green-50 to-white animate-fade-in">
               <div className="flex justify-center mb-4">
-                <Database className="w-12 h-12 text-[#6E59A5]" />
+                <Database className="w-12 h-12 text-green-800" />
               </div>
               <h3 className="text-xl font-semibold text-center mb-3 text-estate-800">Technologia wektorowa</h3>
               <p className="text-estate-600 text-center">
@@ -207,7 +206,7 @@ const TOS111 = () => {
           
           {/* Additional Description Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-[#8B5CF6]">
+            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-600">
               <h3 className="text-2xl font-semibold mb-4 text-estate-800">Kompleksowe zarządzanie</h3>
               <p className="text-estate-600 leading-relaxed">
                 System wspiera zarządzanie przestrzenią magazynową, umożliwiając śledzenie stanów magazynowych. 
@@ -215,7 +214,7 @@ const TOS111 = () => {
               </p>
             </div>
             
-            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-[#7E69AB]">
+            <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-green-700">
               <h3 className="text-2xl font-semibold mb-4 text-estate-800">Zaawansowana technologia</h3>
               <p className="text-estate-600 leading-relaxed">
                 Terminal Operation System (TOS) 111 wykorzystuje najnowocześniejsze technologie, 
@@ -226,14 +225,14 @@ const TOS111 = () => {
           </div>
           
           {/* CTA Section */}
-          <div className="bg-gradient-to-r from-[#6E59A5] to-[#8B5CF6] rounded-xl overflow-hidden shadow-xl">
+          <div className="bg-gradient-to-r from-green-700 to-green-600 rounded-xl overflow-hidden shadow-xl">
             <div className="p-8 md:p-12 text-white text-center">
               <h3 className="text-2xl md:text-3xl font-semibold mb-4">Gotowy na rewolucję w zarządzaniu terminalem?</h3>
               <p className="text-white/90 mb-8 max-w-2xl mx-auto">
                 Dzięki mojemu Terminal Operation System 111, terminale mogą osiągnąć nowy poziom efektywności i niezawodności, co jest kluczowe w dynamicznie zmieniającym się środowisku transportowym.
               </p>
               <a href="https://tos111.netlify.app" target="_blank" rel="noopener noreferrer">
-                <Button className="bg-white text-[#8B5CF6] hover:bg-gray-100 flex items-center gap-2 px-8 py-6 text-lg font-medium rounded-full">
+                <Button className="bg-white text-green-600 hover:bg-gray-100 flex items-center gap-2 px-8 py-6 text-lg font-medium rounded-full">
                   Przetestuj TOS 111 <ExternalLink className="w-5 h-5" />
                 </Button>
               </a>
