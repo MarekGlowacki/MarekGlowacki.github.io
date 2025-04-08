@@ -246,7 +246,7 @@ const TOS111 = () => {
                 <img 
                   src="/images/TOS111.png"
                   alt="Terminal Operation System Dashboard" 
-                  className="w-full h-auto object-cover rounded-lg transform hover:scale-105 transition-transform duration-700" src="twoje-zdjecie.jpg" alt="Opis zdjęcia"
+                  className="w-full h-[50vh] md:h-[60vh] object-cover rounded-lg transform hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
                   <div className="p-6 text-white">
