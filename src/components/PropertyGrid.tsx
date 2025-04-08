@@ -7,27 +7,21 @@ const PropertyGrid = () => {
   
   const properties = [
     {
-      image: "images/projekt-dcm.jpg",
-      title: t("projects.dca"),
-      location: t("projects.location.poland"),
-      slug: "dca-crypto-monitor",
-    },
-    {
       image: "images/projekt-ai.jpg",
       title: t("projects.ai"),
       location: t("projects.location.biala"),
       slug: "ai-for-business",
     },
     {
-      image: "/images/real-calendar.jpg",
-      title: t("projects.crm"),
+      image: "/images/projekt-btc.jpg",
+      title: "Terminal Operation System (TOS) 111",
       location: t("projects.location.world"),
-      slug: "crm",
+      slug: "tos111",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
       {properties.map((property, index) => (
         <PropertyCard key={index} {...property} />
       ))}
