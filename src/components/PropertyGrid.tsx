@@ -7,7 +7,7 @@ const PropertyGrid = () => {
   
   const properties = [
     {
-      image: "images/TOS111.png",
+      image: "images/projekt-ai.jpg",
       title: t("projects.ai"),
       location: t("projects.location.biala"),
       slug: "ai-for-business",

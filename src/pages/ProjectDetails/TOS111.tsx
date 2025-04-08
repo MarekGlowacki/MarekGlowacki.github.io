@@ -244,7 +244,7 @@ const TOS111 = () => {
             <div className="w-full md:w-1/2 relative">
               <div className="relative overflow-hidden rounded-xl shadow-2xl border-8 border-white">
                 <img 
-                  src="/images/projekt-btc.jpg" 
+                  src="/images/TOS111.png"
                   alt="Terminal Operation System Dashboard" 
                   className="w-full h-[50vh] md:h-[60vh] object-cover rounded-lg transform hover:scale-105 transition-transform duration-700"
                 />
