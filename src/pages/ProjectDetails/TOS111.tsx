@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -19,8 +18,8 @@ const TOS111 = () => {
         highlight: "111",
         subtitle: "Rewolucyjny system zarządzania operacjami transportowymi, który łączy zaawansowaną technologię z prostotą użytkowania.",
         demo: "Wypróbuj demo",
-        login: "Login: admin@tos111.pl",
-        password: "Hasło: 123123",
+        login: "admin@tos111.pl",
+        password: "123123",
         dashboard: "Nowoczesny dashboard",
         dashboardDesc: "Intuicyjny interfejs dla wszystkich operacji transportowych"
       },
@@ -110,8 +109,8 @@ const TOS111 = () => {
         highlight: "111",
         subtitle: "Revolutionary transport operations management system that combines advanced technology with ease of use.",
         demo: "Try demo",
-        login: "Login: admin@tos111.pl",
-        password: "Password: 123123",
+        login: "admin@tos111.pl",
+        password: "123123",
         dashboard: "Modern dashboard",
         dashboardDesc: "Intuitive interface for all transport operations"
       },
@@ -227,9 +226,17 @@ const TOS111 = () => {
                     {c.hero.demo} <ExternalLink className="w-5 h-5" />
                   </Button>
                 </a>
-                <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg shadow mt-4 md:mt-0">
-                  <p className="text-estate-800 font-medium">{c.hero.login}</p>
-                  <p className="text-estate-800 font-medium">{c.hero.password}</p>
+                <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-md border-l-4 border-[#49be25] mt-4 md:mt-0 transition-all hover:shadow-lg">
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-sm text-gray-500 font-medium">Login</span>
+                      <p className="text-estate-800 font-bold">{c.hero.login}</p>
+                    </div>
+                    <div>
+                      <span className="text-sm text-gray-500 font-medium">{language === 'pl' ? 'Hasło' : 'Password'}</span>
+                      <p className="text-estate-800 font-bold">{c.hero.password}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
