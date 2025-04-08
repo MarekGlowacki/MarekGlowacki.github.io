@@ -7,13 +7,13 @@ const PropertyGrid = () => {
   
   const properties = [
     {
-      image: "images/projekt-ai.jpg",
+      image: "images/TOS111.png",
       title: t("projects.ai"),
       location: t("projects.location.biala"),
       slug: "ai-for-business",
     },
     {
-      image: "/images/projekt-btc.jpg",
+      image: "/images/TOS111.png",
       title: language === "pl" ? "Terminal Operation System (TOS) 111" : "Terminal Operation System (TOS) 111",
       location: t("projects.location.world"),
       slug: "tos111",
