@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Services = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
@@ -84,13 +84,21 @@ const Services = () => {
         </div>
 
         {isHomePage && (
-          <div className="mt-12 flex justify-center">
+          <div className="mt-12 flex justify-center space-x-4">
             <Link to="/services">
               <Button 
                 variant="outline" 
                 className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
               >
                 {t("services.all")}
+              </Button>
+            </Link>
+            <Link to="/projects">
+              <Button 
+                variant="outline" 
+                className="text-estate-800 border-estate-800 hover:bg-estate-800 hover:text-white"
+              >
+                {language === "pl" ? "Pokaż wszystkie produkcje" : "Show all productions"}
               </Button>
             </Link>
           </div>

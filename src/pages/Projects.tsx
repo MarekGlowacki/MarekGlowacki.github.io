@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/tabs";
 import { ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Projects = () => {
   const { t, language } = useLanguage();
@@ -72,40 +79,45 @@ const Projects = () => {
                 </h2>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {portfolioProjects.map((project, index) => (
-                  <a 
-                    key={index}
-                    href={project.url} 
-                    target="_blank" 
-                    rel="noreferrer" 
-                    className="block h-full group"
-                  >
-                    <Card className="h-full border-2 border-[#e8f4ff] hover:border-[#49be25] transition-all duration-300 bg-white hover:shadow-xl">
-                      <CardContent className="p-0">
-                        <div className="aspect-video w-full overflow-hidden">
-                          <img 
-                            src={`https://image.thum.io/get/width/600/crop/800/${project.url}`} 
-                            alt={project.name}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="p-4">
-                          <h3 className="font-display text-lg text-estate-800 mb-1 group-hover:text-[#49be25] transition-colors">
-                            {project.name}
-                          </h3>
-                          <p className="text-sm text-estate-600">{project.type}</p>
-                          <div className="mt-2 flex items-center text-[#49be25] text-sm font-medium">
-                            <span>{language === "pl" ? "Odwiedź stronę" : "Visit website"}</span>
-                            <ExternalLink className="ml-1 w-3 h-3" />
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </a>
-                ))}
-              </div>
+              <Carousel className="max-w-5xl mx-auto">
+                <CarouselContent>
+                  {portfolioProjects.map((project, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        className="block h-full group"
+                      >
+                        <Card className="h-full border-2 border-[#e8f4ff] hover:border-[#49be25] transition-all duration-300 bg-white hover:shadow-xl">
+                          <CardContent className="p-0">
+                            <div className="aspect-video w-full overflow-hidden">
+                              <img 
+                                src={`https://image.thum.io/get/width/600/crop/800/${project.url}`} 
+                                alt={project.name}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="p-4">
+                              <h3 className="font-display text-lg text-estate-800 mb-1 group-hover:text-[#49be25] transition-colors">
+                                {project.name}
+                              </h3>
+                              <p className="text-sm text-estate-600">{project.type}</p>
+                              <div className="mt-2 flex items-center text-[#49be25] text-sm font-medium">
+                                <span>{language === "pl" ? "Odwiedź stronę" : "Visit website"}</span>
+                                <ExternalLink className="ml-1 w-3 h-3" />
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </a>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-0 lg:-left-12" />
+                <CarouselNext className="right-0 lg:-right-12" />
+              </Carousel>
             </TabsContent>
           </Tabs>
         </div>
