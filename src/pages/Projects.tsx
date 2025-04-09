@@ -52,6 +52,21 @@ const Projects = () => {
       name: "DCA Crypto Monitor", 
       url: "https://gentle-klepon-d28eaf.netlify.app/",
       type: language === "pl" ? "Aplikacja webowa" : "Web application"
+    },
+    { 
+      name: "CRM Zarządzanie szkołą", 
+      url: "https://candid-lamington-83dcb0.netlify.app/",
+      type: language === "pl" ? "System CRM" : "CRM System"
+    },
+    { 
+      name: "Magda Hawryluk", 
+      url: "https://verdant-kashata-8db74f.netlify.app/",
+      type: language === "pl" ? "Portfolio" : "Portfolio"
+    },
+    { 
+      name: "OKEiWR", 
+      url: "https://nimble-florentine-02af1e.netlify.app/",
+      type: language === "pl" ? "Strona organizacji" : "Organization website"
     }
   ];
   
@@ -79,10 +94,16 @@ const Projects = () => {
                 </h2>
               </div>
               
-              <Carousel className="max-w-5xl mx-auto">
-                <CarouselContent>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
                   {portfolioProjects.map((project, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                       <a 
                         href={project.url} 
                         target="_blank" 
@@ -115,8 +136,10 @@ const Projects = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-0 lg:-left-12" />
-                <CarouselNext className="right-0 lg:-right-12" />
+                <div className="flex justify-center mt-8">
+                  <CarouselPrevious className="static mx-2 translate-y-0" />
+                  <CarouselNext className="static mx-2 translate-y-0" />
+                </div>
               </Carousel>
             </TabsContent>
           </Tabs>
