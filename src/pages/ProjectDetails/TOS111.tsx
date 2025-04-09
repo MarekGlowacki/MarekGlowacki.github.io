@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
@@ -212,7 +213,7 @@ const TOS111 = () => {
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="w-full md:w-1/2">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-display text-estate-800 mb-6 leading-tight">
-                {c.hero.title} <span className="text-[#49be25]">Operation</span> System
+                {c.hero.title} 
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#49be25] to-[#6dda4c]"> {c.hero.highlight}</span>
               </h1>
               
